@@ -4,7 +4,7 @@ using System.Linq;
 using System.Reflection;
 using UnityEngine;
 
-// 모든 데이터 클래스가 구현해야 할 인터페이스
+// 모든 컬렉션 데이터 클래스가 구현해야 할 인터페이스
 public interface IData
 {
     int ID { get; }
