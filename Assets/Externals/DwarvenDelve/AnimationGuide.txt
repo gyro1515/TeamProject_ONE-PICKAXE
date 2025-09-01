@@ -1,0 +1,66 @@
+Animation Guide for Dwarven Delve Asset Pack
+
+Note: For each animation provided in this asset pack, 
+the order of the animation frames will be in this document.
+Please adjust the timing to your liking. The top left frame in the sprite sheet is 0 and the rest of the frames are ordered left to right until the end of the row and then moving on to the next row. 
+
+Ex: 0/3/2/0 means first show frame 0, then frame 3, then frame 2, then frame 0 again.
+
+Baby Spider:
+Idle: 0/1
+Die: 0/3
+
+Bat:
+Idle: 0/7
+Attack: 0/7/2/3/0
+Die: 0/5/6
+
+Black Widow:
+Idle: 3/2
+Hang: 0/1
+Die: 3/4/5
+
+Campfire:
+Flicker: 0/1
+
+Fire/Blue Flame:
+Flicker: 0/1
+
+Flamethrower:
+Fire: 0/1/2/3/5/4/3/2/0
+
+Furnace:
+Flicker: 0/1
+
+Ghost:
+Idle (hover): 8/0
+Idle (dance): 0/6/0/7
+Die: 0/1/2/3/4/5
+
+Mimic:
+Idle: 0/4
+Die: 0/1/2/3
+
+Miner (Yellow and Blue):
+Note: for the slashing animations, the weapon is not in the sprite itself and needs to be added.
+Front (idle): 0/2
+Front (walk): 0/1/0/3/0
+Front (slash): 0/16/17/18/19/0
+Back (idle): 4/6
+Back (walk): 4/5/4/7/4
+Back (slash): 4/20/21/22/23/0
+Side (idle): 8/10
+Side (walk): 8/9/8/11/8
+Side (slash): 8/24/25/26/27/8
+Die: 12/13/14/15
+
+Slime:
+Idle: 0/1
+Jump: 0/2/1/4/2/1/0
+Die: 0/2/3
+
+Spiderweb:
+Grow: 0/1/2/3
+
+Spike:
+Fire: 0/1/2/1/0
