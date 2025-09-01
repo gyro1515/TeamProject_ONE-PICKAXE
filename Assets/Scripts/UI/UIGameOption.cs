@@ -25,6 +25,7 @@ public class UIGameOption : BaseUI
     {
         Debug.Log("옵션 열림");
         canvas.sortingOrder = 2;
+        canvas.enabled = true;
     }
     void SetVolum()
     {
@@ -34,13 +35,14 @@ public class UIGameOption : BaseUI
     }
     void ReturnToStartMenu()
     {
-        CloseUI();
-        //StartCoroutine(StartCloseUI());
+        //CloseUI();
+        StartCoroutine(StartCloseUI());
     }
     IEnumerator StartCloseUI()
     {
         yield return FadeManager.Instance.FadeOut();
         canvas.sortingOrder = 0; // 바로 닫으면 코루틴 중지되기 때문에 눈속임으로...
+        canvas.enabled = false; // 캔버스를 끄는 것도?
         yield return FadeManager.Instance.FadeIn();
         CloseUI();
     }

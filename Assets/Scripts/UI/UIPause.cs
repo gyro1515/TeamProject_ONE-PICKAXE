@@ -29,19 +29,17 @@ public class UIPause : BaseUI
     }
     void OpenOption()
     {
-        //StartCoroutine(StartOpenUIGameOption());
-        uiGameOption?.OpenUI();
+        StartCoroutine(StartOpenUIGameOption());
+        //uiGameOption?.OpenUI();
     }
     IEnumerator StartOpenUIGameOption()
     {
-        Time.timeScale = 1.0f;
         yield return FadeManager.Instance.FadeOut();
         uiGameOption?.OpenUI();
         yield return FadeManager.Instance.FadeIn();
     }
     void ReturnToMain()
     {
-        Time.timeScale = 1.0f;
         SceneLoader.Instance.StartLoadScene(SceneState.WonJinTestStart);
     }
 }

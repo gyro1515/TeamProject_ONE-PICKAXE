@@ -65,7 +65,11 @@ public class FadeManager : SingletonMono<FadeManager>
         c.a = 0f;
         while (time < fadeDuration)
         {
-            time += Time.deltaTime;
+            // 렉 걸렸을때 값 튐 방지
+            float tmpDelta = Time.unscaledDeltaTime;
+            tmpDelta = Mathf.Min(tmpDelta, 0.015f);
+            time += tmpDelta;
+            //Debug.Log($"Out :{time}");
             c.a = Mathf.Lerp(0f, 1f, time / fadeDuration);
             fadeImage.color = c;
             yield return null;
@@ -83,7 +87,12 @@ public class FadeManager : SingletonMono<FadeManager>
         c.a = 1f;
         while (time < fadeDuration)
         {
-            time += Time.deltaTime;
+            // 렉 걸렸을때 값 튐 방지
+            float tmpDelta = Time.unscaledDeltaTime;
+            tmpDelta = Mathf.Min(tmpDelta, 0.015f);
+            time += tmpDelta;
+            //Debug.Log($"In :{time}");
+
             c.a = Mathf.Lerp(1f, 0f, time / fadeDuration);
             fadeImage.color = c;
             yield return null;
