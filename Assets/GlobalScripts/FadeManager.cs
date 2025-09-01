@@ -5,10 +5,8 @@ using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 // 페이드 인 아웃을 관리하는 매니저, 게임 시작 시 자동으로 생성, 씬 전환 시 페이드 효과 적용
-public class FadeManager : MonoBehaviour
+public class FadeManager : SingletonMono<FadeManager>
 {
-    public static FadeManager Instance { get; private set; }
-
     private Image fadeImage;
     private const float fadeDuration = 0.3f; // 페이드 시간
 
@@ -19,27 +17,16 @@ public class FadeManager : MonoBehaviour
     [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.BeforeSceneLoad)]
     private static void Init()
     {
-        if (Instance == null)
+        if (Instance != null)
         {
-            GameObject go = new GameObject("FadeManager");
-            // SceneLoader와 비슷하지만 다른 방식
-            // FadeManager 컴포넌트를 추가하여 이 참조 값을 Instance로 설정
-            // 물론 Instance로 설정 전, Awake()가 호출 됨
-            Instance = go.AddComponent<FadeManager>();
-            DontDestroyOnLoad(go);
+            if (Instance.fadeImage == null)
+                Instance.SetupFadeImage();
         }
     }
 
-    private void Awake()
+    protected override void Awake()
     {
-        if (Instance != null && Instance != this)
-        {
-            Destroy(gameObject);
-            return;
-        }
-
-        if (fadeImage == null)
-            SetupFadeImage();
+        base.Awake();
     }
     private void SetupFadeImage()
     {
