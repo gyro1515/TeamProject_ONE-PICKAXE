@@ -15,11 +15,15 @@ public class UIGameOption : BaseUI
         canvas = GetComponent<Canvas>();
         btnApply.onClick.AddListener(SetVolum);
         btnReturn.onClick.AddListener(ReturnToStartMenu);
-        sliderVolum.value = SoundManager.Instance.MusicVolume;
         CloseUI(); // 처음은 닫힌채로 시작
+    }
+    private void Start()
+    {
+        sliderVolum.value = SoundManager.Instance.MusicVolume;
     }
     private void OnDisable()
     {
+        Debug.Log("옵션 열림");
         canvas.sortingOrder = 2;
     }
     void SetVolum()
@@ -30,7 +34,8 @@ public class UIGameOption : BaseUI
     }
     void ReturnToStartMenu()
     {
-        StartCoroutine(StartCloseUI());
+        CloseUI();
+        //StartCoroutine(StartCloseUI());
     }
     IEnumerator StartCloseUI()
     {

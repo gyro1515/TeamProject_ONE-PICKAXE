@@ -8,7 +8,8 @@ public enum SceneState
     // 예시들
     None,
     Stage01,
-
+    WonjinTestStage01,
+    WonJinTestStart
 }
 // 씬 전환을 관리하는 스크립트, 게임 시작 시 자동으로 생성되며, 씬 전환을 담당
 public class SceneLoader : SingletonMono<SceneLoader>
@@ -22,6 +23,8 @@ public class SceneLoader : SingletonMono<SceneLoader>
         { SceneState.TheStack,    "TheStackScene" }*/
 
         { SceneState.Stage01,   "Stage01" },
+        { SceneState.WonjinTestStage01,   "WonjinTestStage01" },
+        { SceneState.WonJinTestStart,   "WonJinTestStart" }
     };
     
     // 키 모아두기 예시

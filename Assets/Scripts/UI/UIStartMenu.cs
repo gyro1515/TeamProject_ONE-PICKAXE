@@ -20,7 +20,7 @@ public class UIStartMenu : BaseUI
     }
     void GameStart()
     {
-        SceneLoader.Instance.StartLoadScene(SceneState.Stage01);
+        SceneLoader.Instance.StartLoadScene(SceneState.WonjinTestStage01);
     }
     void ExitGame()
     {
