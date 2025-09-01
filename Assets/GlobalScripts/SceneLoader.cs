@@ -13,7 +13,7 @@ public enum SceneState
     TheStack*/
 }
 // 씬 전환을 관리하는 스크립트, 게임 시작 시 자동으로 생성되며, 씬 전환을 담당
-public class SceneLoader : MonoBehaviour
+public class SceneLoader : MonoBehaviour 
 {
     private static SceneLoader instance;
 
