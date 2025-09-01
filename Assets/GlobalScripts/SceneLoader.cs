@@ -45,6 +45,7 @@ public class SceneLoader : SingletonMono<SceneLoader>
     static void Load(SceneState state)
     {
         IsChange = true; // 씬 전환 시작
+
         SceneManager.LoadScene(Instance.sceneNames[state]);
     }
 
