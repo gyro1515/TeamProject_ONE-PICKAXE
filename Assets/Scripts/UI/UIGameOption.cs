@@ -23,7 +23,7 @@ public class UIGameOption : BaseUI
     }
     private void OnDisable()
     {
-        Debug.Log("옵션 열림");
+        //Debug.Log("옵션 열림");
         canvas.sortingOrder = 2;
         canvas.enabled = true;
     }
@@ -33,7 +33,7 @@ public class UIGameOption : BaseUI
         SoundManager.Instance.MusicVolume = sliderVolum.value;
         SoundManager.Instance.SoundEffectVolume = sliderVolum.value;
     }
-    void ReturnToStartMenu()
+    public void ReturnToStartMenu()
     {
         //CloseUI();
         StartCoroutine(StartCloseUI());

@@ -25,16 +25,19 @@ public class Player : BaseCharacter
     public PlayerController Controller { get; private set; }
     public PlayerAnimationData AnimationData { get; private set; }
     public UIHUD HUD { get; private set; }
+    public UIPause UIPause { get; private set; }
+
     protected override void Awake()
     {
         base.Awake();
         AnimationData = GetComponent<PlayerAnimationData>();
-        AnimationData.Initialize();
+        AnimationData?.Initialize();
         Controller = GetComponent<PlayerController>();
         HUD = UIManager.Instance.GetUI<UIHUD>();
         OnCurHpChange += HUD.SetHp; // 이벤트 바인드해주기, 현재 체력 변화할 때마다 자동 호출
         OnMineralCntChage += HUD.SetMineralCount;
         Init(); // 초기화 할 것들, 현재는 UI만
+        UIPause = UIManager.Instance.GetUI<UIPause>();
     }
     void Init()
     {
