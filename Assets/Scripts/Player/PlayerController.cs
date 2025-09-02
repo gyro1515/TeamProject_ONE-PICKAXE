@@ -46,7 +46,8 @@ public class PlayerController : BaseController
 
     private void OnDisable()
     {
-        Input.Disable();
+        PlayerActions.Jump.started -= OnJump;
+        PlayerActions.OpenPauseMenu.started -= OnOpenPauseMenu;
     }
     void OnJump(InputAction.CallbackContext context)
     {

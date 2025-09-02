@@ -3,7 +3,6 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-[Serializable]
 public class PlayerAnimationData : MonoBehaviour, IAnimationData
 {
     // 예시 입니다.
