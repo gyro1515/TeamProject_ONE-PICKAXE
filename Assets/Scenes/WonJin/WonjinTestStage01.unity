@@ -7325,6 +7325,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5235601173103510052, guid: d3ddc64c0961baa45aac75da828650f2, type: 3}
+      propertyPath: playerPrefab
+      value: 
+      objectReference: {fileID: 9202709340484511380, guid: 2906ad3d97f377441b88d5c9789fac1e, type: 3}
     - target: {fileID: 5406970011660682274, guid: d3ddc64c0961baa45aac75da828650f2, type: 3}
       propertyPath: m_Name
       value: SceneLoaderStage2
