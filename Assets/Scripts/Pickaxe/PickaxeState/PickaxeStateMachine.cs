@@ -21,6 +21,7 @@ public class PickaxeStateMachine
 
         // 게임 시작 시 모든 상태를 한 번씩만 생성 (캐싱)
         EquipState = new PickaxeEquipState();
+        SmashState = new PickaxeSmashState();
         ThrowState = new PickaxeThrowState();
         StuckState = new PickaxeStuckState();
         ReturnState = new PickaxeRetrieveState();

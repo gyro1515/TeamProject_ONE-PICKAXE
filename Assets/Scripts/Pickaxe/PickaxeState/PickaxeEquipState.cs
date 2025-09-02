@@ -17,15 +17,14 @@ public class PickaxeEquipState : PickaxeBaseState
             if(Time.time >= stateMachine.PickaxeController.LastSmashTime + stateMachine.PickaxeController.SmashCooldown)
             {
                 // 휘두르기 상태로 전환
-                //stateMachine.ChangeState(stateMachine.smashState);
+                stateMachine.ChangeState(stateMachine.SmashState);
             }
         }
-
-        //if (Input.GetMouseButtonDown(1))
-        //{
-        //    // 던지기 상태로 전환
-        //    stateMachine.ChangeState(stateMachine.throwState);
-        //}
+        else if (Input.GetMouseButtonDown(1))
+        {
+            // 던지기 상태로 전환
+            stateMachine.ChangeState(stateMachine.ThrowState);
+        }
     }
 
     public override void ExitState(PickaxeStateMachine stateMachine)
@@ -50,6 +49,6 @@ public class PickaxeEquipState : PickaxeBaseState
 
     public override void UpdateState(PickaxeStateMachine stateMachine)
     {
-
+        
     }
 }

@@ -4,7 +4,9 @@ public class PickaxeThrowState : PickaxeBaseState
 {
     public override void EnterState(PickaxeStateMachine stateMachine)
     {
-        throw new System.NotImplementedException();
+        Debug.Log("곡괭이 상태: 던지기");
+
+        // 던지기 애니메이션 재생
     }
 
     public override void ExitState(PickaxeStateMachine stateMachine)

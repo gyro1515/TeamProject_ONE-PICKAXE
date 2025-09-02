@@ -4,19 +4,25 @@ public class PickaxeController : MonoBehaviour
 {
     public PickaxeStateMachine stateMachine;
 
-    // 컴포넌트 및 오브젝트 참조
-    public GameObject SmashArea;
-
     [Header("Smash Settings")]
     public float SmashCooldown = 0.2f;
-    public float LastSmashTime = -Mathf.Infinity;
+    public float LastSmashTime = 0f;
+    public GameObject SmashArea;
 
-    public Transform PlayerTransform;
-    public Rigidbody2D Rb2D;
+    // 컴포넌트 및 오브젝트 참조
+    private Transform PlayerTransform;
+    private Rigidbody2D Rb2D;
+    private Animator Animator;
+
+    // Animation Hash
+    private static readonly int SmashHash = Animator.StringToHash("Smash");
 
     void Awake()
     {
+        PlayerTransform = GetComponentInParent<Transform>();
         Rb2D = GetComponent<Rigidbody2D>();
+        Animator = GetComponentInChildren<Animator>();
+
         stateMachine = new PickaxeStateMachine(this);
     }
 
@@ -48,5 +54,11 @@ public class PickaxeController : MonoBehaviour
     private void OnTriggerEnter2D(Collider2D other)
     {
         stateMachine.HandleTrigger(other);
+    }
+
+    // 휘두르기 애니메이션 재생
+    public void PlaySmashAnimation()
+    {
+        Animator.SetTrigger(SmashHash);
     }
 }
