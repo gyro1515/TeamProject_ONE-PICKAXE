@@ -20,7 +20,7 @@ public abstract class BaseCharacter : MonoBehaviour
             OnCurHpChange?.Invoke(curHP, MaxHP);
         } 
     }
-    public event Action<float, float> OnCurHpChange; // UI에 바인드할 이벤트 델리게이트
+    public event Action<int, int> OnCurHpChange; // UI에 바인드할 이벤트 델리게이트
     
     protected virtual void Awake()
     {
