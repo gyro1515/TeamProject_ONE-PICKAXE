@@ -1,38 +1,38 @@
 using UnityEngine;
 
-public class PickaxeBounceState : PickaxeBaseState
+public class PickaxeBounceState : PickaxeBaseState<ThrownPickaxeStateMachine>
 {
-    public override void EnterState(PickaxeStateMachine stateMachine)
+    public override void EnterState(ThrownPickaxeStateMachine stateMachine)
     {
         throw new System.NotImplementedException();
     }
 
-    public override void ExitState(PickaxeStateMachine stateMachine)
+    public override void ExitState(ThrownPickaxeStateMachine stateMachine)
     {
         throw new System.NotImplementedException();
     }
 
-    public override void FixedUpdateState(PickaxeStateMachine stateMachine)
+    public override void FixedUpdateState(ThrownPickaxeStateMachine stateMachine)
     {
         throw new System.NotImplementedException();
     }
 
-    public override void HandleCollision(PickaxeStateMachine stateMachine, Collision2D collision)
+    public override void HandleCollision(ThrownPickaxeStateMachine stateMachine, Collision2D collision)
     {
         throw new System.NotImplementedException();
     }
 
-    public override void HandleInput(PickaxeStateMachine stateMachine)
+    public override void HandleInput(ThrownPickaxeStateMachine stateMachine)
     {
         throw new System.NotImplementedException();
     }
 
-    public override void HandleTrigger(PickaxeStateMachine stateMachine, Collider2D other)
+    public override void HandleTrigger(ThrownPickaxeStateMachine stateMachine, Collider2D other)
     {
         throw new System.NotImplementedException();
     }
 
-    public override void UpdateState(PickaxeStateMachine stateMachine)
+    public override void UpdateState(ThrownPickaxeStateMachine stateMachine)
     {
         throw new System.NotImplementedException();
     }

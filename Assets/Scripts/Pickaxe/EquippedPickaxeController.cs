@@ -2,8 +2,6 @@ using UnityEngine;
 
 public class EquippedPickaxeController : MonoBehaviour
 {
-    public PickaxeStateMachine stateMachine;
-
     [Header("Smash Settings")]
     public float SmashCooldown = 0.2f;
     public float LastSmashTime = 0f;
@@ -23,13 +21,16 @@ public class EquippedPickaxeController : MonoBehaviour
     // Animation Hash
     private static readonly int SmashHash = Animator.StringToHash("Smash");
 
+    // 장착 곡괭이의 상태머신
+    private EquippedPickaxeStateMachine stateMachine;
+
     void Awake()
     {
         PlayerTransform = GetComponentInParent<Transform>();
         Rb2D = GetComponent<Rigidbody2D>();
         Animator = GetComponentInChildren<Animator>();
 
-        stateMachine = new PickaxeStateMachine(this);
+        stateMachine = new EquippedPickaxeStateMachine(this);
     }
 
     void Start()

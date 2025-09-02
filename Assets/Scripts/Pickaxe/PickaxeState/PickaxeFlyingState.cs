@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class PickaxeRetrieveState : PickaxeBaseState<ThrownPickaxeStateMachine>
+public class PickaxeFlyingState : PickaxeBaseState<ThrownPickaxeStateMachine>
 {
     public override void EnterState(ThrownPickaxeStateMachine stateMachine)
     {

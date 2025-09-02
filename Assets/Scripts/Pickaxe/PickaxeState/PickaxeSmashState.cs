@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PickaxeSmashState : PickaxeBaseState
+public class PickaxeSmashState : PickaxeBaseState<EquippedPickaxeStateMachine>
 {
     private float stateEnterTime; // 이 상태에 진입한 시간
 
@@ -14,29 +14,29 @@ public class PickaxeSmashState : PickaxeBaseState
 
     private bool isHitboxActive = false;
 
-    public override void EnterState(PickaxeStateMachine stateMachine)
+    public override void EnterState(EquippedPickaxeStateMachine stateMachine)
     {
         Debug.Log("곡괭이 상태: 휘두르기");
 
         stateEnterTime = Time.time;
-        stateMachine.PickaxeController.LastSmashTime = Time.time; // 쿨타임 계산을 위해 시간 기록
+        stateMachine.EquippedPickaxeController.LastSmashTime = Time.time; // 쿨타임 계산을 위해 시간 기록
         isHitboxActive = false;
 
         // 곡괭이 휘두르기 애니메이션 재생
-        stateMachine.PickaxeController.PlaySmashAnimation();
+        stateMachine.EquippedPickaxeController.PlaySmashAnimation();
     }
 
-    public override void ExitState(PickaxeStateMachine stateMachine)
+    public override void ExitState(EquippedPickaxeStateMachine stateMachine)
     {
         // 상태 나갈 때 히트박스가 켜져있다면 비활성화
         if (isHitboxActive)
         {
-            stateMachine.PickaxeController.SmashArea.SetActive(false);
+            stateMachine.EquippedPickaxeController.SmashArea.SetActive(false);
             isHitboxActive = false;
         }
     }
 
-    public override void HandleTrigger(PickaxeStateMachine stateMachine, Collider2D other)
+    public override void HandleTrigger(EquippedPickaxeStateMachine stateMachine, Collider2D other)
     {
         // 히트박스가 활성화된 동안 충돌이 발생하면 공격 판정
         if (isHitboxActive)
@@ -58,14 +58,14 @@ public class PickaxeSmashState : PickaxeBaseState
         }
     }
 
-    public override void UpdateState(PickaxeStateMachine stateMachine)
+    public override void UpdateState(EquippedPickaxeStateMachine stateMachine)
     {
         float elapsedTime = Time.time - stateEnterTime;
 
         // 히트박스 활성화 로직
         if (elapsedTime >= HITBOX_START_TIME && !isHitboxActive)
         {
-            stateMachine.PickaxeController.SmashArea.SetActive(true);
+            stateMachine.EquippedPickaxeController.SmashArea.SetActive(true);
             isHitboxActive = true;
             Debug.Log("히트박스 활성화!");
         }
@@ -73,7 +73,7 @@ public class PickaxeSmashState : PickaxeBaseState
         // 히트박스 비활성화 로직
         if (elapsedTime >= HITBOX_END_TIME && isHitboxActive)
         {
-            stateMachine.PickaxeController.SmashArea.SetActive(false);
+            stateMachine.EquippedPickaxeController.SmashArea.SetActive(false);
             isHitboxActive = false;
             Debug.Log("히트박스 비활성화!");
         }
@@ -85,7 +85,7 @@ public class PickaxeSmashState : PickaxeBaseState
         }
     }
 
-    public override void FixedUpdateState(PickaxeStateMachine stateMachine) { }
-    public override void HandleCollision(PickaxeStateMachine stateMachine, Collision2D collision) { }
-    public override void HandleInput(PickaxeStateMachine stateMachine) { }
+    public override void FixedUpdateState(EquippedPickaxeStateMachine stateMachine) { }
+    public override void HandleCollision(EquippedPickaxeStateMachine stateMachine, Collision2D collision) { }
+    public override void HandleInput(EquippedPickaxeStateMachine stateMachine) { }
 }
