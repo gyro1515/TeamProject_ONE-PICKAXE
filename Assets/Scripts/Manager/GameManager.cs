@@ -4,5 +4,5 @@ using UnityEngine;
 
 public class GameManager : SingletonMono<GameManager>
 {
-    public Player Player {  get; private set; }
+    public Player Player {  get; set; }
 }

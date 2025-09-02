@@ -8,6 +8,10 @@ public class CameraController : MonoBehaviour
 
     public GameObject player;
 
+    private void Start()
+    {
+        player = GameManager.Instance.Player.gameObject;
+    }
     private void Update()
     {
         Vector3 dir = player.transform.position - this.transform.position;

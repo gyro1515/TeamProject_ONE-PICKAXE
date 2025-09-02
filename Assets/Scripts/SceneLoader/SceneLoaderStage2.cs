@@ -10,7 +10,8 @@ public class SceneLoaderStage2 : MonoBehaviour
 
     private void Awake()
     {
-        Instantiate(playerPrefab);
+        GameManager.Instance.Player = null;
+        GameManager.Instance.Player = Instantiate(playerPrefab).GetComponent<Player>();
         
     }
     private void Update()
