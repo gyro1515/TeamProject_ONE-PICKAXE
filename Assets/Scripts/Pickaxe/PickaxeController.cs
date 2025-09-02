@@ -4,6 +4,13 @@ public class PickaxeController : MonoBehaviour
 {
     public PickaxeStateMachine stateMachine;
 
+    // 컴포넌트 및 오브젝트 참조
+    public GameObject SmashArea;
+
+    [Header("Smash Settings")]
+    public float SmashCooldown = 0.2f;
+    public float LastSmashTime = -Mathf.Infinity;
+
     public Transform PlayerTransform;
     public Rigidbody2D Rb2D;
 
@@ -15,7 +22,7 @@ public class PickaxeController : MonoBehaviour
 
     void Start()
     {
-        stateMachine.Initialize(stateMachine.equipState);
+        stateMachine.Initialize(stateMachine.EquipState);
     }
 
     void Update()

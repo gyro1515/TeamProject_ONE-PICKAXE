@@ -1,42 +1,41 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class PickaxeStateMachine
 {
     // 현재 상태
-    public PickaxeState CurrentState;
+    public PickaxeBaseState CurrentState;
     // 상태 전환 시 필요한 데이터
     public PickaxeController PickaxeController;
 
     // 미리 생성해둘 상태 인스턴스 (캐싱)
-    public readonly PickaxeEquipState equipState;
-    public readonly PickaxeThrowState throwState;
-    public readonly PickaxeStuckState stuckState;
-    public readonly PickaxeReturnState returnState;
-    public readonly PickaxeBounceState bounceState;
+    public readonly PickaxeEquipState EquipState;
+    public readonly PickaxeSmashState SmashState;
+    public readonly PickaxeThrowState ThrowState;
+    public readonly PickaxeStuckState StuckState;
+    public readonly PickaxeRetrieveState ReturnState;
+    public readonly PickaxeBounceState BounceState;
 
     public PickaxeStateMachine(PickaxeController controller)
     {
         this.PickaxeController = controller;
 
         // 게임 시작 시 모든 상태를 한 번씩만 생성 (캐싱)
-        equipState = new PickaxeEquipState();
-        throwState = new PickaxeThrowState();
-        stuckState = new PickaxeStuckState();
-        returnState = new PickaxeReturnState();
-        bounceState = new PickaxeBounceState();
+        EquipState = new PickaxeEquipState();
+        ThrowState = new PickaxeThrowState();
+        StuckState = new PickaxeStuckState();
+        ReturnState = new PickaxeRetrieveState();
+        BounceState = new PickaxeBounceState();
     }
 
     // 초기 상태 설정
-    public void Initialize(PickaxeState startingState)
+    public void Initialize(PickaxeBaseState startingState)
     {
         CurrentState = startingState;
         startingState.EnterState(this);
     }
 
     // 상태 전환 로직
-    public void ChangeState(PickaxeState newState)
+    public void ChangeState(PickaxeBaseState newState)
     {
         if (CurrentState != null)
         {

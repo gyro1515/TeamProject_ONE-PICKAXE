@@ -9,8 +9,7 @@ public class TempPlayerController : MonoBehaviour
     public float JumpForce = 7f;
 
     [Header("Ground Check Settings")]
-    public Transform GroundCheck;
-    public float GroundCheckRadius = 0.2f;
+    public float RayDistance = 0.2f;
     public LayerMask GroundLayer;
 
     private Rigidbody2D rb;
@@ -58,7 +57,25 @@ public class TempPlayerController : MonoBehaviour
 
     private void FixedUpdate()
     {
-        isGrounded = Physics2D.OverlapCircle(GroundCheck.position, GroundCheckRadius, GroundLayer);
+        isGrounded = CheckGround();
+    }
+
+    private bool CheckGround()
+    {
+        RaycastHit2D hit = Physics2D.Raycast(transform.position, Vector2.down, RayDistance, GroundLayer);
+
+        // 레이캐스트가 어떤 물체와 충돌했는지 확인
+        if (hit.collider != null)
+        {
+            isGrounded = true;
+        }
+        else
+        {
+            isGrounded = false;
+        }
+
+        // 결과를 반환합니다.
+        return isGrounded;
     }
 
     private void Flip()
@@ -72,14 +89,14 @@ public class TempPlayerController : MonoBehaviour
         transform.localScale = scale;
     }
 
-    void OnDrawGizmosSelected()
+    // 레이캐스트 디버깅
+    private void OnDrawGizmos()
     {
-        if (GroundCheck == null)
-        {
-            return;
-        }
+        // Gizmos 색상 설정
+        // 땅에 닿아있으면 녹색 아니면 빨간색으로 표시
+        Gizmos.color = isGrounded ? Color.green : Color.red;
 
-        Gizmos.color = Color.yellow;
-        Gizmos.DrawWireSphere(GroundCheck.position, GroundCheckRadius);
+        // 플레이어의 위치에서 아래로 레이캐스트의 거리를 시각적으로 그림
+        Gizmos.DrawRay(transform.position, Vector2.down * RayDistance);
     }
 }

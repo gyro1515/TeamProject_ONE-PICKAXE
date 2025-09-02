@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public abstract class PickaxeState
+public abstract class PickaxeBaseState
 {
     // 각 상태 진입 시 호출
     public abstract void EnterState(PickaxeStateMachine stateMachine);
