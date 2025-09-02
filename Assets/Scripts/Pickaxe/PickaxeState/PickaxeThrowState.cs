@@ -38,7 +38,7 @@ public class PickaxeThrowState : PickaxeBaseState<EquippedPickaxeStateMachine>
         ThrownPickaxeController thrownPickaxeController = thrownPickaxeObject.GetComponent<ThrownPickaxeController>();
         if (thrownPickaxeController != null)
         {
-            // 플레이어의 Transform을 전달
+            // thrownPickaxeController에 플레이어의 Transform 전달
             thrownPickaxeController.SetPlayerTransform(stateMachine.EquippedPickaxeController.transform.parent);
 
             // thrownPickaxeController에 플레이어의 방향 저장

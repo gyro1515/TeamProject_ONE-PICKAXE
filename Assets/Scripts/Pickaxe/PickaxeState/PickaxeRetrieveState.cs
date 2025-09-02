@@ -16,6 +16,9 @@ public class PickaxeRetrieveState : PickaxeBaseState<ThrownPickaxeStateMachine>
 
         // 플레이어 Transform 가져오기
         playerTransform = stateMachine.ThrownPickaxeController.PlayerTransform;
+
+        // 회수 애니메이션 재생
+        stateMachine.ThrownPickaxeController.PlayRetrieveAnimation();
     }
 
     public override void ExitState(ThrownPickaxeStateMachine stateMachine)

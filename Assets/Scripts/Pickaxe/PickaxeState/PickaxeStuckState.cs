@@ -93,9 +93,6 @@ public class PickaxeStuckState : PickaxeBaseState<ThrownPickaxeStateMachine>
             {
                 Debug.Log("원거리 회수 충전 완료!");
 
-                // 충전 완료 후 회수 애니메이션 재생(상태 전환 후 재생하면 딜레이 발생)
-                stateMachine.ThrownPickaxeController.PlayRetrieveAnimation();
-
                 stateMachine.ChangeState(stateMachine.RetrieveState);
             }
         }

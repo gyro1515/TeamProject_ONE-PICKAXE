@@ -119,7 +119,7 @@ GameObject:
   - component: {fileID: 7897076972413126033}
   - component: {fileID: 2070923653477800483}
   m_Layer: 0
-  m_Name: ThrowablePickaxe
+  m_Name: ThrownPickaxe
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
