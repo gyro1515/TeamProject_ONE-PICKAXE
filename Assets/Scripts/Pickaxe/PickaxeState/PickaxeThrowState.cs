@@ -36,6 +36,12 @@ public class PickaxeThrowState : PickaxeBaseState<EquippedPickaxeStateMachine>
 
         // 투척 곡괭이 컨트롤러 저장
         ThrownPickaxeController thrownPickaxeController = thrownPickaxeObject.GetComponent<ThrownPickaxeController>();
+        if (thrownPickaxeController != null)
+        {
+            // thrownPickaxeController에 플레이어의 방향 저장
+            bool playerIsFacingRight = stateMachine.EquippedPickaxeController.transform.parent.localScale.x > 0;
+            thrownPickaxeController.InitializeThrownPickaxe(playerIsFacingRight);
+        }
 
         // 곡괭이에 힘을 가해 투척
         Rigidbody2D rb = thrownPickaxeObject.GetComponent<Rigidbody2D>();

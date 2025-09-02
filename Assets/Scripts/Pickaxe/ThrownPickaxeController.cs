@@ -5,13 +5,12 @@ using UnityEngine;
 public class ThrownPickaxeController : MonoBehaviour
 {
     public float Damage = 50f;
-    public float StickingOffset = 0.5f; // 땅에 박히는 정도 (절반 정도 파묻히기 위함)
+    public float StickingOffset = 0.2f; // 땅에 박히는 정도
+    public bool isPlayerFacingRight { get; private set; } // 플레이어의 방향을 저장할 변수 -> 곡괭이가 박히는 방향 결정
 
     public Rigidbody2D Rb2D { get; private set; }
+    public Collision2D LastCollision { get; private set; }
     private Animator Animator;
-
-    // 충돌 정보를 저장할 변수
-    [HideInInspector] public Collision2D LastCollision;
 
     // Animation Hash
     private static readonly int ThrowHash = Animator.StringToHash("Throw");
@@ -39,6 +38,12 @@ public class ThrownPickaxeController : MonoBehaviour
 
         // 충돌 이벤트 처리를 현재 상태로 위임
         stateMachine.HandleCollision(collision);
+    }
+
+    // ThrownPickaxe를 생성할 때 플레이어의 방향을 전달받는 메서드 추가
+    public void InitializeThrownPickaxe(bool playerFacingRight)
+    {
+        isPlayerFacingRight = playerFacingRight;
     }
 
     // 던지기 애니메이션 재생
