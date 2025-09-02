@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class PickaxeController : MonoBehaviour
+public class EquippedPickaxeController : MonoBehaviour
 {
     public PickaxeStateMachine stateMachine;
 
@@ -8,6 +8,12 @@ public class PickaxeController : MonoBehaviour
     public float SmashCooldown = 0.2f;
     public float LastSmashTime = 0f;
     public GameObject SmashArea;
+
+    [Header("Throw Settings")]
+    public GameObject EquippedPickaxeObject; // 플레이어가 들고 있는 곡괭이 오브젝트
+    public GameObject ThrowablePickaxePrefab; // 던지는 곡괭이 프리팹
+    public float ThrowForce = 15f; // 던지는 힘
+    public float ThrowRadius = 1.0f; // 플레이어로부터 생성될 위치의 반지름
 
     // 컴포넌트 및 오브젝트 참조
     private Transform PlayerTransform;
@@ -54,6 +60,12 @@ public class PickaxeController : MonoBehaviour
     private void OnTriggerEnter2D(Collider2D other)
     {
         stateMachine.HandleTrigger(other);
+    }
+
+    // EquippedPickaxeObject의 활성/비활성화 제어
+    public void SetEquippedPickaxeActive(bool isActive)
+    {
+        EquippedPickaxeObject.SetActive(isActive);
     }
 
     // 휘두르기 애니메이션 재생

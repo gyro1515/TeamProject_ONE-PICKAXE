@@ -5,7 +5,7 @@ public class PickaxeStateMachine
     // 현재 상태
     public PickaxeBaseState CurrentState;
     // 상태 전환 시 필요한 데이터
-    public PickaxeController PickaxeController;
+    public EquippedPickaxeController PickaxeController;
 
     // 미리 생성해둘 상태 인스턴스 (캐싱)
     public readonly PickaxeEquipState EquipState;
@@ -15,7 +15,7 @@ public class PickaxeStateMachine
     public readonly PickaxeRetrieveState ReturnState;
     public readonly PickaxeBounceState BounceState;
 
-    public PickaxeStateMachine(PickaxeController controller)
+    public PickaxeStateMachine(EquippedPickaxeController controller)
     {
         this.PickaxeController = controller;
 
