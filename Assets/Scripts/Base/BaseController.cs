@@ -17,11 +17,10 @@ public abstract class BaseController : MonoBehaviour
     }
     protected virtual void Update()
     {
-
     }
     protected virtual void FixedUpdate()
     {
-
+        Move();
     }
     protected virtual void Move()
     {
