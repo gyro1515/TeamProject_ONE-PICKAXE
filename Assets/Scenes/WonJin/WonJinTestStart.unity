@@ -249,10 +249,6 @@ MonoBehaviour:
   <MoveSpeed>k__BackingField: 0
   <MaxHP>k__BackingField: 0
   <JumpForce>k__BackingField: 7
-  <AnimationData>k__BackingField:
-    idleParameterName: Idle
-    runParameterName: Run
-    AttackParameterName: Attack
 --- !u!4 &169960351
 Transform:
   m_ObjectHideFlags: 0
@@ -278,16 +274,17 @@ GameObject:
   m_Component:
   - component: {fileID: 993808444}
   - component: {fileID: 993808443}
+  - component: {fileID: 993808445}
   - component: {fileID: 993808442}
   - component: {fileID: 993808441}
   - component: {fileID: 993808440}
   m_Layer: 0
-  m_Name: dd
+  m_Name: PlayerTest
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!70 &993808440
 CapsuleCollider2D:
   m_ObjectHideFlags: 0
@@ -367,10 +364,6 @@ MonoBehaviour:
   <MoveSpeed>k__BackingField: 5
   <MaxHP>k__BackingField: 0
   <JumpForce>k__BackingField: 7
-  <AnimationData>k__BackingField:
-    idleParameterName: Idle
-    runParameterName: Run
-    AttackParameterName: Attack
 --- !u!114 &993808443
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -403,6 +396,21 @@ Transform:
   - {fileID: 2141669037}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &993808445
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 993808439}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 128df33abc6141047b90f6e2909fe2f5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  idleParameterName: Idle
+  runParameterName: Run
+  AttackParameterName: Attack
 --- !u!1 &1212499197
 GameObject:
   m_ObjectHideFlags: 0

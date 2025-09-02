@@ -4,9 +4,10 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [Serializable]
-public class PlayerAnimationData : IAnimationData
+public class PlayerAnimationData : MonoBehaviour, IAnimationData
 {
     // 예시 입니다.
+    [Header("애니메이션 데이터")]
     [SerializeField] private string idleParameterName = "Idle";
     [SerializeField] private string runParameterName = "Run";
     [SerializeField] private string AttackParameterName = "Attack";
