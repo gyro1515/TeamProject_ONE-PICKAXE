@@ -1,3 +1,7 @@
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
 public class DestructibleWall : InteractableObject
 {
     // Interaction()은 무기가 충돌했을 때 호출된다고 가정
