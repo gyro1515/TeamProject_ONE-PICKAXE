@@ -131,7 +131,7 @@ public class MeleeController : EnemyController
         if(moveTargetPosX > gameObject.transform.position.x) horizontalInput = 1.0f;
         else if(moveTargetPosX < gameObject.transform.position.x) horizontalInput = -1.0f;
         else horizontalInput = 0f;
-        Debug.Log($"TargetPos: {moveTargetPosX}, t: {t}, MoveDir: {horizontalInput}");
+        //Debug.Log($"TargetPos: {moveTargetPosX}, t: {t}, MoveDir: {horizontalInput}");
 
         return INode.ENodeState.Success;
     }

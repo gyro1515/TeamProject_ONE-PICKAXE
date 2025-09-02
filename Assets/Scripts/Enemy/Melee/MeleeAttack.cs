@@ -12,6 +12,7 @@ public class MeleeAttack : MonoBehaviour
         enemy = GetComponentInParent<EnemyMelee>();
         xPos = gameObject.transform.localPosition.x; // 초기 x값
         col = GetComponent<BoxCollider2D>();
+        gameObject.SetActive(false);
     }
     private void OnDisable()
     {
