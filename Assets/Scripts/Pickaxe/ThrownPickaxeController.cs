@@ -43,8 +43,8 @@ public class ThrownPickaxeController : MonoBehaviour
     public ThrownPickaxeStateMachine StateMachine { get; private set; }
     public PickaxeBaseState<ThrownPickaxeStateMachine> CurrentState => StateMachine.CurrentState;
 
-    // 자신을 생성한 EquippedPickaxeController의 참조를 저장할 변수
-    public EquippedPickaxeController Owner { get; private set; }
+    public EquippedPickaxeController Owner { get; private set; } // 자신을 생성한 EquippedPickaxeController의 참조를 저장할 변수
+    public static ThrownPickaxeController ThrownPickaxeInstance; // PlayerController에서 접근할 수 있도록 static으로 선언
 
     void Awake()
     {
@@ -53,6 +53,7 @@ public class ThrownPickaxeController : MonoBehaviour
         groundLayerMask = LayerMask.GetMask("Cave");
 
         StateMachine = new ThrownPickaxeStateMachine(this);
+        ThrownPickaxeInstance = this; // static 변수에 현재 인스턴스 할당
     }
 
     private void Start()

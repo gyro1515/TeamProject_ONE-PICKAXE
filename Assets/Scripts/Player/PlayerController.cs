@@ -2,13 +2,22 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
-using UnityEngine.PlayerLoop;
+
+public enum PlayerState
+{
+    Normal,
+    Dashing,
+    Hanging
+}
 
 public class PlayerController : BaseController
 {
+    [Header("Player State")]
+    [SerializeField] private PlayerState currentState = PlayerState.Normal; // 현재 플레이어 상태
+
     [Header("Ground Check Settings")]
-    [SerializeField] float RayDistance = 1f;
-    [SerializeField] LayerMask GroundLayer;
+    [SerializeField] private float RayDistance = 1f;
+    [SerializeField] private LayerMask GroundLayer;
 
     [Header("Dash Settings")]
     [SerializeField] private float dashRange = 10f; // 대쉬 가능 범위
@@ -19,15 +28,18 @@ public class PlayerController : BaseController
     [SerializeField] private LineRenderer dashLineRenderer; // 대쉬 경로를 표시할 LineRenderer
     [SerializeField] private GameObject dashVFXPrefab; // 대쉬 시작 시 생성될 VFX 프리팹
 
+    [Header("Hanging Settings")]
+    [SerializeField] private GameObject hangJumpVFXPrefab; // 매달리기 점프 VFX 프리팹
+
     private ThrownPickaxeController stuckPickaxe; // 현재 박혀있는 곡괭이 참조
     private bool isDashAvailable = false; // 대쉬가 가능한 상태인지
-    private bool isDashing = false; // 현재 대쉬 중인지
     private float originalGravityScale; // 원래 중력 값을 저장할 변수
 
     private Rigidbody2D rb;
     private bool isGrounded;
     private bool isFacingRight = true;
     float horizontalInput = 0f;
+    private int jumpCount = 0; // Jump 관련
 
     private PlayerAnimationData playerAnimationData;
 
@@ -61,28 +73,32 @@ public class PlayerController : BaseController
     // Update에서 대쉬 가능 여부 체크
     protected override void Update()
     {
-        if (isDashing)
+        switch (currentState)
         {
-            return; // 대쉬 중에는 아무것도 하지 않음
+            case PlayerState.Normal:
+                // 일반 상태일 때만 대쉬 관련 로직 처리
+                FindStuckPickaxe();
+                CheckDashAvailability();
+                UpdateDashVisuals();
+                break;
+            case PlayerState.Hanging:
+                // 매달리기 상태일 때의 입력 처리
+                HandleHangingInput();
+                break;
+            case PlayerState.Dashing:
+                // 대쉬 중에는 입력을 받지 않음
+                break;
         }
-
-        FindStuckPickaxe();
-        CheckDashAvailability();
-        UpdateDashVisuals();
     }
 
-    // FixedUpdate에서 대쉬 중 조작 방지
     protected override void FixedUpdate()
     {
-        // 대쉬 중에는 물리 움직임 처리 안 함
-        if (isDashing)
+        if(currentState == PlayerState.Normal)
         {
-            return;
+            base.FixedUpdate();
+
+            isGrounded = CheckGround();
         }
-
-        base.FixedUpdate();
-
-        isGrounded = CheckGround();
     }
 
     private void OnEnable()
@@ -179,8 +195,7 @@ public class PlayerController : BaseController
     // 박힌 곡괭이 찾는 메소드
     private void FindStuckPickaxe()
     {
-        // ThrownPickaxeController는 하나만 존재한다고 가정
-        stuckPickaxe = FindObjectOfType<ThrownPickaxeController>();
+        stuckPickaxe = ThrownPickaxeController.ThrownPickaxeInstance;
     }
 
     // 대쉬 가능 조건을 확인하는 메소드
@@ -245,7 +260,7 @@ public class PlayerController : BaseController
     // 대쉬 입력 처리
     private void OnDash(InputAction.CallbackContext context)
     {
-        if (isDashAvailable && !isDashing)
+        if (isDashAvailable && currentState == PlayerState.Normal)
         {
             StartCoroutine(DashCoroutine(stuckPickaxe.transform.position));
         }
@@ -254,7 +269,7 @@ public class PlayerController : BaseController
     // 실제 대쉬 이동을 처리하는 코루틴
     private IEnumerator DashCoroutine(Vector3 targetPosition)
     {
-        isDashing = true;
+        currentState = PlayerState.Dashing;
         isDashAvailable = false; // 대쉬 시작과 함께 대쉬 가능 상태 해제
         UpdateDashVisuals(); // 라인 끄기
 
@@ -275,6 +290,16 @@ public class PlayerController : BaseController
         rb.velocity = Vector2.zero; // 기존 속도 제거
         rb.gravityScale = 0f; // 중력 비활성화
 
+        // 대쉬 대상이 되는 곡괭이의 참조를 코루틴 내에서 안전하게 보관
+        var targetPickaxe = stuckPickaxe;
+        var pickaxeCollider = targetPickaxe.GetComponent<Collider2D>();
+
+        // 도착 직전 자동 회수를 막기 위해 곡괭이의 트리거 잠시 비활성화
+        if (pickaxeCollider != null)
+        {
+            pickaxeCollider.enabled = false;
+        }
+
         // TODO: 기획에 따라 특정 레이어와의 충돌을 무시하는 코드 추가
         // Physics2D.IgnoreLayerCollision(gameObject.layer, LayerMask.NameToLayer("Enemy"), true);
 
@@ -293,21 +318,72 @@ public class PlayerController : BaseController
 
         transform.position = targetPosition; // 정확한 위치로 보정
 
-        // 대쉬 종료 후 처리
-        if (stuckPickaxe != null)
+        if (targetPickaxe != null)
         {
-            // 곡괭이 즉시 회수
-            stuckPickaxe.Owner.RetrievePickaxe(false); // 일반 회수로 처리
-            Destroy(stuckPickaxe.gameObject);
+            if (CheckGround())
+            {
+                stuckPickaxe.Owner.RetrievePickaxe(false);
+                Destroy(stuckPickaxe.gameObject);
+                currentState = PlayerState.Normal;
+                rb.gravityScale = originalGravityScale; // 땅에서는 중력 즉시 복원
+            }
+            else
+            {
+                currentState = PlayerState.Hanging;
+                transform.SetParent(stuckPickaxe.transform); // 플레이어를 곡괭이의 자식으로 만들어 위치 고정
+                jumpCount = 1;
+                Debug.Log("매달리기 성공! 점프 카운트 = 1");
+            }
+        }
+        else
+        {
+            currentState = PlayerState.Normal;
+            rb.gravityScale = originalGravityScale;
         }
 
-        // 플레이어 상태 원상복구
+        dashVFXPrefab.gameObject.SetActive(false);
+    }
+
+    private void HandleHangingInput()
+    {
+        // 떨어지기 (S 키 또는 아래 방향키)
+        if (PlayerActions.Drop.WasPressedThisFrame())
+        {
+            ExitHangingState();
+        }
+        // 매달리기 점프 (점프 키)
+        else if (PlayerActions.Jump.WasPressedThisFrame())
+        {
+            // 점프 카운트가 있어야 점프 가능
+            if (jumpCount > 0)
+            {
+                jumpCount--;
+                ExitHangingState();
+
+                rb.velocity = new Vector2(rb.velocity.x, player.JumpForce);
+
+                if (hangJumpVFXPrefab != null)
+                {
+                    //Instantiate(hangJumpVFXPrefab, transform.position, Quaternion.identity);
+                }
+            }
+        }
+    }
+
+    private void ExitHangingState()
+    {
+        transform.SetParent(null);
+
+        currentState = PlayerState.Normal;
         rb.gravityScale = originalGravityScale; // 중력 복원
 
-        // TODO: 무시했던 레이어와의 충돌을 다시 활성화
-        // Physics2D.IgnoreLayerCollision(gameObject.layer, LayerMask.NameToLayer("Enemy"), false);
-        isDashing = false;
+        if (stuckPickaxe != null)
+        {
+            stuckPickaxe.Owner.RetrievePickaxe(false);
+            Destroy(stuckPickaxe.gameObject);
+            stuckPickaxe = null;
+        }
 
-        dashVFXPrefab.gameObject.SetActive(false);
+        Debug.Log("매달리기 해제!");
     }
 }

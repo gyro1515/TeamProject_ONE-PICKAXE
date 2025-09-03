@@ -84,6 +84,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b4853568c0a14de4d80ba797205319c4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  currentState: 0
   RayDistance: 1
   GroundLayer:
     serializedVersion: 2
@@ -97,6 +98,11 @@ MonoBehaviour:
   dashLineColor: {r: 1, g: 1, b: 1, a: 0.5882353}
   dashLineRenderer: {fileID: 3932722867574505379}
   dashVFXPrefab: {fileID: 5990268644337892719}
+  groundCheckDistance: 0.5
+  groundLayerMask:
+    serializedVersion: 2
+    m_Bits: 512
+  hangJumpVFXPrefab: {fileID: 0}
 --- !u!50 &3646996251529082740
 Rigidbody2D:
   serializedVersion: 4
