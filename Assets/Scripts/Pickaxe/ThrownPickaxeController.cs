@@ -18,6 +18,12 @@ public class ThrownPickaxeController : MonoBehaviour
     public float BounceMoveDuration = 1f; // 튕겨나가는 이동 총 시간
     public AnimationCurve BounceCurve; // 튕겨나가는 궤도를 정의할 AnimationCurve
     public float BounceHeight = 5f; // 곡선이 도달할 최대 높이
+    public GameObject ArrivalMark; // 착지 지점 표시 오브젝트(익스펙터에서 할당)
+
+    [Header("Catch Settings")]
+    public float CatchTime = 1f; // 캐치 가능 시간
+    public bool WasBounced { get; set; } = false; // 튕김 상태에서 왔는지 확인하는 플래그
+    public bool IsReadyToStick { get; set; } = false; // 착지 준비 플래그
 
     public Rigidbody2D Rb2D { get; private set; }
     public Transform PlayerTransform { get; private set; }

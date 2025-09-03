@@ -30,7 +30,7 @@ public class PickaxeRetrieveState : PickaxeBaseState<ThrownPickaxeStateMachine>
             // Owner(EquippedPickaxeController)에게 회수되었음을 알림
             if (stateMachine.ThrownPickaxeController.Owner != null)
             {
-                stateMachine.ThrownPickaxeController.Owner.RetrievePickaxe();
+                stateMachine.ThrownPickaxeController.Owner.RetrievePickaxe(false);
             }
 
             // 곡괭이 오브젝트 파괴

@@ -3,7 +3,8 @@ using UnityEngine;
 public class PickaxeStuckState : PickaxeBaseState<ThrownPickaxeStateMachine>
 {
     private Rigidbody2D rb;
-    private float retrieveHoldTime = 0f;
+    private float retrieveHoldTime = 0f; // 원거리 회수 충전 시간
+    private float catchTimer = 0f; // 캐치 타이머
 
     public override void EnterState(ThrownPickaxeStateMachine stateMachine)
     {
@@ -16,6 +17,18 @@ public class PickaxeStuckState : PickaxeBaseState<ThrownPickaxeStateMachine>
         rb.gravityScale = 0;
         rb.velocity = Vector2.zero;
         rb.isKinematic = true;
+
+        // Bounce 상태에서 전환되었는지 확인하고 캐치 타이머 설정
+        if (stateMachine.ThrownPickaxeController.WasBounced)
+        {
+            Debug.Log("캐치 가능 시간 시작!");
+            catchTimer = stateMachine.ThrownPickaxeController.CatchTime;
+            stateMachine.ThrownPickaxeController.WasBounced = false; // 플래그 초기화
+        }
+        else
+        {
+            catchTimer = 0f; // 튕겨서 온 게 아니면 캐치 시간 없음
+        }
 
         // 위치 및 회전 조정
         AdjustPositionAndRotation(stateMachine);
@@ -69,12 +82,24 @@ public class PickaxeStuckState : PickaxeBaseState<ThrownPickaxeStateMachine>
         // 박힌 상태에서 다른 충돌을 무시하거나 회수 로직 처리
         if (other.CompareTag("Player"))
         {
-            Debug.Log("근거리 회수 완료!");
+            // 캐치 성공 여부 판정
+            bool isCatchSuccess = catchTimer > 0f;
 
-            // 플레이어가 박힌 곡괭이에 닿았을 때 회수
+            if(isCatchSuccess)
+            {
+                Debug.Log("캐치 성공!");
+
+                // TODO: 여기에 "CATCH" UI 텍스트 출력
+            }
+            else
+            {
+                Debug.Log("근거리 회수 완료!");
+            }
+
+            // Owner(EquippedPickaxeController)에게 회수 신호 보내기
             if (stateMachine.ThrownPickaxeController.Owner != null)
             {
-                stateMachine.ThrownPickaxeController.Owner.RetrievePickaxe();
+                stateMachine.ThrownPickaxeController.Owner.RetrievePickaxe(isCatchSuccess);
             }
 
             // 곡괭이 오브젝트 파괴
@@ -111,7 +136,18 @@ public class PickaxeStuckState : PickaxeBaseState<ThrownPickaxeStateMachine>
         }
     }
 
-    public override void UpdateState(ThrownPickaxeStateMachine stateMachine) { }
+    public override void UpdateState(ThrownPickaxeStateMachine stateMachine)
+    {
+        // 캐치 타이머 감소 로직
+        if (catchTimer > 0)
+        {
+            catchTimer -= Time.deltaTime;
+            if (catchTimer <= 0)
+            {
+                Debug.Log("캐치 가능 시간 종료!");
+            }
+        }
+    }
     public override void ExitState(ThrownPickaxeStateMachine stateMachine) { }
     public override void FixedUpdateState(ThrownPickaxeStateMachine stateMachine) { }
     public override void HandleCollision(ThrownPickaxeStateMachine stateMachine, Collision2D collision) { }

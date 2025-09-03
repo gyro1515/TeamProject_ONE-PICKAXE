@@ -23,6 +23,12 @@ public class PickaxeBounceState : PickaxeBaseState<ThrownPickaxeStateMachine>
         rb = stateMachine.ThrownPickaxeController.Rb2D;
         rb.isKinematic = true;
         rb.gravityScale = 0;
+
+        // 바운스 상태 진입 시 착지 준비 플래그를 초기화
+        stateMachine.ThrownPickaxeController.IsReadyToStick = false;
+
+        //stateMachine.ThrownPickaxeController.ArrivalMark.SetActive(true);
+        //stateMachine.ThrownPickaxeController.ArrivalMark.transform.position = endPoint;
     }
 
     public override void UpdateState(ThrownPickaxeStateMachine stateMachine)
@@ -31,10 +37,15 @@ public class PickaxeBounceState : PickaxeBaseState<ThrownPickaxeStateMachine>
         // 진행률 계산(0에서 시작해서 1에서 끝남)
         float progress = elapsedTime / stateMachine.ThrownPickaxeController.BounceMoveDuration;
 
-        if (progress >= 1f)
+        // 궤도 이동이 끝나고 착지 준비가 되었을 때만 상태 전환
+        if (progress >= 1f && stateMachine.ThrownPickaxeController.IsReadyToStick)
         {
             // 목표 지점에 도달
             stateMachine.ThrownPickaxeController.transform.position = endPoint;
+
+            // 캐치를 위한 플래그를 true로 설정하고 StuckState로 전환
+            stateMachine.ThrownPickaxeController.WasBounced = true;
+            stateMachine.ChangeState(stateMachine.StuckState);
 
             return;
         }
@@ -61,21 +72,8 @@ public class PickaxeBounceState : PickaxeBaseState<ThrownPickaxeStateMachine>
         // 박히는 타일과 충돌했는지 확인
         if (other.CompareTag("CanStuck"))
         {
-            // 곡괭이의 속도 방향으로 레이캐스트를 쏴서 충돌 정보를 얻습니다.
-            Vector2 rayDirection = stateMachine.ThrownPickaxeController.Rb2D.velocity.normalized;
-            float rayDistance = 0.5f; // 곡괭이 크기에 맞춰 적절한 값 설정
-
-            var lastHitInfo = Physics2D.Raycast(stateMachine.ThrownPickaxeController.transform.position, rayDirection, rayDistance, other.gameObject.layer);
-            stateMachine.ThrownPickaxeController.SetLastHitInfo(lastHitInfo);
-
-            stateMachine.ChangeState(stateMachine.StuckState);
-        }
-        // 박히는 지형이 아니면 모두 튕기는 오브젝트로 간주(적, 함정 제외)
-        else
-        {
-            // 충돌 지점을 추정하여 BounceState로 전달
-            Vector2 hitPoint = stateMachine.ThrownPickaxeController.transform.position;
-            stateMachine.ThrownPickaxeController.Bounce(hitPoint, stateMachine.ThrownPickaxeController.PlayerTransform);
+            // 상태를 직접 바꾸지 않고, 플래그만 true로 설정
+            stateMachine.ThrownPickaxeController.IsReadyToStick = true;
         }
     }
 

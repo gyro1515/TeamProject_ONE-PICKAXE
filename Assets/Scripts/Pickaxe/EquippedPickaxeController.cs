@@ -22,6 +22,7 @@ public class EquippedPickaxeController : MonoBehaviour
 
     // Animation Hash
     private static readonly int SmashHash = Animator.StringToHash("Smash");
+    private static readonly int CatchHash = Animator.StringToHash("Catch");
 
     // 장착 곡괭이의 상태머신
     private EquippedPickaxeStateMachine stateMachine;
@@ -96,14 +97,26 @@ public class EquippedPickaxeController : MonoBehaviour
         Animator.SetTrigger(SmashHash);
     }
 
+    // 캐치 애니메이션 재생
+    public void PlayCatchAnimation()
+    {
+        Animator.SetTrigger(CatchHash);
+    }
+
     // 곡괭이 회수하고 상태 초기화
-    public void RetrievePickaxe()
+    public void RetrievePickaxe(bool isCatch)
     {
         // 장착된 곡괭이 오브젝트 다시 활성화
         SetEquippedPickaxeActive(true);
 
         // 상태를 기본 장착 상태(EquipState)로 강제 전환
         stateMachine.ChangeState(stateMachine.EquipState);
+
+        // 캐치로 회수되었다면 Catch 애니메이션 재생
+        if (isCatch)
+        {
+            PlayCatchAnimation();
+        }
     }
 
     private void OnSmash(InputAction.CallbackContext context)
