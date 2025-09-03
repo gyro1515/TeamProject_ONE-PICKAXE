@@ -14,7 +14,7 @@ public class MeleeController : EnemyController
     public Vector2 patrolPos; // x: 왼쪽, y: 오른쪽
     float patrolTime;
     float patrolTimer;
-
+    float preTime;
     protected override void Awake()
     {
         base.Awake();
@@ -125,15 +125,37 @@ public class MeleeController : EnemyController
     INode.ENodeState Patrol()
     {
         // 움직이기
+        float preT = Mathf.PingPong(patrolTimer / patrolTime, 1.0f);
         patrolTimer += Time.deltaTime;
         float t = Mathf.PingPong(patrolTimer / patrolTime, 1.0f);
-        float moveTargetPosX = Mathf.Lerp(patrolPos.x, patrolPos.y, t);
-        float clampX = Mathf.Clamp(gameObject.transform.position.x, patrolPos.x, patrolPos.y);
-        if (moveTargetPosX > clampX) horizontalInput = 1.0f;
-        else if(moveTargetPosX < clampX) horizontalInput = -1.0f;
+
+        //float preInput = horizontalInput; // 방향 전환 디버그용
+        if (preT > t)
+        {
+            horizontalInput = -1.0f;
+        }
+        else if(preT < t)
+        {
+            horizontalInput = 1.0f;
+        }
         else horizontalInput = 0f;
-        //Debug.Log($"TargetPos: {moveTargetPosX}, t: {t}, MoveDir: {horizontalInput}");
-        
+
+        //if (preInput != horizontalInput) Debug.Log("방향전환"); // 방향 전환 디버그용
+
+        // 위치 기반은 오차때문에 방향 전환이 순간 여러 번 될때가 있음...
+        /*float moveTargetPosX = Mathf.Lerp(patrolPos.x, patrolPos.y, t);
+        float clampX = Mathf.Clamp(gameObject.transform.position.x, patrolPos.x, patrolPos.y);
+        if (moveTargetPosX > clampX)
+        {
+            horizontalInput = 1.0f;
+        }
+        else if (moveTargetPosX < clampX)
+        {
+            horizontalInput = -1.0f;
+        }
+        else horizontalInput = 0f;*/
+        //Debug.Log($"TargetPos: {moveTargetPosX}, clampX: {clampX}, MoveDir: {horizontalInput}");
+
         return INode.ENodeState.Success;
     }
 }
