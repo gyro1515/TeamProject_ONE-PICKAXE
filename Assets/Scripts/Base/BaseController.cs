@@ -6,10 +6,11 @@ public abstract class BaseController : MonoBehaviour, IDamageable
 {
     BaseCharacter baseCharacter;
     protected Animator animator;
+
     protected virtual void Awake()
     {
         baseCharacter = GetComponent<BaseCharacter>();
-        animator = GetComponent<Animator>();
+        animator = GetComponentInChildren<Animator>();
     }
     protected virtual void Start()
     {
