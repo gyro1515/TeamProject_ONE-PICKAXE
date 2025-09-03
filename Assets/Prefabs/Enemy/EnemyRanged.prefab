@@ -159,8 +159,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   <AttackPower>k__BackingField: 0
   <DefensePower>k__BackingField: 0
-  <MoveSpeed>k__BackingField: 5
-  <MaxHP>k__BackingField: 0
+  <MoveSpeed>k__BackingField: 0
+  <MaxHP>k__BackingField: 20
   attackRange: 3
   chaseRange: 5
 --- !u!114 &4590758770579658085
@@ -175,6 +175,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 09d74287dea844f4f8928d3161b6201c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  spriteRenderer: {fileID: 0}
 --- !u!114 &974894810978181751
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -231,10 +232,10 @@ BoxCollider2D:
   m_Material: {fileID: 0}
   m_IncludeLayers:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 512
   m_ExcludeLayers:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 503
   m_LayerOverridePriority: 0
   m_ForceSendLayers:
     serializedVersion: 2
@@ -248,7 +249,7 @@ BoxCollider2D:
   m_CallbackLayers:
     serializedVersion: 2
     m_Bits: 4294967295
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0.5}
@@ -291,7 +292,7 @@ Transform:
   m_GameObject: {fileID: 7134975628699761596}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 2.19, y: -3.74, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []

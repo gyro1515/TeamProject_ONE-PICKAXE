@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 1000725810794819698}
   - component: {fileID: 4940943654058731093}
   - component: {fileID: 3226352157078246715}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Sprite
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -118,7 +118,7 @@ GameObject:
   - component: {fileID: 3928252524741956438}
   - component: {fileID: 7897076972413126033}
   - component: {fileID: 2070923653477800483}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: ThrownPickaxe
   m_TagString: Untagged
   m_Icon: {fileID: 0}
