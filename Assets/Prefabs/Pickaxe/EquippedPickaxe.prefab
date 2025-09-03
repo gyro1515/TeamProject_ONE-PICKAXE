@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 1097864804454428450}
   - component: {fileID: 6577152867458361430}
   - component: {fileID: 7398739672574982272}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: EquippedPickaxe
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -91,7 +91,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3703996537151412715}
   - component: {fileID: 3866877021973005226}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: HitBox
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -169,7 +169,7 @@ GameObject:
   - component: {fileID: 4483535910196607128}
   - component: {fileID: 8933561559803933830}
   - component: {fileID: 7831988207541733361}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Sprite
   m_TagString: Untagged
   m_Icon: {fileID: 0}
