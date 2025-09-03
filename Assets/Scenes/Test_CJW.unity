@@ -3952,7 +3952,7 @@ GameObject:
   - component: {fileID: 1759782101}
   m_Layer: 0
   m_Name: Mon (6)
-  m_TagString: CanBounce
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

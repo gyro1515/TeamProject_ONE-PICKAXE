@@ -21,26 +21,6 @@ public class PickaxeRetrieveState : PickaxeBaseState<ThrownPickaxeStateMachine>
         stateMachine.ThrownPickaxeController.PlayRetrieveAnimation();
     }
 
-    public override void ExitState(ThrownPickaxeStateMachine stateMachine)
-    {
-        
-    }
-
-    public override void FixedUpdateState(ThrownPickaxeStateMachine stateMachine)
-    {
-        
-    }
-
-    public override void HandleCollision(ThrownPickaxeStateMachine stateMachine, Collision2D collision)
-    {
-        
-    }
-
-    public override void HandleInput(ThrownPickaxeStateMachine stateMachine)
-    {
-        
-    }
-
     public override void HandleTrigger(ThrownPickaxeStateMachine stateMachine, Collider2D other)
     {
         if (other.CompareTag("Player"))
@@ -67,4 +47,9 @@ public class PickaxeRetrieveState : PickaxeBaseState<ThrownPickaxeStateMachine>
         Vector2 directionToPlayer = (playerTransform.position - stateMachine.ThrownPickaxeController.transform.position).normalized;
         rb.velocity = directionToPlayer * stateMachine.ThrownPickaxeController.RetrieveSpeed;
     }
+
+    public override void ExitState(ThrownPickaxeStateMachine stateMachine) { }
+    public override void FixedUpdateState(ThrownPickaxeStateMachine stateMachine) { }
+    public override void HandleCollision(ThrownPickaxeStateMachine stateMachine, Collision2D collision) { }
+    public override void HandleInput(ThrownPickaxeStateMachine stateMachine) { }
 }

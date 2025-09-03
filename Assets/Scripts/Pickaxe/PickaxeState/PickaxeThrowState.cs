@@ -59,14 +59,9 @@ public class PickaxeThrowState : PickaxeBaseState<EquippedPickaxeStateMachine>
     }
 
     public override void ExitState(EquippedPickaxeStateMachine stateMachine) { }
-
     public override void FixedUpdateState(EquippedPickaxeStateMachine stateMachine) { }
-
     public override void HandleCollision(EquippedPickaxeStateMachine stateMachine, Collision2D collision) { }
-
     public override void HandleInput(EquippedPickaxeStateMachine stateMachine) { }
-
     public override void HandleTrigger(EquippedPickaxeStateMachine stateMachine, Collider2D other) { }
-
     public override void UpdateState(EquippedPickaxeStateMachine stateMachine) { }
 }
