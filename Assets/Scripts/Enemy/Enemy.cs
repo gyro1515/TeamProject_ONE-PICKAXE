@@ -10,7 +10,9 @@ public class Enemy : BaseCharacter
     [Header("적 세팅")]
     [SerializeField] float attackRange = 3f;
     [SerializeField] float detectionRange = 5f;
-
+    [SerializeField] protected float attackCoolTime = 0f;
+    protected float attackCoolTimer = 0f;
+    public bool canAttack = true;
     public EnemyAnimationData AnimationData { get; private set; }
     public Player Target { get; set; } // 타겟 설정하기
 
@@ -25,8 +27,23 @@ public class Enemy : BaseCharacter
         AnimationData = GetComponent<EnemyAnimationData>();
         AnimationData?.Initialize();
     }
+    protected override void Update()
+    {
+        base.Update();
+
+        CheckCoolTime();
+    }
     public bool HasTarget()
     {
         return Target != null;
+    }
+    void CheckCoolTime()
+    {
+        // 공격 쿨타임 갱신하기
+        if (canAttack) return;
+        attackCoolTimer += Time.deltaTime;
+        if (attackCoolTimer < attackCoolTime) return;
+        attackCoolTimer -= attackCoolTime;
+        canAttack = true;
     }
 }

@@ -177,7 +177,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 5
+  m_SortingOrder: 6
   m_Sprite: {fileID: 21300000, guid: a8a7c5fdc0a40844fbb7b824ec69b58e, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -522,7 +522,9 @@ MonoBehaviour:
   <MoveSpeed>k__BackingField: 3
   <MaxHP>k__BackingField: 30
   attackRange: 1.5
-  chaseRange: 5
+  detectionRange: 5
+  attackCoolTime: 3
+  canAttack: 0
   patrolData: 5
 --- !u!114 &363504111731811674
 MonoBehaviour:
