@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public abstract class BaseController : MonoBehaviour
+public abstract class BaseController : MonoBehaviour, IDamageable
 {
     BaseCharacter baseCharacter;
     protected Animator animator;
@@ -17,11 +17,10 @@ public abstract class BaseController : MonoBehaviour
     }
     protected virtual void Update()
     {
-
     }
     protected virtual void FixedUpdate()
     {
-
+        Move();
     }
     protected virtual void Move()
     {
