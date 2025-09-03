@@ -40,7 +40,8 @@ public class ThrownPickaxeController : MonoBehaviour
     private static readonly int RetrieveHash = Animator.StringToHash("Retrieve");
 
     // 던져진 곡괭이의 상태 머신
-    private ThrownPickaxeStateMachine stateMachine;
+    public ThrownPickaxeStateMachine StateMachine { get; private set; }
+    public PickaxeBaseState<ThrownPickaxeStateMachine> CurrentState => StateMachine.CurrentState;
 
     // 자신을 생성한 EquippedPickaxeController의 참조를 저장할 변수
     public EquippedPickaxeController Owner { get; private set; }
@@ -51,12 +52,12 @@ public class ThrownPickaxeController : MonoBehaviour
         Animator = GetComponentInChildren<Animator>();
         groundLayerMask = LayerMask.GetMask("Cave");
 
-        stateMachine = new ThrownPickaxeStateMachine(this);
+        StateMachine = new ThrownPickaxeStateMachine(this);
     }
 
     private void Start()
     {
-        stateMachine.Initialize(stateMachine.FlyingState);
+        StateMachine.Initialize(StateMachine.FlyingState);
     }
 
     private void OnDisable()
@@ -69,14 +70,14 @@ public class ThrownPickaxeController : MonoBehaviour
     void Update()
     {
         // 입력은 Update에서 처리
-        stateMachine.HandleInput();
-        stateMachine.UpdateState();
+        StateMachine.HandleInput();
+        StateMachine.UpdateState();
     }
 
     // 트리거 충돌 이벤트
     private void OnTriggerEnter2D(Collider2D other)
     {
-        stateMachine.HandleTrigger(other);
+        StateMachine.HandleTrigger(other);
     }
 
     // Owner를 설정하기 위한 메소드
@@ -123,8 +124,8 @@ public class ThrownPickaxeController : MonoBehaviour
         Vector2 landingPoint = GetPlayerGroundPosition(playerTransform);
 
         // 새 곡괭이의 상태를 BounceState로 전환하고 필요한 정보 전달
-        stateMachine.BounceState.SetBounceData(startPoint, landingPoint);
-        stateMachine.ChangeState(stateMachine.BounceState);
+        StateMachine.BounceState.SetBounceData(startPoint, landingPoint);
+        StateMachine.ChangeState(StateMachine.BounceState);
     }
 
     // 플레이어 발밑의 바닥 지점을 찾는 메서드
