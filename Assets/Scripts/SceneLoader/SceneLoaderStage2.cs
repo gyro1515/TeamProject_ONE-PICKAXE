@@ -7,20 +7,18 @@ public class SceneLoaderStage2 : MonoBehaviour
 {
     // 테스트, 추후 플레이어/적 소환 등에 쓰일 수도...?
     [SerializeField] GameObject playerPrefab;
-    UIPause uiPause;
 
     private void Awake()
     {
-        Instantiate(playerPrefab);
-        uiPause = UIManager.Instance.GetUI<UIPause>();
-        uiPause.CloseUI();
+        GameManager.Instance.Player = null;
+        GameManager.Instance.Player = Instantiate(playerPrefab).GetComponent<Player>();
+        
     }
     private void Update()
     {
         // 테스트
-        if (Input.GetKeyDown(KeyCode.Escape))
+        /*if (Input.GetKeyDown(KeyCode.Escape))
         {
-            uiPause.OpenUI();
-        }
+        }*/
     }
 }

@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public abstract class Enemy : BaseCharacter
+public class Enemy : BaseCharacter
 {
     // Enemy를 상속받은 원거리/근거리를 만들 것인가?
     // 적 상태 추가 필요
@@ -10,14 +10,22 @@ public abstract class Enemy : BaseCharacter
     [Header("적 세팅")]
     [SerializeField] float attackRange = 3f;
     [SerializeField] float chaseRange = 5f;
-    [field: Header("애니메이션 데이터")]
-    [field: SerializeField] public EnemyAnimationData AnimationData { get; private set; } = new EnemyAnimationData();
+    public EnemyAnimationData AnimationData { get; private set; }
+    public Player Target { get; set; } // 타겟 설정하기
 
     public EnemyController Controller { get; private set; }
+
+    public float AttackRange { get { return attackRange; } }
+    public float ChaseRange { get { return chaseRange; } }
     protected override void Awake()
     {
         base.Awake();
-        AnimationData.Initialize();
         Controller = GetComponent<EnemyController>();
+        AnimationData = GetComponent<EnemyAnimationData>();
+        AnimationData?.Initialize();
+    }
+    public bool HasTarget()
+    {
+        return Target != null;
     }
 }

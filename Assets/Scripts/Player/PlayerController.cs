@@ -26,6 +26,7 @@ public class PlayerController : BaseController
         Input = new PlayerInput();
         PlayerActions = Input.Player;
         PlayerActions.Jump.started += OnJump;
+        PlayerActions.OpenPauseMenu.started += OnOpenPauseMenu;
         rb = GetComponent<Rigidbody2D>();
     }
     protected override void Start()
@@ -45,12 +46,17 @@ public class PlayerController : BaseController
 
     private void OnDisable()
     {
-        Input.Disable();
+        PlayerActions.Jump.started -= OnJump;
+        PlayerActions.OpenPauseMenu.started -= OnOpenPauseMenu;
     }
     void OnJump(InputAction.CallbackContext context)
     {
         rb.velocity = new Vector2(rb.velocity.x, 0f);
         rb.AddForce(Vector2.up * player.JumpForce, ForceMode2D.Impulse);
+    }
+    void OnOpenPauseMenu(InputAction.CallbackContext context)
+    {
+        player.UIPause.OpenUI();
     }
     protected override void Move()
     {
@@ -93,5 +99,9 @@ public class PlayerController : BaseController
         // 결과를 반환합니다.
         return isGrounded;
     }
-
+    public void SetPlayerInput(bool active)
+    {
+        if (active) Input.Enable();
+        else Input.Disable();
+    }
 }

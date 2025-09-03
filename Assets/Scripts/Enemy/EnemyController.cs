@@ -4,10 +4,51 @@ using UnityEngine;
 
 public class EnemyController : BaseController
 {
+    [Header("적 유닛 컨트롤러 설정")]
+    [SerializeField] protected SpriteRenderer spriteRenderer;
+
     Enemy enemy;
+    protected Rigidbody2D rb2D;
     protected override void Awake()
     {
         base.Awake();
         enemy = GetComponent<Enemy>();
+        rb2D = GetComponent<Rigidbody2D>();
+    }
+    protected float GetNormalizedTime(string tag = "Attack")
+    {
+        AnimatorStateInfo currentInfo = animator.GetCurrentAnimatorStateInfo(0);
+        AnimatorStateInfo nextInfo = animator.GetNextAnimatorStateInfo(0);
+
+        if (animator.IsInTransition(0) && nextInfo.IsTag(tag))
+        {
+            return Mathf.Repeat(nextInfo.normalizedTime, 1f);
+        }
+        else if (!animator.IsInTransition(0) && currentInfo.IsTag(tag))
+        {
+            return Mathf.Repeat(currentInfo.normalizedTime, 1f);
+        }
+        else
+        {
+            return 0f;
+        }
+    }
+    protected bool CanAttack()
+    {
+        // 공격 범위 안에 있는가
+        if((enemy.Target.gameObject.transform.position - enemy.gameObject.transform.position).sqrMagnitude 
+            <= enemy.AttackRange * enemy.AttackRange)
+        {
+            return true;
+        }
+        return false;
+    }
+    protected void FlipSpriteByTarget()
+    {
+        float dirX = enemy.Target.gameObject.transform.position.x - enemy.gameObject.transform.position.x;
+        if (dirX < 0)
+            spriteRenderer.flipX = true;
+        else if(dirX > 0)
+            spriteRenderer.flipX = false;
     }
 }
