@@ -4,7 +4,7 @@ using UnityEngine;
 
 public abstract class BaseController : MonoBehaviour, IDamageable
 {
-    BaseCharacter baseCharacter;
+    protected BaseCharacter baseCharacter;
     protected Animator animator;
     protected virtual void Awake()
     {

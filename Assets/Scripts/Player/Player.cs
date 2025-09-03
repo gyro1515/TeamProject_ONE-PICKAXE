@@ -9,6 +9,11 @@ public class Player : BaseCharacter
     [field: Header("플레이어 세팅")]
     [field: SerializeField] public float JumpForce { get; private set; } = 7f;
     int mineralCnt = 0;
+
+    public int CurrentHealth;
+    public int MaxHealth;
+    public int OreCount;
+
     public int MineralCnt { get { return mineralCnt; }
         set 
         {

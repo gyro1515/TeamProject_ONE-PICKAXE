@@ -478,6 +478,7 @@ GameObject:
   - component: {fileID: 4242266251807588138}
   - component: {fileID: 1634246358920893330}
   - component: {fileID: 6196393512156075180}
+  - component: {fileID: 5173139226716858417}
   m_Layer: 7
   m_Name: EnemyMelee
   m_TagString: Untagged
@@ -556,7 +557,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   spriteRenderer: {fileID: 5422851811239859753}
-  patrolPos: {x: 0, y: 0}
+  droppableItems: []
+  popUpForce: 5
 --- !u!50 &1634246358920893330
 Rigidbody2D:
   serializedVersion: 4
@@ -629,3 +631,20 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
+--- !u!114 &5173139226716858417
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7174576242837198173}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 09d74287dea844f4f8928d3161b6201c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  spriteRenderer: {fileID: 5422851811239859753}
+  droppableItems:
+  - {fileID: 1035040320819433237, guid: 386a69c7961566b4f87db48b607aa4ec, type: 3}
+  - {fileID: 3877409432516570095, guid: c288cc7ec13048a42b27564636262f12, type: 3}
+  popUpForce: 5

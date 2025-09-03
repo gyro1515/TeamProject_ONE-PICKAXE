@@ -6,8 +6,13 @@ public class EnemyController : BaseController
 {
     [Header("적 유닛 컨트롤러 설정")]
     [SerializeField] protected SpriteRenderer spriteRenderer;
+    [Header("아이템 드랍 설정")]
+    [SerializeField] private List<GameObject> droppableItems;
+
+    [SerializeField] private float popUpForce = 5f;
     protected Enemy enemy;
     protected Rigidbody2D rb2D;
+
     protected override void Awake()
     {
         base.Awake();
@@ -29,7 +34,7 @@ public class EnemyController : BaseController
         if(Input.GetKeyDown(KeyCode.Alpha7))
         {
             Debug.Log("테스트 TakeDamage");
-            TakeDamage(0);
+            TakeDamage(10);
         }
     }
     protected float GetNormalizedTime(string tag = "Attack")
@@ -73,4 +78,35 @@ public class EnemyController : BaseController
         else if(dirX > 0)
             spriteRenderer.flipX = false;
     }
+
+     protected override void Dead()
+
+    {
+
+        base.Dead();
+
+        if (droppableItems != null && droppableItems.Count > 0)
+        {
+            int randomIndex = Random.Range(0, droppableItems.Count);
+            GameObject itemToDrop = droppableItems[randomIndex];
+
+            // 아이템을 몬스터가 죽은 위치에 생성
+            GameObject itemInstance = Instantiate(itemToDrop, transform.position, Quaternion.identity);
+
+            // 생성된 아이템의 Rigidbody2D를 가져옴
+            Rigidbody2D itemRb = itemInstance.GetComponent<Rigidbody2D>();
+
+            // Rigidbody2D가 있다면 위로 힘을 가함
+
+            if (itemRb != null)
+            {
+                // ForceMode2D.Impulse는 순간적인 힘을 가함
+                itemRb.AddForce(Vector2.up * popUpForce, ForceMode2D.Impulse);
+            }
+
+            Debug.Log(">>> 아이템 " + itemToDrop.name + "을(를) 드랍했습니다.");
+        }
+        Destroy(gameObject);
+    }
 }
+
