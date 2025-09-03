@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: a4c1e60779767b143bceb6b337e10428
+guid: 4c38f6088f2b2364b96b2ab3282f22ba
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -48,7 +48,7 @@ TextureImporter:
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 16
+  spritePixelsToUnits: 32
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
@@ -136,106 +136,106 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: BigSlashV_0
+      name: CatchEffect_1
       rect:
         serializedVersion: 2
-        x: 8
-        y: 32
-        width: 9
-        height: 11
+        x: 82
+        y: 1
+        width: 28
+        height: 62
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 0090300dd702ab34ca4b6816b5e576fe
-      internalID: 909802794
+      spriteID: 2292ba330895ea24c81eb5b8747db144
+      internalID: -679494623
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: BigSlashV_1
+      name: CatchEffect_4
       rect:
         serializedVersion: 2
-        x: 77
-        y: 14
-        width: 37
-        height: 33
+        x: 256
+        y: 0
+        width: 64
+        height: 64
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: c0c1ec6143da0754f964f8abae5d6aa1
-      internalID: 470100289
+      spriteID: 79d2050e43b6b764eb23a18afc3ee3a7
+      internalID: -92422778
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: BigSlashV_2
+      name: CatchEffect_2
       rect:
         serializedVersion: 2
         x: 130
-        y: 15
-        width: 47
-        height: 25
+        y: 7
+        width: 60
+        height: 50
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 25a23a2fa368a0d48b3c170a72a78f1d
-      internalID: 1276103535
+      spriteID: 13d998eccb72e3542bdd69d44991c266
+      internalID: 437197671
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: BigSlashV_3
+      name: CatchEffect_0
       rect:
         serializedVersion: 2
-        x: 258
-        y: 15
-        width: 42
-        height: 19
+        x: 24
+        y: 24
+        width: 16
+        height: 16
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 3f8442c840758f34cb2e31b54274ad01
-      internalID: -1438515029
+      spriteID: 159a052f0d24da145b5a85f14764d25d
+      internalID: -362559144
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: BigSlashV_4
+      name: CatchEffect_3
       rect:
         serializedVersion: 2
-        x: 192
-        y: 15
-        width: 45
-        height: 17
+        x: 193
+        y: 0
+        width: 62
+        height: 64
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: b456dd22f6c5d5847a877296f81068eb
-      internalID: 1219465556
+      spriteID: bfe1b008315b70748abc7d019845904e
+      internalID: 1153451533
       vertices: []
       indices: 
       edges: []
@@ -251,12 +251,14 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      BigSlashV_0: 909802794
-      BigSlashV_1: 470100289
-      BigSlashV_2: 1276103535
-      BigSlashV_3: -1438515029
-      BigSlashV_4: 1219465556
-      BigSlashV_5: 2107688856
+      CatchEffect_0: 437197671
+      CatchEffect_1: -679494623
+      CatchEffect_2: 437197671
+      CatchEffect_3: 1153451533
+      CatchEffect_4: -92422778
+      CatchEffect_7: 393159635
+      CatchEffect_8: 876005488
+      CatchEffect_9: -362559144
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

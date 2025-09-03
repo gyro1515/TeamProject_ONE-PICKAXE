@@ -1,0 +1,2133 @@
+fileFormatVersion: 2
+guid: 3a7ce6ea34c05e54bafc316786907f07
+TextureImporter:
+  internalIDToNameTable: []
+  externalObjects: {}
+  serializedVersion: 12
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 0
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 32
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 3
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: WebGL
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Android
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Server
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: ArrivalMark _0
+      rect:
+        serializedVersion: 2
+        x: 11
+        y: 537
+        width: 43
+        height: 14
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 67f5104e396eb9e4ebf2d6baa40bee78
+      internalID: 1517032065
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ArrivalMark _1
+      rect:
+        serializedVersion: 2
+        x: 75
+        y: 537
+        width: 43
+        height: 14
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: fc35444f11f3caa449ca836c710813c5
+      internalID: -41446031
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ArrivalMark _2
+      rect:
+        serializedVersion: 2
+        x: 139
+        y: 537
+        width: 43
+        height: 14
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e9fcd7c970dde41488bd13b5a90281ac
+      internalID: 400739419
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ArrivalMark _3
+      rect:
+        serializedVersion: 2
+        x: 203
+        y: 537
+        width: 43
+        height: 14
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 57ea7f037312ff647a2c3c8026da1e77
+      internalID: -1840498953
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ArrivalMark _4
+      rect:
+        serializedVersion: 2
+        x: 267
+        y: 537
+        width: 43
+        height: 14
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 489991413e9f3de4886fbe28d2fc9f39
+      internalID: 1025326762
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ArrivalMark _5
+      rect:
+        serializedVersion: 2
+        x: 331
+        y: 537
+        width: 43
+        height: 14
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: eb41f1b489c1584449ff7def978326eb
+      internalID: -1724040845
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ArrivalMark _6
+      rect:
+        serializedVersion: 2
+        x: 394
+        y: 537
+        width: 44
+        height: 14
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: cf9cb247ba16374439a933c00f31d662
+      internalID: 694976248
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ArrivalMark _7
+      rect:
+        serializedVersion: 2
+        x: 457
+        y: 537
+        width: 45
+        height: 13
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7863aee858997cb499dd967bc39ac36d
+      internalID: -482139665
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ArrivalMark _8
+      rect:
+        serializedVersion: 2
+        x: 521
+        y: 537
+        width: 45
+        height: 13
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 89c42b8371c0d2f41b40cc85e6b62865
+      internalID: -629588796
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ArrivalMark _9
+      rect:
+        serializedVersion: 2
+        x: 587
+        y: 537
+        width: 43
+        height: 14
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ad859c4ab4e146242bb4858c24e21bd8
+      internalID: -2137066871
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ArrivalMark _10
+      rect:
+        serializedVersion: 2
+        x: 11
+        y: 473
+        width: 43
+        height: 14
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8adb0ed2b2b2ba04980651861cdb16c8
+      internalID: 1557870391
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ArrivalMark _11
+      rect:
+        serializedVersion: 2
+        x: 75
+        y: 473
+        width: 43
+        height: 14
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 16e46d4bf80a1644b885f9d7b63b5191
+      internalID: 756022486
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ArrivalMark _12
+      rect:
+        serializedVersion: 2
+        x: 139
+        y: 473
+        width: 43
+        height: 14
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 89b6e9901579d614aa17fe6275ac844c
+      internalID: 1248368676
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ArrivalMark _13
+      rect:
+        serializedVersion: 2
+        x: 203
+        y: 473
+        width: 43
+        height: 14
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f686d4737da234b44941ce87262a67f2
+      internalID: 2083691090
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ArrivalMark _14
+      rect:
+        serializedVersion: 2
+        x: 267
+        y: 473
+        width: 43
+        height: 14
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: deff36639f56c6a4695a9e52d0a89843
+      internalID: 1052838371
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ArrivalMark _15
+      rect:
+        serializedVersion: 2
+        x: 331
+        y: 473
+        width: 43
+        height: 14
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4855fa5dfcb45474cbfbf4455ea68b1f
+      internalID: -1890377406
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ArrivalMark _16
+      rect:
+        serializedVersion: 2
+        x: 394
+        y: 473
+        width: 44
+        height: 14
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d8ae12eab7854fc418d7a4779ffd5df9
+      internalID: 743917910
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ArrivalMark _17
+      rect:
+        serializedVersion: 2
+        x: 457
+        y: 473
+        width: 45
+        height: 13
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: bcb7f09e7d8852744810584d6c005d14
+      internalID: -550983094
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ArrivalMark _18
+      rect:
+        serializedVersion: 2
+        x: 521
+        y: 473
+        width: 45
+        height: 13
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9abbe2cbec865d3418ad07c0de6eaf0c
+      internalID: -736683413
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ArrivalMark _19
+      rect:
+        serializedVersion: 2
+        x: 587
+        y: 473
+        width: 43
+        height: 14
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: fe070e411c5eaee46bb2bb409a84201a
+      internalID: -1263373707
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ArrivalMark _20
+      rect:
+        serializedVersion: 2
+        x: 11
+        y: 409
+        width: 43
+        height: 14
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4aaf95ab4bbac3646bf2ec2ed3533485
+      internalID: 1430841827
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ArrivalMark _21
+      rect:
+        serializedVersion: 2
+        x: 75
+        y: 409
+        width: 43
+        height: 14
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8bc60f826b98aee45967bc0a898a7d76
+      internalID: 1353629375
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ArrivalMark _22
+      rect:
+        serializedVersion: 2
+        x: 139
+        y: 409
+        width: 43
+        height: 14
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a6e3ef28ef73ad04b9e816b393b55c5b
+      internalID: -1712195662
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ArrivalMark _23
+      rect:
+        serializedVersion: 2
+        x: 203
+        y: 409
+        width: 43
+        height: 14
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 749494652e3d68d488c28961b2b0e61f
+      internalID: -1359701662
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ArrivalMark _24
+      rect:
+        serializedVersion: 2
+        x: 267
+        y: 409
+        width: 43
+        height: 14
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 59b51bbe6451a9c47a3a967912394cdc
+      internalID: -62019331
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ArrivalMark _25
+      rect:
+        serializedVersion: 2
+        x: 331
+        y: 409
+        width: 43
+        height: 14
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c12d1cf08b6cb884f91ea35b2a6eedc5
+      internalID: 164214205
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ArrivalMark _26
+      rect:
+        serializedVersion: 2
+        x: 394
+        y: 409
+        width: 44
+        height: 14
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0a5f433529ee20342bbe69e3560ed825
+      internalID: -97275587
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ArrivalMark _27
+      rect:
+        serializedVersion: 2
+        x: 457
+        y: 409
+        width: 45
+        height: 13
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c34aebfaa41a1af48b685f095d597b53
+      internalID: -1212919701
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ArrivalMark _28
+      rect:
+        serializedVersion: 2
+        x: 521
+        y: 409
+        width: 45
+        height: 13
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d69b455315bde9d4db6483da4a00ae32
+      internalID: 1085817893
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ArrivalMark _29
+      rect:
+        serializedVersion: 2
+        x: 587
+        y: 409
+        width: 43
+        height: 14
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: bdb5e8f8a5cd37b4ba74bc1eb889b793
+      internalID: -1631905367
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ArrivalMark _30
+      rect:
+        serializedVersion: 2
+        x: 11
+        y: 345
+        width: 43
+        height: 14
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 89760110570a80b40abea4492c122bc9
+      internalID: -1871744777
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ArrivalMark _31
+      rect:
+        serializedVersion: 2
+        x: 75
+        y: 345
+        width: 43
+        height: 14
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7299d1e32068a6c44a86ac50384ac8e0
+      internalID: -929152242
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ArrivalMark _32
+      rect:
+        serializedVersion: 2
+        x: 139
+        y: 345
+        width: 43
+        height: 14
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c4630c009f486024287ecc263fe41469
+      internalID: -2082330124
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ArrivalMark _33
+      rect:
+        serializedVersion: 2
+        x: 203
+        y: 345
+        width: 43
+        height: 14
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 944b16202b4de1548b894059bb9d7462
+      internalID: 2070312892
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ArrivalMark _34
+      rect:
+        serializedVersion: 2
+        x: 267
+        y: 345
+        width: 43
+        height: 14
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f0adea2857b15004b9fc75dfc43c48a0
+      internalID: -1737629651
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ArrivalMark _35
+      rect:
+        serializedVersion: 2
+        x: 331
+        y: 345
+        width: 43
+        height: 14
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7142939bdba86694886b32c599ac70a4
+      internalID: 1787796231
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ArrivalMark _36
+      rect:
+        serializedVersion: 2
+        x: 394
+        y: 345
+        width: 44
+        height: 14
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a32ad29ff3bcbe0429543ed44d1cc883
+      internalID: -1464127637
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ArrivalMark _37
+      rect:
+        serializedVersion: 2
+        x: 457
+        y: 345
+        width: 45
+        height: 13
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 616513c3237765843a5240e7f771c0e0
+      internalID: -1932767252
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ArrivalMark _38
+      rect:
+        serializedVersion: 2
+        x: 521
+        y: 345
+        width: 45
+        height: 13
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6316d3c627987434ebcaee041cac34c9
+      internalID: -723526213
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ArrivalMark _39
+      rect:
+        serializedVersion: 2
+        x: 587
+        y: 345
+        width: 43
+        height: 14
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a31f540d4704f574184e3f61871d6d21
+      internalID: 1623719675
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ArrivalMark _40
+      rect:
+        serializedVersion: 2
+        x: 11
+        y: 281
+        width: 43
+        height: 14
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6318f059138ce204bafdde9e69e5463b
+      internalID: 903106014
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ArrivalMark _41
+      rect:
+        serializedVersion: 2
+        x: 75
+        y: 281
+        width: 43
+        height: 14
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d842e2c93da51494fba0ce88d8cd56ca
+      internalID: 46683428
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ArrivalMark _42
+      rect:
+        serializedVersion: 2
+        x: 139
+        y: 281
+        width: 43
+        height: 14
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b9e3e9df04740814fa1db4f324bb77e2
+      internalID: 963917006
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ArrivalMark _43
+      rect:
+        serializedVersion: 2
+        x: 203
+        y: 281
+        width: 43
+        height: 14
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b9206df4d3cad17449a46be0c9fd0c12
+      internalID: 1344467466
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ArrivalMark _44
+      rect:
+        serializedVersion: 2
+        x: 267
+        y: 281
+        width: 43
+        height: 14
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 59db0772147a529428fe8245063e3406
+      internalID: -1049265910
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ArrivalMark _45
+      rect:
+        serializedVersion: 2
+        x: 331
+        y: 281
+        width: 43
+        height: 14
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b246fd57c3ad1914496b3fd07c22634b
+      internalID: -74257344
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ArrivalMark _46
+      rect:
+        serializedVersion: 2
+        x: 394
+        y: 281
+        width: 44
+        height: 14
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4542428c99f9fb0408c0dfed24e678e0
+      internalID: -2091688665
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ArrivalMark _47
+      rect:
+        serializedVersion: 2
+        x: 457
+        y: 281
+        width: 45
+        height: 13
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 47092c570958ba046a9067e087a16a0a
+      internalID: 273962018
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ArrivalMark _48
+      rect:
+        serializedVersion: 2
+        x: 521
+        y: 281
+        width: 45
+        height: 13
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7ed26550ae4bc2d4abc9cadbe1e9befe
+      internalID: -783340571
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ArrivalMark _49
+      rect:
+        serializedVersion: 2
+        x: 587
+        y: 281
+        width: 43
+        height: 14
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f1618c7371d22b54d9117a9930c6d003
+      internalID: -711090666
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ArrivalMark _50
+      rect:
+        serializedVersion: 2
+        x: 11
+        y: 217
+        width: 43
+        height: 14
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: bc6f8977a33452a4a91d5d47bb79ad26
+      internalID: 141820756
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ArrivalMark _51
+      rect:
+        serializedVersion: 2
+        x: 75
+        y: 217
+        width: 43
+        height: 14
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0e29f0872c73bf648b86efa97e1291d8
+      internalID: 273724285
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ArrivalMark _52
+      rect:
+        serializedVersion: 2
+        x: 139
+        y: 217
+        width: 43
+        height: 14
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 08f76c502b931a24d9dd4554d5b488d4
+      internalID: -1618691850
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ArrivalMark _53
+      rect:
+        serializedVersion: 2
+        x: 203
+        y: 217
+        width: 43
+        height: 14
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e9ac871946c2b2749a81870b677a3618
+      internalID: -1021988415
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ArrivalMark _54
+      rect:
+        serializedVersion: 2
+        x: 267
+        y: 217
+        width: 43
+        height: 14
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2542c9e520617124f855a48fc31ab20e
+      internalID: -1142517145
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ArrivalMark _55
+      rect:
+        serializedVersion: 2
+        x: 331
+        y: 217
+        width: 43
+        height: 14
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4b71b3aa7a66ac2438137d683c4ca9ed
+      internalID: -898264937
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ArrivalMark _56
+      rect:
+        serializedVersion: 2
+        x: 394
+        y: 217
+        width: 44
+        height: 14
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b802f39e6b879d3499d295c15de91c1d
+      internalID: 965499417
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ArrivalMark _57
+      rect:
+        serializedVersion: 2
+        x: 457
+        y: 217
+        width: 45
+        height: 13
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9e4018976804495458d70996b2a0931e
+      internalID: 1062463265
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ArrivalMark _58
+      rect:
+        serializedVersion: 2
+        x: 521
+        y: 217
+        width: 45
+        height: 13
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5f9ce47e355f0014da7c5b6f5faea272
+      internalID: 1449657310
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ArrivalMark _59
+      rect:
+        serializedVersion: 2
+        x: 587
+        y: 217
+        width: 43
+        height: 14
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5fe688502c3c3b8439ae6b840b0f4714
+      internalID: -1519865084
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ArrivalMark _60
+      rect:
+        serializedVersion: 2
+        x: 11
+        y: 153
+        width: 43
+        height: 14
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 14f690aa3dab77a4fa61e9a53f64edd3
+      internalID: 1839209062
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ArrivalMark _61
+      rect:
+        serializedVersion: 2
+        x: 75
+        y: 153
+        width: 43
+        height: 14
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e2a79cbeeac89324a8b8a42b5600559e
+      internalID: 1275383183
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ArrivalMark _62
+      rect:
+        serializedVersion: 2
+        x: 139
+        y: 153
+        width: 43
+        height: 14
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 79371cb5f06865444ae1d4f7f31a090f
+      internalID: 1770039439
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ArrivalMark _63
+      rect:
+        serializedVersion: 2
+        x: 203
+        y: 153
+        width: 43
+        height: 14
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 56c123dbebec1d6419557be3e543b3f2
+      internalID: -544174908
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ArrivalMark _64
+      rect:
+        serializedVersion: 2
+        x: 267
+        y: 153
+        width: 43
+        height: 14
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8525b1c240918314698aff5a63b33f69
+      internalID: -10201564
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ArrivalMark _65
+      rect:
+        serializedVersion: 2
+        x: 331
+        y: 153
+        width: 43
+        height: 14
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7935d76d60b43c04abf65bc86b671693
+      internalID: -615502623
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ArrivalMark _66
+      rect:
+        serializedVersion: 2
+        x: 394
+        y: 153
+        width: 44
+        height: 14
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 152590b74da17394f9c1be02bdaf0845
+      internalID: 1420058489
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ArrivalMark _67
+      rect:
+        serializedVersion: 2
+        x: 457
+        y: 153
+        width: 45
+        height: 13
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 50039913a9c762a44a8968a9268b16eb
+      internalID: 977726877
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ArrivalMark _68
+      rect:
+        serializedVersion: 2
+        x: 521
+        y: 153
+        width: 45
+        height: 13
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1231a37a7b8791d4fa0195dc2d6c0cdf
+      internalID: 11300619
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ArrivalMark _69
+      rect:
+        serializedVersion: 2
+        x: 587
+        y: 153
+        width: 43
+        height: 14
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ff16dc058ce27be48913857b2f4e3195
+      internalID: 1985016137
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ArrivalMark _70
+      rect:
+        serializedVersion: 2
+        x: 11
+        y: 89
+        width: 43
+        height: 14
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8a01262c278e6ef4e896eb22b7840540
+      internalID: -965590153
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ArrivalMark _71
+      rect:
+        serializedVersion: 2
+        x: 75
+        y: 89
+        width: 43
+        height: 14
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: fce632181d8461344a22c69af4b350a6
+      internalID: 1555823865
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ArrivalMark _72
+      rect:
+        serializedVersion: 2
+        x: 139
+        y: 89
+        width: 43
+        height: 14
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3a9649b52a7e4524495b99355b1a977c
+      internalID: -1819978620
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ArrivalMark _73
+      rect:
+        serializedVersion: 2
+        x: 203
+        y: 89
+        width: 43
+        height: 14
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0f47f1457ab7e9b4a8afb05d0308dcd3
+      internalID: 1116489885
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ArrivalMark _74
+      rect:
+        serializedVersion: 2
+        x: 267
+        y: 89
+        width: 43
+        height: 14
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1bf9f104ccd34c743bba1d9c6c57ab47
+      internalID: 362076592
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ArrivalMark _75
+      rect:
+        serializedVersion: 2
+        x: 331
+        y: 89
+        width: 43
+        height: 14
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 392b9e7157275d2469019041bf09a5c0
+      internalID: -1188200857
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ArrivalMark _76
+      rect:
+        serializedVersion: 2
+        x: 394
+        y: 89
+        width: 44
+        height: 14
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6dd30e0b41a6a824b9b3a2cbafdc0768
+      internalID: 438786431
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ArrivalMark _77
+      rect:
+        serializedVersion: 2
+        x: 457
+        y: 89
+        width: 45
+        height: 13
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2a6066fc0774d2c4ca9e1db07ecdceb4
+      internalID: -1178260623
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ArrivalMark _78
+      rect:
+        serializedVersion: 2
+        x: 521
+        y: 89
+        width: 45
+        height: 13
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 436f689a2fb6ba1408fbd78626767f12
+      internalID: -1061307868
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ArrivalMark _79
+      rect:
+        serializedVersion: 2
+        x: 587
+        y: 89
+        width: 43
+        height: 14
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ac873ba621ec99b4e83ed02914fa5cd2
+      internalID: -772252089
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ArrivalMark _80
+      rect:
+        serializedVersion: 2
+        x: 11
+        y: 25
+        width: 43
+        height: 14
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c338ce06d4a0eb2428d660a85b92a76a
+      internalID: -627004362
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ArrivalMark _81
+      rect:
+        serializedVersion: 2
+        x: 75
+        y: 25
+        width: 43
+        height: 14
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 23c759e34283fbe4e836ea4b6f69d7e2
+      internalID: 1628085134
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ArrivalMark _82
+      rect:
+        serializedVersion: 2
+        x: 139
+        y: 25
+        width: 43
+        height: 14
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5bc642e605ed20844b67bf657da4fc98
+      internalID: 1191286994
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ArrivalMark _83
+      rect:
+        serializedVersion: 2
+        x: 203
+        y: 25
+        width: 43
+        height: 14
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8ba8de1cdc17c434e86763680fad2e1b
+      internalID: -1311907997
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ArrivalMark _84
+      rect:
+        serializedVersion: 2
+        x: 267
+        y: 25
+        width: 43
+        height: 14
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f2a022a0081b1be43b010d3fe2a057ac
+      internalID: 1916793482
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ArrivalMark _85
+      rect:
+        serializedVersion: 2
+        x: 331
+        y: 25
+        width: 43
+        height: 14
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 661f55b7d11a5004b9f263d20ff077d1
+      internalID: -1150869268
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ArrivalMark _86
+      rect:
+        serializedVersion: 2
+        x: 394
+        y: 25
+        width: 44
+        height: 14
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 25dde5ae05878074f941f595b29500ea
+      internalID: 1335441506
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ArrivalMark _87
+      rect:
+        serializedVersion: 2
+        x: 457
+        y: 25
+        width: 45
+        height: 13
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a09dc76723e8c9648a33887936ac11cb
+      internalID: -1204097253
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ArrivalMark _88
+      rect:
+        serializedVersion: 2
+        x: 521
+        y: 25
+        width: 45
+        height: 13
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3e45bf676f8437740bfdae2be167058a
+      internalID: 319527991
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ArrivalMark _89
+      rect:
+        serializedVersion: 2
+        x: 587
+        y: 25
+        width: 43
+        height: 14
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8f3e5fc129b8a30409ca19b7ef240aa8
+      internalID: -1451641836
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    physicsShape: []
+    bones: []
+    spriteID: 5e97eb03825dee720800000000000000
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    nameFileIdTable:
+      ArrivalMark _0: 1517032065
+      ArrivalMark _1: -41446031
+      ArrivalMark _10: 1557870391
+      ArrivalMark _11: 756022486
+      ArrivalMark _12: 1248368676
+      ArrivalMark _13: 2083691090
+      ArrivalMark _14: 1052838371
+      ArrivalMark _15: -1890377406
+      ArrivalMark _16: 743917910
+      ArrivalMark _17: -550983094
+      ArrivalMark _18: -736683413
+      ArrivalMark _19: -1263373707
+      ArrivalMark _2: 400739419
+      ArrivalMark _20: 1430841827
+      ArrivalMark _21: 1353629375
+      ArrivalMark _22: -1712195662
+      ArrivalMark _23: -1359701662
+      ArrivalMark _24: -62019331
+      ArrivalMark _25: 164214205
+      ArrivalMark _26: -97275587
+      ArrivalMark _27: -1212919701
+      ArrivalMark _28: 1085817893
+      ArrivalMark _29: -1631905367
+      ArrivalMark _3: -1840498953
+      ArrivalMark _30: -1871744777
+      ArrivalMark _31: -929152242
+      ArrivalMark _32: -2082330124
+      ArrivalMark _33: 2070312892
+      ArrivalMark _34: -1737629651
+      ArrivalMark _35: 1787796231
+      ArrivalMark _36: -1464127637
+      ArrivalMark _37: -1932767252
+      ArrivalMark _38: -723526213
+      ArrivalMark _39: 1623719675
+      ArrivalMark _4: 1025326762
+      ArrivalMark _40: 903106014
+      ArrivalMark _41: 46683428
+      ArrivalMark _42: 963917006
+      ArrivalMark _43: 1344467466
+      ArrivalMark _44: -1049265910
+      ArrivalMark _45: -74257344
+      ArrivalMark _46: -2091688665
+      ArrivalMark _47: 273962018
+      ArrivalMark _48: -783340571
+      ArrivalMark _49: -711090666
+      ArrivalMark _5: -1724040845
+      ArrivalMark _50: 141820756
+      ArrivalMark _51: 273724285
+      ArrivalMark _52: -1618691850
+      ArrivalMark _53: -1021988415
+      ArrivalMark _54: -1142517145
+      ArrivalMark _55: -898264937
+      ArrivalMark _56: 965499417
+      ArrivalMark _57: 1062463265
+      ArrivalMark _58: 1449657310
+      ArrivalMark _59: -1519865084
+      ArrivalMark _6: 694976248
+      ArrivalMark _60: 1839209062
+      ArrivalMark _61: 1275383183
+      ArrivalMark _62: 1770039439
+      ArrivalMark _63: -544174908
+      ArrivalMark _64: -10201564
+      ArrivalMark _65: -615502623
+      ArrivalMark _66: 1420058489
+      ArrivalMark _67: 977726877
+      ArrivalMark _68: 11300619
+      ArrivalMark _69: 1985016137
+      ArrivalMark _7: -482139665
+      ArrivalMark _70: -965590153
+      ArrivalMark _71: 1555823865
+      ArrivalMark _72: -1819978620
+      ArrivalMark _73: 1116489885
+      ArrivalMark _74: 362076592
+      ArrivalMark _75: -1188200857
+      ArrivalMark _76: 438786431
+      ArrivalMark _77: -1178260623
+      ArrivalMark _78: -1061307868
+      ArrivalMark _79: -772252089
+      ArrivalMark _8: -629588796
+      ArrivalMark _80: -627004362
+      ArrivalMark _81: 1628085134
+      ArrivalMark _82: 1191286994
+      ArrivalMark _83: -1311907997
+      ArrivalMark _84: 1916793482
+      ArrivalMark _85: -1150869268
+      ArrivalMark _86: 1335441506
+      ArrivalMark _87: -1204097253
+      ArrivalMark _88: 319527991
+      ArrivalMark _89: -1451641836
+      ArrivalMark _9: -2137066871
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
