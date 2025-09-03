@@ -80,6 +80,24 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""SmashPickaxe"",
+                    ""type"": ""Button"",
+                    ""id"": ""08c37a89-2cc2-4ceb-9e36-5904629407b1"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""ThrowPickaxe"",
+                    ""type"": ""Button"",
+                    ""id"": ""03bcc467-50c7-4755-992d-053e8fb82e3f"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -170,6 +188,28 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
                     ""action"": ""OpenPauseMenu"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""b4a1558d-0788-4900-871f-c5ee62ba8863"",
+                    ""path"": ""<Mouse>/leftButton"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""SmashPickaxe"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""eae4f7ad-4f77-4b24-a0da-25e9082a496a"",
+                    ""path"": ""<Mouse>/rightButton"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""ThrowPickaxe"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         },
@@ -212,6 +252,8 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
         m_Player_Dash = m_Player.FindAction("Dash", throwIfNotFound: true);
         m_Player_RetrievePickaxe = m_Player.FindAction("RetrievePickaxe", throwIfNotFound: true);
         m_Player_OpenPauseMenu = m_Player.FindAction("OpenPauseMenu", throwIfNotFound: true);
+        m_Player_SmashPickaxe = m_Player.FindAction("SmashPickaxe", throwIfNotFound: true);
+        m_Player_ThrowPickaxe = m_Player.FindAction("ThrowPickaxe", throwIfNotFound: true);
         // UI
         m_UI = asset.FindActionMap("UI", throwIfNotFound: true);
         m_UI_BackMenu = m_UI.FindAction("BackMenu", throwIfNotFound: true);
@@ -282,6 +324,8 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
     private readonly InputAction m_Player_Dash;
     private readonly InputAction m_Player_RetrievePickaxe;
     private readonly InputAction m_Player_OpenPauseMenu;
+    private readonly InputAction m_Player_SmashPickaxe;
+    private readonly InputAction m_Player_ThrowPickaxe;
     public struct PlayerActions
     {
         private @PlayerInput m_Wrapper;
@@ -292,6 +336,8 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
         public InputAction @Dash => m_Wrapper.m_Player_Dash;
         public InputAction @RetrievePickaxe => m_Wrapper.m_Player_RetrievePickaxe;
         public InputAction @OpenPauseMenu => m_Wrapper.m_Player_OpenPauseMenu;
+        public InputAction @SmashPickaxe => m_Wrapper.m_Player_SmashPickaxe;
+        public InputAction @ThrowPickaxe => m_Wrapper.m_Player_ThrowPickaxe;
         public InputActionMap Get() { return m_Wrapper.m_Player; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -319,6 +365,12 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
             @OpenPauseMenu.started += instance.OnOpenPauseMenu;
             @OpenPauseMenu.performed += instance.OnOpenPauseMenu;
             @OpenPauseMenu.canceled += instance.OnOpenPauseMenu;
+            @SmashPickaxe.started += instance.OnSmashPickaxe;
+            @SmashPickaxe.performed += instance.OnSmashPickaxe;
+            @SmashPickaxe.canceled += instance.OnSmashPickaxe;
+            @ThrowPickaxe.started += instance.OnThrowPickaxe;
+            @ThrowPickaxe.performed += instance.OnThrowPickaxe;
+            @ThrowPickaxe.canceled += instance.OnThrowPickaxe;
         }
 
         private void UnregisterCallbacks(IPlayerActions instance)
@@ -341,6 +393,12 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
             @OpenPauseMenu.started -= instance.OnOpenPauseMenu;
             @OpenPauseMenu.performed -= instance.OnOpenPauseMenu;
             @OpenPauseMenu.canceled -= instance.OnOpenPauseMenu;
+            @SmashPickaxe.started -= instance.OnSmashPickaxe;
+            @SmashPickaxe.performed -= instance.OnSmashPickaxe;
+            @SmashPickaxe.canceled -= instance.OnSmashPickaxe;
+            @ThrowPickaxe.started -= instance.OnThrowPickaxe;
+            @ThrowPickaxe.performed -= instance.OnThrowPickaxe;
+            @ThrowPickaxe.canceled -= instance.OnThrowPickaxe;
         }
 
         public void RemoveCallbacks(IPlayerActions instance)
@@ -412,6 +470,8 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
         void OnDash(InputAction.CallbackContext context);
         void OnRetrievePickaxe(InputAction.CallbackContext context);
         void OnOpenPauseMenu(InputAction.CallbackContext context);
+        void OnSmashPickaxe(InputAction.CallbackContext context);
+        void OnThrowPickaxe(InputAction.CallbackContext context);
     }
     public interface IUIActions
     {

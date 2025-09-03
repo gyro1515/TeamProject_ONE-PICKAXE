@@ -41,11 +41,12 @@ public class PickaxeThrowState : PickaxeBaseState<EquippedPickaxeStateMachine>
         {
             Transform playerTransform = stateMachine.EquippedPickaxeController.transform.parent;
             bool playerIsFacingRight = stateMachine.EquippedPickaxeController.transform.parent.localScale.x > 0;
+            var playerActions = GameManager.Instance.Player.Controller.PlayerActions;
 
             // ThrwonPickaxeController가 Owner로 EquippedPickaxeController를 참조할 수 있도록 설정(회수 시 필요)
             // 플레이어의 Transform 전달(튕길때 돌아가야하는 지점 계산에 필요)
             // 플레이어가 바라보는 방향 저장(곡괭이가 박히는 방향 계산에 필요)
-            thrownPickaxeController.InitializeThrownPickaxeController(stateMachine.EquippedPickaxeController, playerTransform, playerIsFacingRight);
+            thrownPickaxeController.Initialize(stateMachine.EquippedPickaxeController, playerTransform, playerIsFacingRight, playerActions);
         }
 
         // 곡괭이에 힘을 가해 투척

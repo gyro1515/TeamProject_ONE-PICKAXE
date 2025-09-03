@@ -85,7 +85,7 @@ public class PickaxeStuckState : PickaxeBaseState<ThrownPickaxeStateMachine>
     public override void HandleInput(ThrownPickaxeStateMachine stateMachine)
     {
         // 원거리 회수 입력 처리
-        if (Input.GetKey(KeyCode.R))
+        if (stateMachine.ThrownPickaxeController.IsRetrieveHeld)
         {
             retrieveHoldTime += Time.deltaTime;
 
@@ -99,12 +99,15 @@ public class PickaxeStuckState : PickaxeBaseState<ThrownPickaxeStateMachine>
                 stateMachine.ChangeState(stateMachine.RetrieveState);
             }
         }
-        else if (Input.GetKeyUp(KeyCode.R))
+        else
         {
             // 키를 놓으면 충전 취소
-            retrieveHoldTime = 0f;
-            Debug.Log("원거리 회수 충전 취소!");
-            // TODO: UI 게이지 초기화
+            if(retrieveHoldTime > 0f)
+            {
+                retrieveHoldTime = 0f;
+                Debug.Log("원거리 회수 충전 취소!");
+                // TODO: UI 게이지 초기화
+            }
         }
     }
 

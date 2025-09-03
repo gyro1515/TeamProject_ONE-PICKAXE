@@ -58,6 +58,24 @@
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": false
+                },
+                {
+                    "name": "SmashPickaxe",
+                    "type": "Button",
+                    "id": "08c37a89-2cc2-4ceb-9e36-5904629407b1",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "ThrowPickaxe",
+                    "type": "Button",
+                    "id": "03bcc467-50c7-4755-992d-053e8fb82e3f",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
                 }
             ],
             "bindings": [
@@ -146,6 +164,28 @@
                     "processors": "",
                     "groups": "",
                     "action": "OpenPauseMenu",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "b4a1558d-0788-4900-871f-c5ee62ba8863",
+                    "path": "<Mouse>/leftButton",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "SmashPickaxe",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "eae4f7ad-4f77-4b24-a0da-25e9082a496a",
+                    "path": "<Mouse>/rightButton",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "ThrowPickaxe",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

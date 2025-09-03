@@ -1,4 +1,6 @@
+using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class EquippedPickaxeController : MonoBehaviour
 {
@@ -24,9 +26,11 @@ public class EquippedPickaxeController : MonoBehaviour
     // 장착 곡괭이의 상태머신
     private EquippedPickaxeStateMachine stateMachine;
 
+    // 플레이어 입력 액션
+    private PlayerInput.PlayerActions playerActions;
+
     void Awake()
     {
-        PlayerTransform = GetComponentInParent<Transform>();
         Rb2D = GetComponent<Rigidbody2D>();
         Animator = GetComponentInChildren<Animator>();
 
@@ -35,7 +39,24 @@ public class EquippedPickaxeController : MonoBehaviour
 
     void Start()
     {
+        playerActions = GameManager.Instance.Player.Controller.PlayerActions;
+        // Smash와 Throw 액션이 시작될 때 각각의 함수를 호출하도록 등록
+        playerActions.SmashPickaxe.started += OnSmash;
+        playerActions.ThrowPickaxe.started += OnThrow;
+
         stateMachine.Initialize(stateMachine.EquipState);
+    }
+
+    private void OnEnable()
+    {
+        
+    }
+
+    private void OnDisable()
+    {
+        // 오브젝트가 비활성화될 때 등록했던 함수들 해제
+        playerActions.SmashPickaxe.started -= OnSmash;
+        playerActions.ThrowPickaxe.started -= OnThrow;
     }
 
     void Update()
@@ -83,5 +104,29 @@ public class EquippedPickaxeController : MonoBehaviour
 
         // 상태를 기본 장착 상태(EquipState)로 강제 전환
         stateMachine.ChangeState(stateMachine.EquipState);
+    }
+
+    private void OnSmash(InputAction.CallbackContext context)
+    {
+        // 현재 상태가 EquipState일 때만 반응
+        if (stateMachine.CurrentState == stateMachine.EquipState)
+        {
+            // 쿨타임 확인
+            if (Time.time >= LastSmashTime + SmashCooldown)
+            {
+                // 휘두르기 상태로 전환
+                stateMachine.ChangeState(stateMachine.SmashState);
+            }
+        }
+    }
+
+    private void OnThrow(InputAction.CallbackContext context)
+    {
+        // 현재 상태가 EquipState일 때만 반응
+        if (stateMachine.CurrentState == stateMachine.EquipState)
+        {
+            // 던지기 상태로 전환
+            stateMachine.ChangeState(stateMachine.ThrowState);
+        }
     }
 }

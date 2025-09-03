@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class ThrownPickaxeController : MonoBehaviour
 {
@@ -23,6 +24,10 @@ public class ThrownPickaxeController : MonoBehaviour
     public RaycastHit2D LastHitInfo { get; private set; } // Raycast를 통해 얻은 충돌 정보를 저장할 변수
     private Animator Animator;
     private LayerMask groundLayerMask;
+    private PlayerInput.PlayerActions playerActions;
+
+    // 현재 회수 키(R)가 눌리고 있는지 여부
+    public bool IsRetrieveHeld { get; private set; }
 
     // Animation Hash
     private static readonly int ThrowHash = Animator.StringToHash("Throw");
@@ -48,6 +53,13 @@ public class ThrownPickaxeController : MonoBehaviour
         stateMachine.Initialize(stateMachine.FlyingState);
     }
 
+    private void OnDisable()
+    {
+        // Retrieve 액션 연결 해제
+        playerActions.RetrievePickaxe.started -= OnRetrieve;
+        playerActions.RetrievePickaxe.canceled -= OnRetrieveCanceled;
+    }
+
     void Update()
     {
         // 입력은 Update에서 처리
@@ -62,11 +74,16 @@ public class ThrownPickaxeController : MonoBehaviour
     }
 
     // Owner를 설정하기 위한 메소드
-    public void InitializeThrownPickaxeController(EquippedPickaxeController owner, Transform playerTransform, bool isPlayerFacingRight)
+    public void Initialize(EquippedPickaxeController owner, Transform playerTransform, bool isPlayerFacingRight, PlayerInput.PlayerActions actions)
     {
         Owner = owner;
         PlayerTransform = playerTransform;
         IsPlayerFacingRight = isPlayerFacingRight;
+        playerActions = actions; // 전달받은 actions 저장
+
+        // Retrieve 액션이 시작/취소될 때 함수 연결
+        playerActions.RetrievePickaxe.started += OnRetrieve;
+        playerActions.RetrievePickaxe.canceled += OnRetrieveCanceled;
     }
 
     public void SetLastHitInfo(RaycastHit2D hitInfo)
@@ -141,5 +158,17 @@ public class ThrownPickaxeController : MonoBehaviour
             // 바닥을 찾지 못하면 플레이어의 바닥 위치를 반환
             return playerBottom;
         }
+    }
+
+    // R키가 눌렸을 때 호출
+    private void OnRetrieve(InputAction.CallbackContext context)
+    {
+        IsRetrieveHeld = true;
+    }
+
+    // R키에서 손을 뗐을 때 호출
+    private void OnRetrieveCanceled(InputAction.CallbackContext context)
+    {
+        IsRetrieveHeld = false;
     }
 }
