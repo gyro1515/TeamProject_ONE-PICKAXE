@@ -22,10 +22,12 @@ public class PickaxeFlyingState : PickaxeBaseState<ThrownPickaxeStateMachine>
 
             stateMachine.ChangeState(stateMachine.StuckState);
         }
-        // 튕기는 타일과 충돌했는지 확인
-        else if (other.CompareTag("BouncingTile"))
+        // 튕기는 오브젝트와 충돌했는지 확인? or 박히는 오브젝트가 아니면 모두 튕기는 오브젝트로 간주?
+        else if (other.CompareTag("CanBounce"))
         {
-            stateMachine.ChangeState(stateMachine.BounceState);
+            // 충돌 지점을 추정하여 BounceState로 전달
+            Vector2 hitPoint = stateMachine.ThrownPickaxeController.transform.position;
+            stateMachine.ThrownPickaxeController.Bounce(hitPoint, stateMachine.ThrownPickaxeController.PlayerTransform);
         }
         // 기타 오브젝트(적, 플레이어 등)와의 충돌 처리
         else

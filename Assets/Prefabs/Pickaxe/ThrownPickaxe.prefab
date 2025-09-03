@@ -219,3 +219,38 @@ MonoBehaviour:
   StickingOffset: 0.1
   RetrieveHoldDuration: 1.5
   RetrieveSpeed: 10
+  BounceMoveDuration: 1
+  BounceCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 4.014811
+      outSlope: 4.014811
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.048562303
+    - serializedVersion: 3
+      time: 0.5
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 136
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: -4.1898355
+      outSlope: -4.1898355
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.047284245
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  BounceHeight: 5

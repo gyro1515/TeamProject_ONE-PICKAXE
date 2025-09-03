@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Enemy
   - CanStuck
+  - CanBounce
   layers:
   - Default
   - TransparentFX

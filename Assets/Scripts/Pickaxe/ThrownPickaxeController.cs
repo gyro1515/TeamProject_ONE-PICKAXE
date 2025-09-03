@@ -13,10 +13,16 @@ public class ThrownPickaxeController : MonoBehaviour
     public float RetrieveHoldDuration = 1.5f; // 원거리 회수 키 홀딩 시간
     public float RetrieveSpeed = 10f; // 회수 속도
 
+    [Header("Bounce Settings")]
+    public float BounceMoveDuration = 1f; // 튕겨나가는 이동 총 시간
+    public AnimationCurve BounceCurve; // 튕겨나가는 궤도를 정의할 AnimationCurve
+    public float BounceHeight = 5f; // 곡선이 도달할 최대 높이
+
     public Rigidbody2D Rb2D { get; private set; }
     public Transform PlayerTransform { get; private set; }
     public RaycastHit2D LastHitInfo { get; private set; } // Raycast를 통해 얻은 충돌 정보를 저장할 변수
     private Animator Animator;
+    private LayerMask groundLayerMask;
 
     // Animation Hash
     private static readonly int ThrowHash = Animator.StringToHash("Throw");
@@ -29,6 +35,7 @@ public class ThrownPickaxeController : MonoBehaviour
     {
         Rb2D = GetComponent<Rigidbody2D>();
         Animator = GetComponentInChildren<Animator>();
+        groundLayerMask = LayerMask.GetMask("Cave");
 
         stateMachine = new ThrownPickaxeStateMachine(this);
     }
@@ -82,5 +89,57 @@ public class ThrownPickaxeController : MonoBehaviour
     public void PlayRetrieveAnimation()
     {
         Animator.SetTrigger(RetrieveHash);
+    }
+
+    // AnimationCurve 기반으로 튕기기 로직을 시작하는 메서드
+    public void Bounce(Vector2 startPoint, Transform playerTransform)
+    {
+        // 타격 이펙트 재생 (TODO: 이펙트 재생 로직 호출)
+
+        // 착지 지점 계산 (새로운 곡괭이의 컨트롤러를 사용하지 않고 바로 계산)
+        Vector2 landingPoint = GetPlayerGroundPosition(playerTransform);
+
+        // 새 곡괭이의 상태를 BounceState로 전환하고 필요한 정보 전달
+        stateMachine.BounceState.SetBounceData(startPoint, landingPoint);
+        stateMachine.ChangeState(stateMachine.BounceState);
+    }
+
+    // 플레이어 발밑의 바닥 지점을 찾는 메서드
+    private Vector2 GetPlayerGroundPosition(Transform playerTransform)
+    {
+        if (playerTransform == null)
+        {
+            return Vector2.zero;
+        }
+
+        // 플레이어의 콜라이더 컴포넌트 가져옴
+        Collider2D playerCollider = playerTransform.GetComponent<Collider2D>();
+
+        if (playerCollider == null)
+        {
+            // 콜라이더가 없으면 플레이어의 위치를 그대로 반환
+            Debug.LogWarning("Player's Collider2D not found. Returning player position.");
+            return playerTransform.position;
+        }
+
+        // 콜라이더의 바닥 위치 계산
+        Vector2 playerBottom = new Vector2(playerCollider.bounds.center.x, playerCollider.bounds.min.y);
+
+        // 플레이어의 바닥에서 아래로 레이캐스트 쏜다(지형 레이어에만 충돌)
+        RaycastHit2D hit = Physics2D.Raycast(playerBottom, Vector2.down, Mathf.Infinity, groundLayerMask);
+
+        // 레이캐스트 디버그용 시각화
+        Debug.DrawRay(playerBottom, Vector2.down * 10f, Color.red, 1f);
+
+        if (hit.collider != null)
+        {
+            // 충돌한 지점의 위치 반환
+            return hit.point;
+        }
+        else
+        {
+            // 바닥을 찾지 못하면 플레이어의 바닥 위치를 반환
+            return playerBottom;
+        }
     }
 }
