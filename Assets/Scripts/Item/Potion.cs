@@ -7,11 +7,11 @@ public class Potion : Item
 
     public override void OnPlayerCollide(Player player)
     {
-        if (player.CurrentHealth < player.MaxHealth)
+        if (player.CurrentHP < player.MaxHP)
         {
-            player.CurrentHealth += healthToRestore;
-            player.CurrentHealth = Mathf.Min(player.CurrentHealth, player.MaxHealth);
-            Debug.Log("플레이어 체력 회복! 현재 체력: " + player.CurrentHealth);
+            player.CurrentHP += healthToRestore;
+            player.CurrentHP = Mathf.Min(player.CurrentHP, player.MaxHP);
+            Debug.Log("플레이어 체력 회복! 현재 체력: " + player.CurrentHP);
         }
         else
         {
