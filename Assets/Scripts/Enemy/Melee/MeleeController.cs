@@ -18,7 +18,7 @@ public class MeleeController : EnemyController
     protected override void Awake()
     {
         base.Awake();
-        animator = GetComponentInChildren<Animator>();
+        animator = GetComponentInChildren<Animator>(); // 추후 베이스 컨트롤러에서 
         melee = GetComponent<EnemyMelee>();
         behaviorTreeRoot = SetBehaviorTree();
         patrolPos.x = gameObject.transform.position.x - melee.PatrolData / 2; // PatrolData는 지름

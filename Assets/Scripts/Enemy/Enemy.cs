@@ -9,14 +9,15 @@ public class Enemy : BaseCharacter
 
     [Header("적 세팅")]
     [SerializeField] float attackRange = 3f;
-    [SerializeField] float chaseRange = 5f;
+    [SerializeField] float detectionRange = 5f;
+
     public EnemyAnimationData AnimationData { get; private set; }
     public Player Target { get; set; } // 타겟 설정하기
 
     public EnemyController Controller { get; private set; }
 
     public float AttackRange { get { return attackRange; } }
-    public float ChaseRange { get { return chaseRange; } }
+    public float DetectionRange { get { return detectionRange; } }
     protected override void Awake()
     {
         base.Awake();

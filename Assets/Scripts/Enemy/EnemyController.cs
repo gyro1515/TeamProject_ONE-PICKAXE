@@ -6,8 +6,7 @@ public class EnemyController : BaseController
 {
     [Header("적 유닛 컨트롤러 설정")]
     [SerializeField] protected SpriteRenderer spriteRenderer;
-
-    Enemy enemy;
+    protected Enemy enemy;
     protected Rigidbody2D rb2D;
     protected override void Awake()
     {
@@ -15,6 +14,7 @@ public class EnemyController : BaseController
         enemy = GetComponent<Enemy>();
         rb2D = GetComponent<Rigidbody2D>();
     }
+
     protected float GetNormalizedTime(string tag = "Attack")
     {
         AnimatorStateInfo currentInfo = animator.GetCurrentAnimatorStateInfo(0);
