@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 1554050732346640855}
   - component: {fileID: 5235601173103510052}
   m_Layer: 0
-  m_Name: SceneLoaderStage2
+  m_Name: SceneLoaderStage
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -44,3 +44,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 990c427f94abfc340876a9d0e8452861, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  playerPrefab: {fileID: 2908222359608067732, guid: 5e87cf54f45e16c47aa70d47a2e81548, type: 3}

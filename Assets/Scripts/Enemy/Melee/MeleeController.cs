@@ -21,9 +21,9 @@ public class MeleeController : EnemyController
         animator = GetComponentInChildren<Animator>();
         melee = GetComponent<EnemyMelee>();
         behaviorTreeRoot = SetBehaviorTree();
-        patrolPos.x = gameObject.transform.position.x - melee.PatrolData;
-        patrolPos.y = gameObject.transform.position.x + melee.PatrolData;
-        patrolTime = melee.PatrolData * 2f / melee.MoveSpeed; // 순찰 거리에 따른 이동 시간
+        patrolPos.x = gameObject.transform.position.x - melee.PatrolData / 2; // PatrolData는 지름
+        patrolPos.y = gameObject.transform.position.x + melee.PatrolData / 2;
+        patrolTime = melee.PatrolData / melee.MoveSpeed; // 순찰 거리에 따른 이동 시간
         patrolTimer = patrolTime / 2; // 중간에서 시작
     }
     protected override void Update()
@@ -128,11 +128,12 @@ public class MeleeController : EnemyController
         patrolTimer += Time.deltaTime;
         float t = Mathf.PingPong(patrolTimer / patrolTime, 1.0f);
         float moveTargetPosX = Mathf.Lerp(patrolPos.x, patrolPos.y, t);
-        if(moveTargetPosX > gameObject.transform.position.x) horizontalInput = 1.0f;
-        else if(moveTargetPosX < gameObject.transform.position.x) horizontalInput = -1.0f;
+        float clampX = Mathf.Clamp(gameObject.transform.position.x, patrolPos.x, patrolPos.y);
+        if (moveTargetPosX > clampX) horizontalInput = 1.0f;
+        else if(moveTargetPosX < clampX) horizontalInput = -1.0f;
         else horizontalInput = 0f;
         //Debug.Log($"TargetPos: {moveTargetPosX}, t: {t}, MoveDir: {horizontalInput}");
-
+        
         return INode.ENodeState.Success;
     }
 }

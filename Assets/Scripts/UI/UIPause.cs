@@ -52,6 +52,7 @@ public class UIPause : BaseUI
     void ReturnToMain()
     {
         SceneLoader.Instance.StartLoadScene(SceneState.WonJinTestStart);
+        //SceneLoader.Instance.StartLoadScene(SceneState.StartScene); // 최종때는 이걸로
     }
     void OnBackMenu(InputAction.CallbackContext context)
     {

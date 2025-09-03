@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using Unity.VisualScripting.Antlr3.Runtime;
 using UnityEngine;
 
-public class SceneLoaderStage2 : MonoBehaviour
+public class SceneLoaderStage : MonoBehaviour
 {
     // 테스트, 추후 플레이어/적 소환 등에 쓰일 수도...?
     [SerializeField] GameObject playerPrefab;
