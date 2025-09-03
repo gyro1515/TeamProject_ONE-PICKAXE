@@ -13,6 +13,7 @@ public class PickaxeSmashState : PickaxeBaseState<EquippedPickaxeStateMachine>
     private const float SMASH_TOTAL_DURATION = 1.0f / VFX_FRAME_RATE * 5; // 전체 VFX 길이(5프레임)
 
     private bool isHitboxActive = false;
+    private bool hasAttacked = false; // 이번 공격에서 공격 판정을 이미 실행했는지 여부
 
     public override void EnterState(EquippedPickaxeStateMachine stateMachine)
     {
@@ -21,6 +22,8 @@ public class PickaxeSmashState : PickaxeBaseState<EquippedPickaxeStateMachine>
         stateEnterTime = Time.time;
         stateMachine.EquippedPickaxeController.LastSmashTime = Time.time; // 쿨타임 계산을 위해 시간 기록
         isHitboxActive = false;
+        hasAttacked = false; // 상태에 진입할 때마다 공격 플래그 초기화
+
 
         // 곡괭이 휘두르기 애니메이션 재생
         stateMachine.EquippedPickaxeController.PlaySmashAnimation();
@@ -33,28 +36,7 @@ public class PickaxeSmashState : PickaxeBaseState<EquippedPickaxeStateMachine>
         {
             stateMachine.EquippedPickaxeController.SmashArea.SetActive(false);
             isHitboxActive = false;
-        }
-    }
-
-    public override void HandleTrigger(EquippedPickaxeStateMachine stateMachine, Collider2D other)
-    {
-        // 히트박스가 활성화된 동안 충돌이 발생하면 공격 판정
-        if (isHitboxActive)
-        {
-            Debug.Log("히트박스 충돌 감지!");
-
-            // 공격 대상이 맞는지 확인
-            if (other.CompareTag("Enemy"))
-            {
-                Debug.Log($"{other.name}을 공격했습니다!");
-
-                // 파괴 가능한 오브젝트에 데미지 적용
-                //IDamageable damageable = other.GetComponent<IDamageable>();
-                //if (damageable != null)
-                //{
-                //    damageable.TakeDamage(stateMachine.PickaxeController.SmashDamage);
-                //}
-            }
+            hasAttacked = false;
         }
     }
 
@@ -68,6 +50,13 @@ public class PickaxeSmashState : PickaxeBaseState<EquippedPickaxeStateMachine>
             stateMachine.EquippedPickaxeController.SmashArea.SetActive(true);
             isHitboxActive = true;
             Debug.Log("히트박스 활성화!");
+        }
+
+        // 공격 판정 로직
+        if (elapsedTime >= HITBOX_START_TIME && !hasAttacked)
+        {
+            hasAttacked = true; // 중복 실행 방지
+            PerformSmashAttack(stateMachine);
         }
 
         // 히트박스 비활성화 로직
@@ -85,6 +74,41 @@ public class PickaxeSmashState : PickaxeBaseState<EquippedPickaxeStateMachine>
         }
     }
 
+    private void PerformSmashAttack(EquippedPickaxeStateMachine stateMachine)
+    {
+        Debug.Log("공격 판정 실행!");
+        Collider2D smashAreaCollider = stateMachine.EquippedPickaxeController.SmashHitBox;
+        if (smashAreaCollider == null)
+        {
+            Debug.LogError("SmashArea에 Collider2D가 없습니다!");
+            return;
+        }
+
+        // smashAreaCollider 콜라이더와 겹쳐있는 모든 콜라이더를 리스트에 담는다
+        List<Collider2D> hitTargets = new List<Collider2D>();
+        ContactFilter2D filter = new ContactFilter2D().NoFilter(); // 특정 레이어만 거르려면 여기서 설정
+        int hitCount = smashAreaCollider.OverlapCollider(filter, hitTargets);
+
+        if (hitCount > 0)
+        {
+            foreach (var target in hitTargets)
+            {
+                if (target.CompareTag("Enemy"))
+                {
+                    Debug.Log($"{target.name}을 공격했습니다!");
+
+                    // TODO: IDamageable 인터페이스를 이용한 데미지 처리 로직
+                    // IDamageable damageable = target.GetComponent<IDamageable>();
+                    // if (damageable != null)
+                    // {
+                    //     damageable.TakeDamage(stateMachine.EquippedPickaxeController.SmashDamage);
+                    // }
+                }
+            }
+        }
+    }
+
+    public override void HandleTrigger(EquippedPickaxeStateMachine stateMachine, Collider2D other) { }
     public override void FixedUpdateState(EquippedPickaxeStateMachine stateMachine) { }
     public override void HandleCollision(EquippedPickaxeStateMachine stateMachine, Collision2D collision) { }
     public override void HandleInput(EquippedPickaxeStateMachine stateMachine) { }

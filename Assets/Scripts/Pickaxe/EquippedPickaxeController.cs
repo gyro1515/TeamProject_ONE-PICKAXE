@@ -8,6 +8,7 @@ public class EquippedPickaxeController : MonoBehaviour
     public float SmashCooldown = 0.2f;
     public float LastSmashTime = 0f;
     public GameObject SmashArea;
+    public Collider2D SmashHitBox { get; private set; } // 휘두르기 판정 영역의 콜라이더
 
     [Header("Throw Settings")]
     public GameObject EquippedPickaxeObject; // 플레이어가 들고 있는 곡괭이 오브젝트
@@ -16,8 +17,8 @@ public class EquippedPickaxeController : MonoBehaviour
     public float ThrowRadius = 1.0f; // 플레이어로부터 생성될 위치의 반지름
 
     // 컴포넌트 및 오브젝트 참조
-    private Transform PlayerTransform;
-    private Rigidbody2D Rb2D;
+    //private Transform PlayerTransform;
+    //private Rigidbody2D Rb2D;
     private Animator Animator;
 
     // Animation Hash
@@ -32,7 +33,8 @@ public class EquippedPickaxeController : MonoBehaviour
 
     void Awake()
     {
-        Rb2D = GetComponent<Rigidbody2D>();
+        //Rb2D = GetComponent<Rigidbody2D>();
+        SmashHitBox = SmashArea.GetComponent<Collider2D>();
         Animator = GetComponentInChildren<Animator>();
 
         stateMachine = new EquippedPickaxeStateMachine(this);

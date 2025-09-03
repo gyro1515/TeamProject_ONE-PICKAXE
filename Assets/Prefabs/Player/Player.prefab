@@ -90,7 +90,7 @@ MonoBehaviour:
     m_Bits: 512
   dashRange: 10
   dashSpeed: 20
-  dashLineOffsetRadius: 0.7
+  dashLineOffsetRadius: 0.6
   obstacleLayerMask:
     serializedVersion: 2
     m_Bits: 512
