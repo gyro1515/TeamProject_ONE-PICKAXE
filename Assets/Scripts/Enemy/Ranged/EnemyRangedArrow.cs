@@ -8,6 +8,8 @@ public class EnemyRangedArrow : MonoBehaviour
     [SerializeField] SpriteRenderer spriteRenderer;
     [SerializeField] float speed;
     [SerializeField] float range;
+    [SerializeField] protected AudioClip hitSoundClip;
+
     Rigidbody2D rb2D;
     int damage = 0;
     float dir = 0;
@@ -44,6 +46,7 @@ public class EnemyRangedArrow : MonoBehaviour
     }
     void SetDeactive()
     {
+        if (hitSoundClip) SoundManager.PlayClip(hitSoundClip);
         gameObject.SetActive(false);
         enabled = false;
         dir = 0f;

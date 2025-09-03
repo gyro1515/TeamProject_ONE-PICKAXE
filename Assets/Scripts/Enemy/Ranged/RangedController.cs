@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class RangedController : EnemyController
 {
+    [Header("원거리 유닛 컨트롤러 세팅")]
+    [SerializeField] FireArrowMuzzle fireMuzzle;
     EnemyRanged ranged;
     protected override void Awake()
     {
@@ -28,9 +30,9 @@ public class RangedController : EnemyController
             return;
         }
         // 공격 끝나고 회전이나 아이들 세팅하기
-        if (normalizedTime <= 0.95f) return;
+        if (animator.GetBool(ranged.AnimationData.AttackParameterHash) && normalizedTime <= 0.95f) return;
 
-        if (ranged.Target && !CanAttack())
+        if (ranged.Target)
         {
             FlipSpriteByTarget(); // 포착 됐을땐 회전만
         }
@@ -41,9 +43,11 @@ public class RangedController : EnemyController
         animator.SetBool(ranged.AnimationData.AttackParameterHash, false);
         animator.SetBool(ranged.AnimationData.IdleParameterHash, true);
     }
-    public void FireArrow(bool isFlipX, Vector3 spawnPos)
+    public void FireArrow(bool isFlipX)
     {
+        fireMuzzle?.SetFlipX(isFlipX);
+        if (enemy.AttackSoundClip) SoundManager.PlayClip(enemy.AttackSoundClip);
         EnemyRangedArrow arrow = ProjectileManager.Instance.GetObject(EProjectileType.EnemyRangedArrow).GetComponent<EnemyRangedArrow>();
-        arrow?.Init(isFlipX, spawnPos, enemy.AttackPower);
+        arrow?.Init(isFlipX, fireMuzzle.gameObject.transform.position, enemy.AttackPower);
     }
 }

@@ -27,6 +27,7 @@ public class MeleeAttack : MonoBehaviour
     }
     public void SetAttackOn(bool isFlipX)
     {
+        if(enemy.AttackSoundClip) SoundManager.PlayClip(enemy.AttackSoundClip);
         if (isFlipX)
         {
             gameObject.transform.localPosition = new Vector3(-xPos, gameObject.transform.localPosition.y, gameObject.transform.localPosition.z);

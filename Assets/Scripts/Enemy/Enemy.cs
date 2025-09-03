@@ -11,6 +11,8 @@ public class Enemy : BaseCharacter
     [SerializeField] float attackRange = 3f;
     [SerializeField] float detectionRange = 5f;
     [SerializeField] protected float attackCoolTime = 0f;
+    [SerializeField] protected AudioClip attackSoundClip;
+    [SerializeField] protected AudioClip deathSoundClip;
     protected float attackCoolTimer = 0f;
     public bool canAttack = true;
     public EnemyAnimationData AnimationData { get; private set; }
@@ -20,6 +22,8 @@ public class Enemy : BaseCharacter
 
     public float AttackRange { get { return attackRange; } }
     public float DetectionRange { get { return detectionRange; } }
+    public AudioClip AttackSoundClip { get { return attackSoundClip; } }
+    public AudioClip DeathSoundClip { get { return deathSoundClip; } }
     protected override void Awake()
     {
         base.Awake();

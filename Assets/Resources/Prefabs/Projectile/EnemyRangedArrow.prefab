@@ -134,6 +134,7 @@ MonoBehaviour:
   spriteRenderer: {fileID: 4927683629999915043}
   speed: 1
   range: 100
+  hitSoundClip: {fileID: 8300000, guid: 8d584a54f61678e438ecca224e92a0f8, type: 3}
 --- !u!50 &2329626718878785812
 Rigidbody2D:
   serializedVersion: 4

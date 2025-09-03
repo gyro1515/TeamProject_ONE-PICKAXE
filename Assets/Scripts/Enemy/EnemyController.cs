@@ -17,7 +17,13 @@ public class EnemyController : BaseController
     public override void TakeDamage(int damage)
     {
         base.TakeDamage(damage);
-        if (enemy.CurrentHP <= 0) { animator.SetTrigger(enemy.AnimationData.DeathParameterHash); return; } // 데스는 테스트용
+        if (enemy.CurrentHP <= 0) 
+        {
+            // 데스는 테스트용
+            animator.SetTrigger(enemy.AnimationData.DeathParameterHash);
+            if (enemy.DeathSoundClip) SoundManager.PlayClip(enemy.DeathSoundClip);
+            return; 
+        } 
         
         // 아직 죽지 않았다면
         animator.SetTrigger(enemy.AnimationData.HurtParameterHash);
@@ -29,7 +35,7 @@ public class EnemyController : BaseController
         if(Input.GetKeyDown(KeyCode.Alpha7))
         {
             Debug.Log("테스트 TakeDamage");
-            TakeDamage(0);
+            TakeDamage(5);
         }
     }
     protected float GetNormalizedTime(string tag = "Attack")

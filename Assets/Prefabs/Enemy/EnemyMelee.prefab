@@ -524,6 +524,8 @@ MonoBehaviour:
   attackRange: 1.5
   detectionRange: 5
   attackCoolTime: 3
+  attackSoundClip: {fileID: 8300000, guid: 4906546f36efe2341be660c480b4fc96, type: 3}
+  deathSoundClip: {fileID: 8300000, guid: 0528a94219dfef442b55f1449709d323, type: 3}
   canAttack: 0
   patrolData: 5
 --- !u!114 &363504111731811674
@@ -556,7 +558,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   spriteRenderer: {fileID: 5422851811239859753}
-  patrolPos: {x: 0, y: 0}
 --- !u!50 &1634246358920893330
 Rigidbody2D:
   serializedVersion: 4

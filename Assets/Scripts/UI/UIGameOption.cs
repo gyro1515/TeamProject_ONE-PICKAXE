@@ -9,6 +9,8 @@ public class UIGameOption : BaseUI
     [SerializeField] Button btnApply;
     [SerializeField] Button btnReturn;
     [SerializeField] Slider sliderVolum;
+    [SerializeField] AudioClip clickSoundClip;
+
     Canvas canvas;
     private void Awake()
     {
@@ -29,12 +31,15 @@ public class UIGameOption : BaseUI
     }
     void SetVolum()
     {
+        if (clickSoundClip) SoundManager.PlayClip(clickSoundClip);
+
         // 사운드 매니저 가져와서 볼륨설정하기
         SoundManager.Instance.MusicVolume = sliderVolum.value;
         SoundManager.Instance.SoundEffectVolume = sliderVolum.value;
     }
     public void ReturnToStartMenu()
     {
+        if (clickSoundClip) SoundManager.PlayClip(clickSoundClip);
         //CloseUI();
         StartCoroutine(StartCloseUI());
     }
