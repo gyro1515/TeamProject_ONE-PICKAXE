@@ -329,10 +329,10 @@ TilemapCollider2D:
   m_Material: {fileID: 0}
   m_IncludeLayers:
     serializedVersion: 2
-    m_Bits: 64
+    m_Bits: 1024
   m_ExcludeLayers:
     serializedVersion: 2
-    m_Bits: 951
+    m_Bits: 1015
   m_LayerOverridePriority: 0
   m_ForceSendLayers:
     serializedVersion: 2
