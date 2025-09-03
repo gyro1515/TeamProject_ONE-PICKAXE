@@ -7,6 +7,8 @@ public class PickaxeBounceState : PickaxeBaseState<ThrownPickaxeStateMachine>
     private Vector2 endPoint;
     private float elapsedTime = 0f;
 
+    private GameObject arrivalMarkInstance; // 곡괭이가 착지할 마커
+
     // BounceState에 진입할 때 충돌 정보를 전달받는 메서드
     public void SetBounceData(Vector2 start, Vector2 end)
     {
@@ -27,8 +29,14 @@ public class PickaxeBounceState : PickaxeBaseState<ThrownPickaxeStateMachine>
         // 바운스 상태 진입 시 착지 준비 플래그를 초기화
         stateMachine.ThrownPickaxeController.IsReadyToStick = false;
 
-        //stateMachine.ThrownPickaxeController.ArrivalMark.SetActive(true);
-        //stateMachine.ThrownPickaxeController.ArrivalMark.transform.position = endPoint;
+        // 착지 마커 설정
+        arrivalMarkInstance = stateMachine.ThrownPickaxeController.ArrivalMark;
+
+        // 부모-자식 관계를 끊어 독립적인 오브젝트로 만들어서 곡괭이가 움직여도 마커가 고정되도록 함
+        arrivalMarkInstance.transform.SetParent(null);
+
+        stateMachine.ThrownPickaxeController.ArrivalMark.SetActive(true);
+        stateMachine.ThrownPickaxeController.ArrivalMark.transform.position = endPoint;
     }
 
     public override void UpdateState(ThrownPickaxeStateMachine stateMachine)
@@ -77,7 +85,14 @@ public class PickaxeBounceState : PickaxeBaseState<ThrownPickaxeStateMachine>
         }
     }
 
-    public override void ExitState(ThrownPickaxeStateMachine stateMachine) { }
+    public override void ExitState(ThrownPickaxeStateMachine stateMachine)
+    {
+        if (arrivalMarkInstance != null)
+        {
+            Object.Destroy(arrivalMarkInstance);
+        }
+    }
+
     public override void FixedUpdateState(ThrownPickaxeStateMachine stateMachine) { }
     public override void HandleCollision(ThrownPickaxeStateMachine stateMachine, Collision2D collision) { }
     public override void HandleInput(ThrownPickaxeStateMachine stateMachine) { }
