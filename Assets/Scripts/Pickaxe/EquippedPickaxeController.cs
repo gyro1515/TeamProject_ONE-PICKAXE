@@ -74,4 +74,14 @@ public class EquippedPickaxeController : MonoBehaviour
     {
         Animator.SetTrigger(SmashHash);
     }
+
+    // 곡괭이 회수하고 상태 초기화
+    public void RetrievePickaxe()
+    {
+        // 장착된 곡괭이 오브젝트 다시 활성화
+        SetEquippedPickaxeActive(true);
+
+        // 상태를 기본 장착 상태(EquipState)로 강제 전환
+        stateMachine.ChangeState(stateMachine.EquipState);
+    }
 }

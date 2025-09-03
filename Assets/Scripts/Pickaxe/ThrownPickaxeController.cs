@@ -7,7 +7,7 @@ public class ThrownPickaxeController : MonoBehaviour
     [Header("Stuck Settings")]
     public float Damage = 50f;
     public float StickingOffset = 0.2f; // 땅에 박히는 정도
-    public bool isPlayerFacingRight { get; private set; } // 플레이어의 방향을 저장할 변수 -> 곡괭이가 박히는 방향 결정
+    public bool IsPlayerFacingRight { get; private set; } // 플레이어의 방향을 저장할 변수 -> 곡괭이가 박히는 방향 결정
 
     [Header("Retrieve Settings")]
     public float RetrieveHoldDuration = 1.5f; // 원거리 회수 키 홀딩 시간
@@ -30,6 +30,9 @@ public class ThrownPickaxeController : MonoBehaviour
 
     // 던져진 곡괭이의 상태 머신
     private ThrownPickaxeStateMachine stateMachine;
+
+    // 자신을 생성한 EquippedPickaxeController의 참조를 저장할 변수
+    public EquippedPickaxeController Owner { get; private set; }
 
     void Awake()
     {
@@ -58,15 +61,12 @@ public class ThrownPickaxeController : MonoBehaviour
         stateMachine.HandleTrigger(other);
     }
 
-    // ThrownPickaxe를 생성할 때 플레이어의 방향을 전달받는 메서드 추가
-    public void InitializePlayerFacing(bool playerFacingRight)
+    // Owner를 설정하기 위한 메소드
+    public void InitializeThrownPickaxeController(EquippedPickaxeController owner, Transform playerTransform, bool isPlayerFacingRight)
     {
-        isPlayerFacingRight = playerFacingRight;
-    }
-
-    public void SetPlayerTransform(Transform transform)
-    {
-        PlayerTransform = transform;
+        Owner = owner;
+        PlayerTransform = playerTransform;
+        IsPlayerFacingRight = isPlayerFacingRight;
     }
 
     public void SetLastHitInfo(RaycastHit2D hitInfo)

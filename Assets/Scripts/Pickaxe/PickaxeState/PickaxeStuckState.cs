@@ -45,7 +45,7 @@ public class PickaxeStuckState : PickaxeBaseState<ThrownPickaxeStateMachine>
 
             // 플레이어 방향에 따라 박힌 곡괭이 좌우 반전
             Vector3 newScale = stateMachine.ThrownPickaxeController.transform.localScale;
-            if (stateMachine.ThrownPickaxeController.isPlayerFacingRight)
+            if (stateMachine.ThrownPickaxeController.IsPlayerFacingRight)
             {
                 // 플레이어가 오른쪽을 바라보고 있을 때
                 newScale.x = -1f;
@@ -70,9 +70,12 @@ public class PickaxeStuckState : PickaxeBaseState<ThrownPickaxeStateMachine>
         if (other.CompareTag("Player"))
         {
             Debug.Log("근거리 회수 완료!");
+
             // 플레이어가 박힌 곡괭이에 닿았을 때 회수
-            // 이 로직은 플레이어 컨트롤러에서 처리?
-            // player.GetComponent<PickaxeController>().RetrieveThrownPickaxe();
+            if (stateMachine.ThrownPickaxeController.Owner != null)
+            {
+                stateMachine.ThrownPickaxeController.Owner.RetrievePickaxe();
+            }
 
             // 곡괭이 오브젝트 파괴
             Object.Destroy(stateMachine.ThrownPickaxeController.gameObject);
