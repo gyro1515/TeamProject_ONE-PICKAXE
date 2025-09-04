@@ -6,6 +6,7 @@ public class EnemyController : BaseController
 {
     [Header("적 유닛 컨트롤러 설정")]
     [SerializeField] protected SpriteRenderer spriteRenderer;
+    [SerializeField] GameObject bodyAttackGO;
 
     protected Enemy enemy;
     protected Rigidbody2D rb2D;
@@ -33,6 +34,9 @@ public class EnemyController : BaseController
         base.Dead();
         animator.SetTrigger(enemy.AnimationData.DeathParameterHash);
         if (enemy.DeathSoundClip) SoundManager.PlayClip(enemy.DeathSoundClip);
+
+        bodyAttackGO.SetActive(false);
+
         //Debug.Log(">>> 'Dead()' 메서드 호출됨"); // 이 로그가 뜨는지 확인!
 
         // 몬스터 오브젝트를 파괴
