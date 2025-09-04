@@ -20,7 +20,6 @@ public class EquippedPickaxeController : MonoBehaviour
     public float ThrowRadius = 1.0f; // 플레이어로부터 생성될 위치의 반지름
 
     // 컴포넌트 및 오브젝트 참조
-    public GameObject catchTextUI;
     private Animator Animator;
 
     // Animation Hash
@@ -136,11 +135,12 @@ public class EquippedPickaxeController : MonoBehaviour
 
     private IEnumerator ShowCatchTextCoroutine()
     {
-        catchTextUI.gameObject.SetActive(true);
+        UICatchPickaxe uiCatchPickaxe = GameManager.Instance.Player.UICatchPickaxe;
+        uiCatchPickaxe?.OpenUI();
 
         yield return new WaitForSeconds(0.7f);
 
-        catchTextUI.gameObject.SetActive(false);
+        uiCatchPickaxe?.CloseUI();
     }
 
     private void OnSmash(InputAction.CallbackContext context)
