@@ -10,7 +10,7 @@ public class DetectionArea : MonoBehaviour
     {
         col = GetComponent<CircleCollider2D>();
         enemy = GetComponentInParent<Enemy>();
-        col.radius = enemy.ChaseRange;
+        col.radius = enemy.DetectionRange;
     }
     private void OnTriggerEnter2D(Collider2D collision)
     {

@@ -9,6 +9,8 @@ public class UIStartMenu : BaseUI
     [SerializeField] Button gameStartBtn;
     [SerializeField] Button gameOptionBtn;
     [SerializeField] Button gameEndBtn;
+    [SerializeField] AudioClip clickSoundClip;
+
 
     UIGameOption uiGameOption;
     private void Awake()
@@ -20,10 +22,15 @@ public class UIStartMenu : BaseUI
     }
     void GameStart()
     {
-        SceneLoader.Instance.StartLoadScene(SceneState.Stage_WonJinTest);
+        if(clickSoundClip) SoundManager.PlayClip(clickSoundClip);
+
+        SceneLoader.Instance.StartLoadScene(SceneState.Stage1WonJinTest);
+        //SceneLoader.Instance.StartLoadScene(SceneState.Stage1); // 최종때는 이걸로
     }
     void ExitGame()
     {
+        if (clickSoundClip) SoundManager.PlayClip(clickSoundClip);
+
 #if UNITY_EDITOR
         UnityEditor.EditorApplication.isPlaying = false;
 #else
@@ -32,6 +39,7 @@ public class UIStartMenu : BaseUI
     }
     void OpenOption()
     {
+        if (clickSoundClip) SoundManager.PlayClip(clickSoundClip);
         StartCoroutine(StartOpenUIGameOption());
     }
     IEnumerator StartOpenUIGameOption()

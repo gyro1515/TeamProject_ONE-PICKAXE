@@ -9,14 +9,21 @@ public class Enemy : BaseCharacter
 
     [Header("적 세팅")]
     [SerializeField] float attackRange = 3f;
-    [SerializeField] float chaseRange = 5f;
+    [SerializeField] float detectionRange = 5f;
+    [SerializeField] protected float attackCoolTime = 0f;
+    [SerializeField] protected AudioClip attackSoundClip;
+    [SerializeField] protected AudioClip deathSoundClip;
+    protected float attackCoolTimer = 0f;
+    public bool canAttack = true;
     public EnemyAnimationData AnimationData { get; private set; }
     public Player Target { get; set; } // 타겟 설정하기
 
     public EnemyController Controller { get; private set; }
 
     public float AttackRange { get { return attackRange; } }
-    public float ChaseRange { get { return chaseRange; } }
+    public float DetectionRange { get { return detectionRange; } }
+    public AudioClip AttackSoundClip { get { return attackSoundClip; } }
+    public AudioClip DeathSoundClip { get { return deathSoundClip; } }
     protected override void Awake()
     {
         base.Awake();
@@ -24,8 +31,23 @@ public class Enemy : BaseCharacter
         AnimationData = GetComponent<EnemyAnimationData>();
         AnimationData?.Initialize();
     }
+    protected override void Update()
+    {
+        base.Update();
+
+        CheckCoolTime();
+    }
     public bool HasTarget()
     {
         return Target != null;
+    }
+    void CheckCoolTime()
+    {
+        // 공격 쿨타임 갱신하기
+        if (canAttack) return;
+        attackCoolTimer += Time.deltaTime;
+        if (attackCoolTimer < attackCoolTime) return;
+        attackCoolTimer -= attackCoolTime;
+        canAttack = true;
     }
 }

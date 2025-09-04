@@ -1291,6 +1291,7 @@ MonoBehaviour:
   btnApply: {fileID: 4869277201459002335}
   btnReturn: {fileID: 9212294118457472166}
   sliderVolum: {fileID: 5298219103751812781}
+  clickSoundClip: {fileID: 8300000, guid: 0528a94219dfef442b55f1449709d323, type: 3}
 --- !u!223 &7691688714428243284
 Canvas:
   m_ObjectHideFlags: 0

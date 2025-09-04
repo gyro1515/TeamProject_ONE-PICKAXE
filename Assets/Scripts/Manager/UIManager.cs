@@ -128,7 +128,7 @@ public class UIManager : SingletonMono<UIManager>
     // ================================
     private void OnSceneUnloaded(Scene scene)
     {
-        Debug.Log("OnSceneUnloaded 호출");
+        //Debug.Log("OnSceneUnloaded 호출");
         CleanAllUIs();
         StartCoroutine(CoUnloadUnusedAssets());
     }

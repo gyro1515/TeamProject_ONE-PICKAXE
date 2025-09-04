@@ -1,18 +1,32 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
-public class DestructibleWall : InteractableObject
+public class DestructibleWall : InteractableObject, IDamageable
 {
-    // Interaction()은 무기가 충돌했을 때 호출된다고 가정
-    public override void Interaction()
+    public int currentHealth = 3;
+
+    // 매개변수를 받는 Interaction 메서드를 override하여 구현
+    public override void Interaction(GameObject other)
     {
-        // 콜라이더에 충돌한 무기의 타입을 확인
-        // 예를 들어, 무기 타입이 "파괴 가능한" 타입인지 확인
-        // if (collidingWeapon.weaponType == WeaponType.Destructive)
-        // {
-        //     // 벽을 파괴하는 로직 (예: 비활성화 또는 애니메이션 재생)
-        //     this.gameObject.SetActive(false);
-        // }
+
+            // 이 벽 오브젝트에 데미지를 입힘
+            TakeDamage(1);
+        
+    }
+
+    // IDamageable 인터페이스 구현
+    public void TakeDamage(int damage)
+    {
+        currentHealth -= damage;
+        Debug.Log("벽이 데미지를 입었습니다. 남은 체력: " + currentHealth);
+
+        if (currentHealth <= 0)
+        {
+            DestroyWall();
+        }
+    }
+
+    private void DestroyWall()
+    {
+        gameObject.SetActive(false);
     }
 }

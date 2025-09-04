@@ -765,6 +765,7 @@ MonoBehaviour:
   gameStartBtn: {fileID: 6914741528771870294}
   gameOptionBtn: {fileID: 786318592830728324}
   gameEndBtn: {fileID: 8376071406814200604}
+  clickSoundClip: {fileID: 8300000, guid: 0528a94219dfef442b55f1449709d323, type: 3}
 --- !u!223 &8872537934280830922
 Canvas:
   m_ObjectHideFlags: 0
