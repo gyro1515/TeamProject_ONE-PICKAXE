@@ -11,6 +11,9 @@ public class Enemy : BaseCharacter
     [SerializeField] float attackRange = 3f;
     [SerializeField] float detectionRange = 5f;
     [SerializeField] protected float attackCoolTime = 0f;
+    [SerializeField] protected AudioClip attackSoundClip;
+    [SerializeField] protected AudioClip deathSoundClip;
+    [SerializeField] bool canAttack = true; // 확인용
     protected float attackCoolTimer = 0f;
     public EnemyAnimationData AnimationData { get; private set; }
     public Player Target { get; set; } // 타겟 설정하기
@@ -19,6 +22,8 @@ public class Enemy : BaseCharacter
 
     public float AttackRange { get { return attackRange; } }
     public float DetectionRange { get { return detectionRange; } }
+    public AudioClip AttackSoundClip { get { return attackSoundClip; } }
+    public AudioClip DeathSoundClip { get { return deathSoundClip; } }
     protected override void Awake()
     {
         base.Awake();
@@ -58,7 +63,7 @@ public class Enemy : BaseCharacter
     }
     public bool IsInAttackRange()
     {
-        if(Target == null) return false;
+        if (Target == null) return false;
         return (Target.gameObject.transform.position - gameObject.transform.position).sqrMagnitude
             <= AttackRange * AttackRange;
     }
