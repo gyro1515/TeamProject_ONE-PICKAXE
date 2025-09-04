@@ -11,7 +11,6 @@ public class RangedController : EnemyController
     {
         base.Awake();
         ranged = GetComponent<EnemyRanged>();
-        animator = GetComponentInChildren<Animator>();
     }
     protected override void Update()
     {
