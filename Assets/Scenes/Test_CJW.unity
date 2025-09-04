@@ -2110,10 +2110,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: EnemyMelee
       objectReference: {fileID: 0}
-    - target: {fileID: 7174576242837198173, guid: 683e646a930eef64fa564a9fac4704c9, type: 3}
-      propertyPath: m_TagString
-      value: Enemy
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -3468,10 +3464,6 @@ PrefabInstance:
     - target: {fileID: 6596296365403402196, guid: bc9f971c1790b3c43aa64f519360ba68, type: 3}
       propertyPath: m_Name
       value: EnemyRanged
-      objectReference: {fileID: 0}
-    - target: {fileID: 6596296365403402196, guid: bc9f971c1790b3c43aa64f519360ba68, type: 3}
-      propertyPath: m_TagString
-      value: Enemy
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

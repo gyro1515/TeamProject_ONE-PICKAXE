@@ -7,6 +7,10 @@ using UnityEngine;
 
 public class MeleeController : EnemyController
 {
+    // 테스트용
+    enum ETestState
+    { None, Death, Attack, WaitToAttack, Chase, Ptrol, Hit }
+    [SerializeField] ETestState state = ETestState.None;
     //[Header("근접 유닛 컨트롤러 설정")]
     EnemyMelee melee;
     INode behaviorTreeRoot;
@@ -25,10 +29,24 @@ public class MeleeController : EnemyController
         patrolTime = melee.PatrolData / melee.MoveSpeed; // 순찰 거리에 따른 이동 시간
         patrolTimer = patrolTime / 2; // 중간에서 시작
     }
+    protected override void Start()
+    {
+        base.Start();
+        animator.SetBool(melee.AnimationData.AttackParameterHash, false);
+        animator.SetBool(melee.AnimationData.WalkParameterHash, true);
+        animator.SetBool(melee.AnimationData.IdleParameterHash, false);
+    }
     protected override void Update()
     {
         base.Update();
+        if (GetNormalizedTime("Hurt") != -1f) { horizontalInput = 0f; state = ETestState.Hit; return; }
+        state = ETestState.None;
         behaviorTreeRoot.Evaluate();
+    }
+    public override void TakeDamage(int damage)
+    {
+        base.TakeDamage(damage);
+        horizontalInput = 0f;
     }
     protected override void Move()
     {
@@ -73,6 +91,7 @@ public class MeleeController : EnemyController
             horizontalInput = 0f;
             enabled = false; // 죽으면 업데이트 중지
             animator.SetTrigger(melee.AnimationData.DeathParameterHash); // 애니메이션 죽음으로
+            state = ETestState.Death;
             return INode.ENodeState.Success;
         }
         return INode.ENodeState.Failure;
@@ -105,6 +124,8 @@ public class MeleeController : EnemyController
         // 여전히 공격 가능이라면 계속 공격하기
         if (CanAttack())
         {
+            state = ETestState.Attack;
+
             if (normalizedTime > 0.95f) 
                 FlipSpriteByTarget(); // 재생이 끝나고 타겟 위치에 따라 회전
             return INode.ENodeState.Running;
@@ -123,6 +144,8 @@ public class MeleeController : EnemyController
     {
         if (IsInAttackRange())
         {
+            state = ETestState.WaitToAttack;
+
             FlipSpriteByTarget();
             return INode.ENodeState.Success;
         }
@@ -136,6 +159,8 @@ public class MeleeController : EnemyController
     }
     INode.ENodeState Chase()
     {
+        state = ETestState.Chase;
+
         if (melee.Target.gameObject.transform.position.x - melee.gameObject.transform.position.x < 0f)
         {
             horizontalInput = -1.0f;
@@ -152,6 +177,8 @@ public class MeleeController : EnemyController
     }
     INode.ENodeState Patrol()
     {
+        state = ETestState.Ptrol;
+
         // 움직이기
         float preT = Mathf.PingPong(patrolTimer / patrolTime, 1.0f);
         patrolTimer += Time.deltaTime;

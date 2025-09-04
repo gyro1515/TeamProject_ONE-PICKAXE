@@ -174,7 +174,7 @@ GameObject:
   - component: {fileID: 8119364611020359558}
   - component: {fileID: 2901542631339305588}
   - component: {fileID: 8046303467622407963}
-  m_Layer: 15
+  m_Layer: 31
   m_Name: DetectionArea
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -223,7 +223,7 @@ CircleCollider2D:
     m_Bits: 64
   m_ExcludeLayers:
     serializedVersion: 2
-    m_Bits: 951
+    m_Bits: 1975
   m_LayerOverridePriority: 0
   m_ForceSendLayers:
     serializedVersion: 2
@@ -259,7 +259,7 @@ GameObject:
   - component: {fileID: 8371836040356336373}
   m_Layer: 7
   m_Name: EnemyRanged
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -300,12 +300,14 @@ MonoBehaviour:
   <DefensePower>k__BackingField: 1
   <MoveSpeed>k__BackingField: 5
   <MaxHP>k__BackingField: 15
+  <DeadTime>k__BackingField: 5
   attackRange: 5
   detectionRange: 10
   attackCoolTime: 3
   attackSoundClip: {fileID: 8300000, guid: 1723972d2d9b65f499ced7f2433d97db, type: 3}
   deathSoundClip: {fileID: 8300000, guid: 0528a94219dfef442b55f1449709d323, type: 3}
   canAttack: 1
+  <Target>k__BackingField: {fileID: 0}
 --- !u!114 &660347823104135668
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -474,7 +476,7 @@ BoxCollider2D:
     m_Bits: 64
   m_ExcludeLayers:
     serializedVersion: 2
-    m_Bits: 951
+    m_Bits: 1975
   m_LayerOverridePriority: 0
   m_ForceSendLayers:
     serializedVersion: 2

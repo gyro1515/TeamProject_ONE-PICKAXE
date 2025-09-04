@@ -11,6 +11,9 @@ public abstract class BaseCharacter : MonoBehaviour
     [field: SerializeField] public float MoveSpeed { get; private set; } = 5f;
     [field: SerializeField] public int MaxHP { get; private set; }
     protected int curHP;
+    // 어느정도 후에 사라질 것인가
+    [field: SerializeField] public float DeadTime { get; set; } = 5f;
+
     public bool IsDead { get; set; }
     public int CurrentHP { get { return curHP; }
         set 

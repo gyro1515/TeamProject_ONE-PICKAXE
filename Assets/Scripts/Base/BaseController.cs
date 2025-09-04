@@ -31,10 +31,11 @@ public abstract class BaseController : MonoBehaviour, IDamageable
     {
         // 예시 입니다.
         baseCharacter.CurrentHP -= damage;
-        if (baseCharacter.CurrentHP <= 0) Dead();
+        if (baseCharacter.CurrentHP <= 0 && !baseCharacter.IsDead) Dead();
     }
     protected virtual void Dead()
     {
+        if (baseCharacter.IsDead) return; // 죽었으면 호출 안되게
         baseCharacter.IsDead = true;
     }
 }

@@ -26,4 +26,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/WonJin/Stage2WonJinTest.unity
     guid: 44a78b00b928da34e9df023ee2fe6643
+  - enabled: 1
+    path: Assets/Scenes/Test_CJW.unity
+    guid: 0e35473d0fd3be34f82f51d599806c61
   m_configObjects: {}

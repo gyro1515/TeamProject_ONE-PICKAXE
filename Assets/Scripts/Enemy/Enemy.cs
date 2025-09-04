@@ -16,7 +16,7 @@ public class Enemy : BaseCharacter
     [SerializeField] bool canAttack = true; // 확인용
     protected float attackCoolTimer = 0f;
     public EnemyAnimationData AnimationData { get; private set; }
-    public Player Target { get; set; } // 타겟 설정하기
+    [field: SerializeField] public Player Target { get; set; } // 타겟 설정하기
 
     public EnemyController Controller { get; private set; }
 
