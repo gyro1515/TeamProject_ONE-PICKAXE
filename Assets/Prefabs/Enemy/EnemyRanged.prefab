@@ -223,7 +223,7 @@ CircleCollider2D:
     m_Bits: 64
   m_ExcludeLayers:
     serializedVersion: 2
-    m_Bits: 1975
+    m_Bits: 34743
   m_LayerOverridePriority: 0
   m_ForceSendLayers:
     serializedVersion: 2
@@ -321,6 +321,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   spriteRenderer: {fileID: 384020787629420158}
+  bodyAttackGO: {fileID: 7134975628699761596}
   droppableItems:
   - {fileID: 3556604760413938753, guid: f660b97a62132f84f9c6a0e91995c18c, type: 3}
   - {fileID: 6046918878359847017, guid: 822bb4aa4279cf44bb8d7d88825a64a1, type: 3}
@@ -386,7 +387,7 @@ BoxCollider2D:
     m_Bits: 1536
   m_ExcludeLayers:
     serializedVersion: 2
-    m_Bits: 503
+    m_Bits: 33271
   m_LayerOverridePriority: 0
   m_ForceSendLayers:
     serializedVersion: 2
@@ -427,7 +428,7 @@ GameObject:
   - component: {fileID: 439931503144832337}
   - component: {fileID: 5549695133026615894}
   - component: {fileID: 3897185954080399212}
-  m_Layer: 7
+  m_Layer: 15
   m_Name: BodyAttack
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -476,7 +477,7 @@ BoxCollider2D:
     m_Bits: 64
   m_ExcludeLayers:
     serializedVersion: 2
-    m_Bits: 951
+    m_Bits: 34743
   m_LayerOverridePriority: 0
   m_ForceSendLayers:
     serializedVersion: 2

@@ -47,6 +47,8 @@ public class RangedController : EnemyController
         fireMuzzle?.SetFlipX(isFlipX);
         if (enemy.AttackSoundClip) SoundManager.PlayClip(enemy.AttackSoundClip);
         EnemyRangedArrow arrow = ProjectileManager.Instance.GetObject(EProjectileType.EnemyRangedArrow).GetComponent<EnemyRangedArrow>();
-        arrow?.Init(isFlipX, fireMuzzle.gameObject.transform.position, enemy.AttackPower);
+        //arrow?.Init(isFlipX, fireMuzzle.gameObject.transform.position, enemy.AttackPower);
+        Vector3 dir = ranged.Target.transform.position - fireMuzzle.gameObject.transform.position;
+        arrow?.Init(dir.normalized, fireMuzzle.gameObject.transform.position, enemy.AttackPower);
     }
 }

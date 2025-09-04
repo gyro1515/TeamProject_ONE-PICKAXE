@@ -4,6 +4,7 @@ using UnityEngine;
 public abstract class Item : MonoBehaviour, IItem
 {
     [SerializeField] protected GameObject parentGO;
+    [SerializeField] protected AudioClip getSound;
     // 이 변수를 클래스 레벨에서 선언해야 상태가 유지됩니다.
     private bool hasBeenPickedUp = false;
 
@@ -31,7 +32,8 @@ public abstract class Item : MonoBehaviour, IItem
                 hasBeenPickedUp = true;
                 OnPlayerCollide(player);
                 //Destroy(gameObject);
-                if(parentGO) Destroy(parentGO);
+                if (getSound) SoundManager.PlayClip(getSound);
+                if (parentGO) Destroy(parentGO);
             }
         }
     }
