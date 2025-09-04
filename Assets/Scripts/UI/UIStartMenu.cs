@@ -24,8 +24,8 @@ public class UIStartMenu : BaseUI
     {
         if(clickSoundClip) SoundManager.PlayClip(clickSoundClip);
 
-        SceneLoader.Instance.StartLoadScene(SceneState.Stage1WonJinTest);
-        //SceneLoader.Instance.StartLoadScene(SceneState.Stage1); // 최종때는 이걸로
+        //SceneLoader.Instance.StartLoadScene(SceneState.Stage1WonJinTest);
+        SceneLoader.Instance.StartLoadScene(SceneState.Stage1); // 최종때는 이걸로
     }
     void ExitGame()
     {

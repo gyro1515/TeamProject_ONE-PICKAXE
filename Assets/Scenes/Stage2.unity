@@ -12163,6 +12163,75 @@ Tilemap:
     e31: 0
     e32: 0
     e33: 1
+--- !u!1001 &233388753
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 1554050732346640855, guid: d3ddc64c0961baa45aac75da828650f2, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1554050732346640855, guid: d3ddc64c0961baa45aac75da828650f2, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1554050732346640855, guid: d3ddc64c0961baa45aac75da828650f2, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1554050732346640855, guid: d3ddc64c0961baa45aac75da828650f2, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1554050732346640855, guid: d3ddc64c0961baa45aac75da828650f2, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1554050732346640855, guid: d3ddc64c0961baa45aac75da828650f2, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1554050732346640855, guid: d3ddc64c0961baa45aac75da828650f2, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1554050732346640855, guid: d3ddc64c0961baa45aac75da828650f2, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1554050732346640855, guid: d3ddc64c0961baa45aac75da828650f2, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1554050732346640855, guid: d3ddc64c0961baa45aac75da828650f2, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5235601173103510052, guid: d3ddc64c0961baa45aac75da828650f2, type: 3}
+      propertyPath: stageNum
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 5235601173103510052, guid: d3ddc64c0961baa45aac75da828650f2, type: 3}
+      propertyPath: bgSoundClip
+      value: 
+      objectReference: {fileID: 8300000, guid: 0c92fc665f178ee4980a39f58815c19b, type: 3}
+    - target: {fileID: 5235601173103510052, guid: d3ddc64c0961baa45aac75da828650f2, type: 3}
+      propertyPath: playerSpawnPos.y
+      value: 3.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 5406970011660682274, guid: d3ddc64c0961baa45aac75da828650f2, type: 3}
+      propertyPath: m_Name
+      value: SceneLoaderStage
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: d3ddc64c0961baa45aac75da828650f2, type: 3}
 --- !u!1 &272789820
 GameObject:
   m_ObjectHideFlags: 0
@@ -32480,7 +32549,7 @@ Tilemap:
     second:
       serializedVersion: 2
       m_TileIndex: 8
-      m_TileSpriteIndex: 21
+      m_TileSpriteIndex: 25
       m_TileMatrixIndex: 0
       m_TileColorIndex: 0
       m_TileObjectToInstantiateIndex: 65535
@@ -32530,7 +32599,7 @@ Tilemap:
     second:
       serializedVersion: 2
       m_TileIndex: 12
-      m_TileSpriteIndex: 19
+      m_TileSpriteIndex: 24
       m_TileMatrixIndex: 0
       m_TileColorIndex: 0
       m_TileObjectToInstantiateIndex: 65535
@@ -32859,20 +32928,20 @@ Tilemap:
     m_Data: {fileID: 21300022, guid: 894640e3f9d838a4499398609b715c7f, type: 3}
   - m_RefCount: 0
     m_Data: {fileID: 0}
-  - m_RefCount: 1
-    m_Data: {fileID: 21300056, guid: 894640e3f9d838a4499398609b715c7f, type: 3}
+  - m_RefCount: 0
+    m_Data: {fileID: 0}
   - m_RefCount: 2
     m_Data: {fileID: 21300014, guid: 894640e3f9d838a4499398609b715c7f, type: 3}
+  - m_RefCount: 0
+    m_Data: {fileID: 0}
+  - m_RefCount: 0
+    m_Data: {fileID: 0}
+  - m_RefCount: 0
+    m_Data: {fileID: 0}
+  - m_RefCount: 1
+    m_Data: {fileID: 21300056, guid: 894640e3f9d838a4499398609b715c7f, type: 3}
   - m_RefCount: 1
     m_Data: {fileID: 21300058, guid: 894640e3f9d838a4499398609b715c7f, type: 3}
-  - m_RefCount: 0
-    m_Data: {fileID: 0}
-  - m_RefCount: 0
-    m_Data: {fileID: 0}
-  - m_RefCount: 0
-    m_Data: {fileID: 0}
-  - m_RefCount: 0
-    m_Data: {fileID: 0}
   m_TileMatrixArray:
   - m_RefCount: 71
     m_Data:
@@ -33427,3 +33496,4 @@ SceneRoots:
   - {fileID: 103718660}
   - {fileID: 1463407394}
   - {fileID: 2053806536}
+  - {fileID: 233388753}

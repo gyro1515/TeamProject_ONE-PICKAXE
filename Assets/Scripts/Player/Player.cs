@@ -65,11 +65,11 @@ public class Player : BaseCharacter
     void Init()
     {
         // UI 세팅
-        CurrentHP = MaxHP;
-        MineralCnt = 5;
+        //CurrentHP = MaxHP;
+        //MineralCnt = 5;
         
-        //CurrentHP = curHP; // 체력 UI
-        //MineralCnt = mineralCnt; // 보유 광물 수 UI 세팅
+        CurrentHP = curHP; // 체력 UI
+        MineralCnt = mineralCnt; // 보유 광물 수 UI 세팅
         
         HasPickaxe = true;
 

@@ -295,10 +295,10 @@ public class PlayerController : BaseController
 
         // 현재 스테이지 로드
         // Test
-        SceneLoader.Instance.StartLoadScene(SceneState.Test_CJW);
+        //SceneLoader.Instance.StartLoadScene(SceneState.Test_CJW);
 
         // 실제 적용할 코드
-        //SceneLoader.Instance.StartLoadScene(SceneLoader.Instance.CurrentSceneState);
+        SceneLoader.Instance.StartLoadScene(SceneLoader.Instance.CurrentSceneState);
     }
 
     // 박힌 곡괭이 찾는 메소드

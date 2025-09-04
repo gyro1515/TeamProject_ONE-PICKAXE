@@ -9,7 +9,7 @@ public class CameraController : MonoBehaviour
     private void Start()
     {
         // GameManager에서 플레이어 오브젝트를 가져와 할당
-        if (GameManager.Instance != null && GameManager.Instance.Player != null)
+        if (GameManager.Instance.Player != null)
         {
             player = GameManager.Instance.Player.gameObject;
         }
@@ -21,7 +21,7 @@ public class CameraController : MonoBehaviour
         if (player != null)
         {
             Vector3 dir = player.transform.position - this.transform.position;
-            dir.y = 0;
+            //dir.y = 0;
             Vector3 moveVector = new Vector3(dir.x * cameraSpeed * Time.deltaTime, dir.y * cameraSpeed * Time.deltaTime, 0.0f);
             this.transform.Translate(moveVector);
         }
