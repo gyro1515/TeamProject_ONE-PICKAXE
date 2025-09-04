@@ -26,7 +26,9 @@ public class PickaxeFlyingState : PickaxeBaseState<ThrownPickaxeStateMachine>
         else
         {
             // 데미지 처리
-            var damageable = other.GetComponentInParent<IDamageable>();
+            //var damageable = other.GetComponentInParent<IDamageable>();
+            var damageable = other.GetComponent<IDamageable>();
+            Debug.Log(other.name);
             if (damageable != null)
             {
                 damageable.TakeDamage(stateMachine.ThrownPickaxeController.Damage);

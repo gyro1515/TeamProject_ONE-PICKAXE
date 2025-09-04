@@ -386,7 +386,7 @@ BoxCollider2D:
     m_Bits: 1536
   m_ExcludeLayers:
     serializedVersion: 2
-    m_Bits: 503
+    m_Bits: 33271
   m_LayerOverridePriority: 0
   m_ForceSendLayers:
     serializedVersion: 2
@@ -427,7 +427,7 @@ GameObject:
   - component: {fileID: 439931503144832337}
   - component: {fileID: 5549695133026615894}
   - component: {fileID: 3897185954080399212}
-  m_Layer: 7
+  m_Layer: 15
   m_Name: BodyAttack
   m_TagString: Untagged
   m_Icon: {fileID: 0}

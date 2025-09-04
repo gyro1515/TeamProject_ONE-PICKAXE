@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 3846670388215194430}
   - component: {fileID: 1466263643393656486}
   - component: {fileID: 7149839392952664127}
-  m_Layer: 7
+  m_Layer: 15
   m_Name: BodyAttack
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -608,7 +608,7 @@ BoxCollider2D:
     m_Bits: 1536
   m_ExcludeLayers:
     serializedVersion: 2
-    m_Bits: 503
+    m_Bits: 33271
   m_LayerOverridePriority: 0
   m_ForceSendLayers:
     serializedVersion: 2
