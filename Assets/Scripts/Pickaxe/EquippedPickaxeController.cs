@@ -115,14 +115,11 @@ public class EquippedPickaxeController : MonoBehaviour
         UIRecallPickaxe uIRecallPickaxe = GameManager.Instance.Player.UIRecallPickaxe;
         uIRecallPickaxe?.CloseUI();
 
-        // 플레이어의 곡괭이 소유 상태를 false로 변경
+        // 플레이어의 곡괭이 소유 상태를 true로 변경
         player.HasPickaxe = true;
 
         // 장착된 곡괭이 오브젝트 다시 활성화
         SetEquippedPickaxeActive(true);
-
-        // 상태를 기본 장착 상태(EquipState)로 강제 전환
-        stateMachine.ChangeState(stateMachine.EquipState);
 
         // 캐치로 회수되었다면 Catch 애니메이션 재생
         if (isCatch)
@@ -132,13 +129,16 @@ public class EquippedPickaxeController : MonoBehaviour
             // CatchTextUI
             StartCoroutine(ShowCatchTextCoroutine());
         }
+
+        // 상태를 기본 장착 상태(EquipState)로 강제 전환
+        stateMachine.ChangeState(stateMachine.EquipState);
     }
 
     private IEnumerator ShowCatchTextCoroutine()
     {
         catchTextUI.gameObject.SetActive(true);
 
-        yield return new WaitForSeconds(1f);
+        yield return new WaitForSeconds(0.7f);
 
         catchTextUI.gameObject.SetActive(false);
     }
