@@ -57,11 +57,6 @@ public class EquippedPickaxeController : MonoBehaviour
         stateMachine.Initialize(stateMachine.EquipState);
     }
 
-    private void OnEnable()
-    {
-        
-    }
-
     private void OnDisable()
     {
         // 오브젝트가 비활성화될 때 등록했던 함수들 해제
@@ -115,6 +110,10 @@ public class EquippedPickaxeController : MonoBehaviour
     // 곡괭이 회수하고 상태 초기화
     public void RetrievePickaxe(bool isCatch)
     {
+        // 회수 UI 닫기
+        UIRecallPickaxe uIRecallPickaxe = GameManager.Instance.Player.UIRecallPickaxe;
+        uIRecallPickaxe?.CloseUI();
+
         // 플레이어의 곡괭이 소유 상태를 false로 변경
         player.HasPickaxe = true;
 

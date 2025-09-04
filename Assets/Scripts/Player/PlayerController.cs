@@ -457,6 +457,10 @@ public class PlayerController : BaseController
 
     private void HandleHangingInput()
     {
+        // 회수 UI 닫기
+        UIRecallPickaxe uIRecallPickaxe = GameManager.Instance.Player.UIRecallPickaxe;
+        uIRecallPickaxe?.CloseUI();
+
         // 떨어지기 (S 키 또는 아래 방향키)
         if (PlayerActions.Drop.WasPressedThisFrame())
         {

@@ -6,8 +6,9 @@ public class PickaxeStuckState : PickaxeBaseState<ThrownPickaxeStateMachine>
     private float retrieveHoldTime = 0f; // 원거리 회수 충전 시간
     private float catchTimer = 0f; // 캐치 타이머
 
-    // **********테스트로 UI가져오겠습니다.***********
+    // 회수 UI
     UIRecallPickaxe uIRecallPickaxe;
+
     public override void EnterState(ThrownPickaxeStateMachine stateMachine)
     {
         Debug.Log("곡괭이 상태: 박힌 상태");
@@ -35,10 +36,12 @@ public class PickaxeStuckState : PickaxeBaseState<ThrownPickaxeStateMachine>
         // 위치 및 회전 조정
         AdjustPositionAndRotation(stateMachine);
 
-        // TODO: 회수 게이지바 UI 초기화?
-        // ************여기서 호출하는 게 맞을 지 체크 부탁드립니다************
-        // 곡괭이가 박혔다는 뜻은 이미 플레이어가 생성이 됐다는 뜻 -> GameManager.Instance.Player가 null일 수 없음
-        if(uIRecallPickaxe == null) uIRecallPickaxe = GameManager.Instance.Player.UIRecallPickaxe;
+        // 회수 게이지바 UI 초기화
+        if(uIRecallPickaxe == null)
+        {
+            uIRecallPickaxe = GameManager.Instance.Player.UIRecallPickaxe;
+        }
+
         uIRecallPickaxe?.OpenUI();
         uIRecallPickaxe?.SetGaugeBarValue(retrieveHoldTime, stateMachine.ThrownPickaxeController.RetrieveHoldDuration);
     }
@@ -111,9 +114,6 @@ public class PickaxeStuckState : PickaxeBaseState<ThrownPickaxeStateMachine>
 
             // 곡괭이 오브젝트 파괴
             Object.Destroy(stateMachine.ThrownPickaxeController.gameObject);
-
-            // 회수 UI 끄기? -> 확인 부탁드립니다.
-            uIRecallPickaxe?.CloseUI();
         }
     }
 
