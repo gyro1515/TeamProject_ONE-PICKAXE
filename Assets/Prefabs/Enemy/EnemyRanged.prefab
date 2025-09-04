@@ -174,7 +174,7 @@ GameObject:
   - component: {fileID: 8119364611020359558}
   - component: {fileID: 2901542631339305588}
   - component: {fileID: 8046303467622407963}
-  m_Layer: 31
+  m_Layer: 15
   m_Name: DetectionArea
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -383,7 +383,7 @@ BoxCollider2D:
   m_Material: {fileID: 0}
   m_IncludeLayers:
     serializedVersion: 2
-    m_Bits: 512
+    m_Bits: 1536
   m_ExcludeLayers:
     serializedVersion: 2
     m_Bits: 503
@@ -476,7 +476,7 @@ BoxCollider2D:
     m_Bits: 64
   m_ExcludeLayers:
     serializedVersion: 2
-    m_Bits: 1975
+    m_Bits: 951
   m_LayerOverridePriority: 0
   m_ForceSendLayers:
     serializedVersion: 2
