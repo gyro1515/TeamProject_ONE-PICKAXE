@@ -17,12 +17,12 @@ TagManager:
   - Enemy
   - Interactable
   - Cave
-  - Weapon
   - 
   - 
   - 
   - 
   - 
+  - PickaxeException
   - 
   - 
   - 

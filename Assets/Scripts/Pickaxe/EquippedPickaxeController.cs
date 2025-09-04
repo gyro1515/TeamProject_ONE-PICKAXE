@@ -1,3 +1,5 @@
+using System.Collections;
+using TMPro;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
@@ -18,8 +20,7 @@ public class EquippedPickaxeController : MonoBehaviour
     public float ThrowRadius = 1.0f; // 플레이어로부터 생성될 위치의 반지름
 
     // 컴포넌트 및 오브젝트 참조
-    //private Transform PlayerTransform;
-    //private Rigidbody2D Rb2D;
+    public GameObject catchTextUI;
     private Animator Animator;
 
     // Animation Hash
@@ -127,7 +128,19 @@ public class EquippedPickaxeController : MonoBehaviour
         if (isCatch)
         {
             PlayCatchAnimation();
+
+            // CatchTextUI
+            StartCoroutine(ShowCatchTextCoroutine());
         }
+    }
+
+    private IEnumerator ShowCatchTextCoroutine()
+    {
+        catchTextUI.gameObject.SetActive(true);
+
+        yield return new WaitForSeconds(1f);
+
+        catchTextUI.gameObject.SetActive(false);
     }
 
     private void OnSmash(InputAction.CallbackContext context)

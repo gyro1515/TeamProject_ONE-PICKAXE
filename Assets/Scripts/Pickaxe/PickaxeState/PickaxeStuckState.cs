@@ -95,17 +95,6 @@ public class PickaxeStuckState : PickaxeBaseState<ThrownPickaxeStateMachine>
             // 캐치 성공 여부 판정
             bool isCatchSuccess = catchTimer > 0f;
 
-            if(isCatchSuccess)
-            {
-                Debug.Log("캐치 성공!");
-
-                // TODO: 여기에 "CATCH" UI 텍스트 출력
-            }
-            else
-            {
-                Debug.Log("근거리 회수 완료!");
-            }
-
             // Owner(EquippedPickaxeController)에게 회수 신호 보내기
             if (stateMachine.ThrownPickaxeController.Owner != null)
             {
