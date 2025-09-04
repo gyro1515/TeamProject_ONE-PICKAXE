@@ -13,10 +13,10 @@ public abstract class Item : MonoBehaviour, IItem
     // 플레이어와의 충돌을 감지하는 공통 로직
     private void OnTriggerEnter2D(Collider2D other)
     {
-        Debug.Log(">>> OnTriggerEnter2D 메서드가 호출되었습니다. 충돌한 오브젝트: " + other.gameObject.name);
+        //Debug.Log(">>> OnTriggerEnter2D 메서드가 호출되었습니다. 충돌한 오브젝트: " + other.gameObject.name);
         // 이미 획득된 상태면 더 이상 진행하지 않음
 
-        Debug.Log("OnTriggerEnter2D 진입. hasBeenPickedUp 상태: " + hasBeenPickedUp);
+        //Debug.Log("OnTriggerEnter2D 진입. hasBeenPickedUp 상태: " + hasBeenPickedUp);
         if (hasBeenPickedUp)
         {
             return;
