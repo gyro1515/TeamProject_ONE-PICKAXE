@@ -38,7 +38,7 @@ public class PickaxeStuckState : PickaxeBaseState<ThrownPickaxeStateMachine>
         // TODO: 회수 게이지바 UI 초기화?
         // ************여기서 호출하는 게 맞을 지 체크 부탁드립니다************
         // 곡괭이가 박혔다는 뜻은 이미 플레이어가 생성이 됐다는 뜻 -> GameManager.Instance.Player가 null일 수 없음
-        uIRecallPickaxe = GameManager.Instance.Player.UIRecallPickaxe;
+        if(uIRecallPickaxe == null) uIRecallPickaxe = GameManager.Instance.Player.UIRecallPickaxe;
         uIRecallPickaxe?.OpenUI();
         uIRecallPickaxe?.SetGaugeBarValue(retrieveHoldTime, stateMachine.ThrownPickaxeController.RetrieveHoldDuration);
     }
