@@ -10,7 +10,7 @@ public class MeleeController : EnemyController
     // 테스트용
     enum ETestState
     { None, Death, Attack, WaitToAttack, Chase, Ptrol, Hit }
-    [SerializeField] ETestState state = ETestState.None;
+    [SerializeField] ETestState state = ETestState.None; // 디버그용..., 상태 체크
     //[Header("근접 유닛 컨트롤러 설정")]
     EnemyMelee melee;
     INode behaviorTreeRoot;
