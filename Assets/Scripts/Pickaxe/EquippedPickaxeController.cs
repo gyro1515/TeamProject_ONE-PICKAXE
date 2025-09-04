@@ -1,4 +1,6 @@
+using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class EquippedPickaxeController : MonoBehaviour
 {
@@ -6,6 +8,7 @@ public class EquippedPickaxeController : MonoBehaviour
     public float SmashCooldown = 0.2f;
     public float LastSmashTime = 0f;
     public GameObject SmashArea;
+    public Collider2D SmashHitBox { get; private set; } // 휘두르기 판정 영역의 콜라이더
 
     [Header("Throw Settings")]
     public GameObject EquippedPickaxeObject; // 플레이어가 들고 있는 곡괭이 오브젝트
@@ -14,28 +17,50 @@ public class EquippedPickaxeController : MonoBehaviour
     public float ThrowRadius = 1.0f; // 플레이어로부터 생성될 위치의 반지름
 
     // 컴포넌트 및 오브젝트 참조
-    private Transform PlayerTransform;
-    private Rigidbody2D Rb2D;
+    //private Transform PlayerTransform;
+    //private Rigidbody2D Rb2D;
     private Animator Animator;
 
     // Animation Hash
     private static readonly int SmashHash = Animator.StringToHash("Smash");
+    private static readonly int CatchHash = Animator.StringToHash("Catch");
 
     // 장착 곡괭이의 상태머신
     private EquippedPickaxeStateMachine stateMachine;
 
+    // 플레이어 입력 액션
+    private PlayerInput.PlayerActions playerActions;
+    private Player player;
+
     void Awake()
     {
-        PlayerTransform = GetComponentInParent<Transform>();
-        Rb2D = GetComponent<Rigidbody2D>();
+        SmashHitBox = SmashArea.GetComponent<Collider2D>();
         Animator = GetComponentInChildren<Animator>();
+        player = GetComponentInParent<Player>();
 
         stateMachine = new EquippedPickaxeStateMachine(this);
     }
 
     void Start()
     {
+        playerActions = GameManager.Instance.Player.Controller.PlayerActions;
+        // Smash와 Throw 액션이 시작될 때 각각의 함수를 호출하도록 등록
+        playerActions.SmashPickaxe.started += OnSmash;
+        playerActions.ThrowPickaxe.started += OnThrow;
+
         stateMachine.Initialize(stateMachine.EquipState);
+    }
+
+    private void OnEnable()
+    {
+        
+    }
+
+    private void OnDisable()
+    {
+        // 오브젝트가 비활성화될 때 등록했던 함수들 해제
+        playerActions.SmashPickaxe.started -= OnSmash;
+        playerActions.ThrowPickaxe.started -= OnThrow;
     }
 
     void Update()
@@ -73,5 +98,57 @@ public class EquippedPickaxeController : MonoBehaviour
     public void PlaySmashAnimation()
     {
         Animator.SetTrigger(SmashHash);
+    }
+
+    // 캐치 애니메이션 재생
+    public void PlayCatchAnimation()
+    {
+        Animator.SetTrigger(CatchHash);
+    }
+
+    // 곡괭이 회수하고 상태 초기화
+    public void RetrievePickaxe(bool isCatch)
+    {
+        // 플레이어의 곡괭이 소유 상태를 false로 변경
+        player.HasPickaxe = true;
+
+        // 장착된 곡괭이 오브젝트 다시 활성화
+        SetEquippedPickaxeActive(true);
+
+        // 상태를 기본 장착 상태(EquipState)로 강제 전환
+        stateMachine.ChangeState(stateMachine.EquipState);
+
+        // 캐치로 회수되었다면 Catch 애니메이션 재생
+        if (isCatch)
+        {
+            PlayCatchAnimation();
+        }
+    }
+
+    private void OnSmash(InputAction.CallbackContext context)
+    {
+        // 현재 상태가 EquipState일 때만 반응
+        if (stateMachine.CurrentState == stateMachine.EquipState)
+        {
+            // 쿨타임 확인
+            if (Time.time >= LastSmashTime + SmashCooldown)
+            {
+                // 휘두르기 상태로 전환
+                stateMachine.ChangeState(stateMachine.SmashState);
+            }
+        }
+    }
+
+    private void OnThrow(InputAction.CallbackContext context)
+    {
+        // 현재 상태가 EquipState일 때만 반응
+        if (stateMachine.CurrentState == stateMachine.EquipState)
+        {
+            // 플레이어의 곡괭이 소유 상태를 false로 변경
+            player.HasPickaxe = false;
+
+            // 던지기 상태로 전환
+            stateMachine.ChangeState(stateMachine.ThrowState);
+        }
     }
 }

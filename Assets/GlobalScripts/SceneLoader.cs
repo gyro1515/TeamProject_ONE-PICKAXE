@@ -13,7 +13,8 @@ public enum SceneState
     Stage01,
     WonJinTestStart,
     Stage1WonJinTest,
-    Stage2WonJinTest
+    Stage2WonJinTest,
+    Test_CJW,
 }
 // 씬 전환을 관리하는 스크립트, 게임 시작 시 자동으로 생성되며, 씬 전환을 담당
 public class SceneLoader : SingletonMono<SceneLoader>
@@ -32,7 +33,8 @@ public class SceneLoader : SingletonMono<SceneLoader>
         { SceneState.Stage01, "Stage01" },
         { SceneState.WonJinTestStart, "WonJinTestStart" },
         { SceneState.Stage1WonJinTest, "Stage1WonJinTest" },
-        { SceneState.Stage2WonJinTest, "Stage2WonJinTest" }
+        { SceneState.Stage2WonJinTest, "Stage2WonJinTest" },
+        { SceneState.Test_CJW, "Test_CJW" },
     };
     
     // 키 모아두기 예시
@@ -40,7 +42,9 @@ public class SceneLoader : SingletonMono<SceneLoader>
 
     public static bool IsChange { get; private set; } = false; // 씬 전환 시 그 후 상호작용 작동 안하도록
 
-    
+    // 현재 로드된 씬의 SceneState를 저장할 프로퍼티
+    public SceneState CurrentSceneState { get; private set; }
+
     [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.BeforeSceneLoad)] // 하이어아키 창에 게임오브젝트를 만들지 않아도 자동 생성
     private static void Init()
     {
@@ -77,6 +81,9 @@ public class SceneLoader : SingletonMono<SceneLoader>
     }
     public void StartLoadScene(SceneState nextScene)
     {
+        // 씬 전환을 시작할 때 어떤 씬으로 가는지 CurrentSceneState에 기록
+        CurrentSceneState = nextScene;
+
         StartCoroutine(NextSceneSequence(nextScene));
     }
     static IEnumerator SceneLoaded()

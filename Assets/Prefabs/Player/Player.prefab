@@ -55,7 +55,7 @@ MonoBehaviour:
   <AttackPower>k__BackingField: 0
   <DefensePower>k__BackingField: 0
   <MoveSpeed>k__BackingField: 5
-  <MaxHP>k__BackingField: 10
+  <MaxHP>k__BackingField: 5
   <JumpForce>k__BackingField: 10
 --- !u!114 &5372724588938240411
 MonoBehaviour:
@@ -72,6 +72,7 @@ MonoBehaviour:
   idleParameterName: Idle
   runParameterName: IsWalk
   AttackParameterName: Attack
+  DieParameterName: IsDie
 --- !u!114 &1233284543478285088
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -99,6 +100,7 @@ MonoBehaviour:
   dashLineRenderer: {fileID: 3932722867574505379}
   dashVFXPrefab: {fileID: 5990268644337892719}
   hangJumpVFXPrefab: {fileID: 0}
+  invincibilityDuration: 2
 --- !u!50 &3646996251529082740
 Rigidbody2D:
   serializedVersion: 4

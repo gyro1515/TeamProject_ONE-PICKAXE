@@ -4,8 +4,9 @@ using UnityEngine;
 
 public class ThrownPickaxeController : MonoBehaviour
 {
-    [Header("Stuck Settings")]
     public float Damage = 50f;
+
+    [Header("Stuck Settings")]
     public float StickingOffset = 0.2f; // 땅에 박히는 정도
     public bool isPlayerFacingRight { get; private set; } // 플레이어의 방향을 저장할 변수 -> 곡괭이가 박히는 방향 결정
 
