@@ -16,6 +16,9 @@ public class EnemyRangedArrow : MonoBehaviour
     int damage = 0;
     float dir = 0;
     float startPosX = 0f;
+    // 방향 정한다면 Vector3로 구현하기
+    Vector3 dirV3 = Vector3.zero;
+    Vector3 startPosV3 = Vector3.zero;
     private void Awake()
     {
         rb2D = GetComponent<Rigidbody2D>();
@@ -24,8 +27,10 @@ public class EnemyRangedArrow : MonoBehaviour
     }
     private void FixedUpdate()
     {
-        rb2D.velocity = new Vector3(dir * speed, 0f, 0f);
-        if (Mathf.Abs(gameObject.transform.position.x - startPosX) < range) return;
+        /*rb2D.velocity = new Vector3(dir * speed, 0f, 0f);
+        if (Mathf.Abs(gameObject.transform.position.x - startPosX) < range) return;*/
+        rb2D.velocity = dirV3 * speed;
+        if ((gameObject.transform.position - startPosV3).sqrMagnitude < range * range) return;
         SetDeactive();
     }
     public void Init(bool isFlipX, Vector3 spawnPos, int damage)
@@ -38,11 +43,22 @@ public class EnemyRangedArrow : MonoBehaviour
         startPosX = spawnPos.x;
         SetActive();
     }
+    public void Init(Vector3 dirV3, Vector3 spawnPos, int damage)
+    {
+        this.dirV3 = dirV3;
+        float angle = Mathf.Atan2(dirV3.y, dirV3.x) * Mathf.Rad2Deg;
+        gameObject.transform.rotation = Quaternion.Euler(0f, 0f, angle);
+        gameObject.transform.position = spawnPos;
+        this.damage = damage;
+        startPosV3 = spawnPos;
+        SetActive();
+    }
     private void OnTriggerEnter2D(Collider2D collision)
     {
         // 플레이어만 맞도록 콜라이더 설정
         IDamageable damageable = collision.GetComponent<IDamageable>();
         damageable?.TakeDamage(damage);
+        hitParticle.gameObject.transform.position = collision.ClosestPoint(gameObject.transform.position);
         ArrowHit();
     }
     void SetActive()
@@ -58,6 +74,7 @@ public class EnemyRangedArrow : MonoBehaviour
         enabled = false;
         col.enabled = false;
         dir = 0f;
+        dirV3 = Vector3.zero;
     }
     void ArrowHit()
     {
@@ -67,6 +84,7 @@ public class EnemyRangedArrow : MonoBehaviour
         hitParticle?.Play();
         // 이동 멈추기
         dir = 0f;
+        dirV3 = Vector3.zero;
         // 화살 이미지 끄기
         spriteRenderer.gameObject.SetActive(false);
         col.enabled = false;
