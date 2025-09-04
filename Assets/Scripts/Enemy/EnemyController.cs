@@ -17,7 +17,13 @@ public class EnemyController : BaseController
     public override void TakeDamage(int damage)
     {
         base.TakeDamage(damage);
-        if (enemy.CurrentHP <= 0) { animator.SetTrigger(enemy.AnimationData.DeathParameterHash); return; } // 데스는 테스트용
+        if (enemy.CurrentHP <= 0) 
+        {
+            // 데스는 테스트용
+            animator.SetTrigger(enemy.AnimationData.DeathParameterHash);
+            if (enemy.DeathSoundClip) SoundManager.PlayClip(enemy.DeathSoundClip);
+            return; 
+        } 
         
         // 아직 죽지 않았다면
         animator.SetTrigger(enemy.AnimationData.HurtParameterHash);
@@ -29,7 +35,7 @@ public class EnemyController : BaseController
         if(Input.GetKeyDown(KeyCode.Alpha7))
         {
             Debug.Log("테스트 TakeDamage");
-            TakeDamage(0);
+            TakeDamage(5);
         }
     }
     protected float GetNormalizedTime(string tag = "Attack")
@@ -52,21 +58,15 @@ public class EnemyController : BaseController
     }
     protected bool CanAttack()
     {
-        // 공격 범위 안에 있고, 공격 가능 시간이 되었는가
-        if(IsInAttackRange() && enemy.canAttack)
-        {
-            enemy.canAttack = false;
-            return true;
-        }
-        return false;
+        return enemy.CheckCanAttack();
     }
     protected bool IsInAttackRange()
     {
-        return (enemy.Target.gameObject.transform.position - enemy.gameObject.transform.position).sqrMagnitude
-            <= enemy.AttackRange * enemy.AttackRange;
+        return enemy.IsInAttackRange();
     }
     protected void FlipSpriteByTarget()
     {
+        if(!enemy || !enemy.Target) { Debug.LogError("로직 오류"); return; }
         float dirX = enemy.Target.gameObject.transform.position.x - enemy.gameObject.transform.position.x;
         if (dirX < 0)
             spriteRenderer.flipX = true;

@@ -26,8 +26,12 @@ public class PickaxeRetrieveState : PickaxeBaseState<ThrownPickaxeStateMachine>
         if (other.CompareTag("Player"))
         {
             Debug.Log("원거리 회수 완료!");
-            // TODO: 플레이어의 PickaxeController를 찾아 EquipState로 전환
-            // playerTransform.GetComponent<PickaxeController>().EquipPickaxe();
+
+            // Owner(EquippedPickaxeController)에게 회수되었음을 알림
+            if (stateMachine.ThrownPickaxeController.Owner != null)
+            {
+                stateMachine.ThrownPickaxeController.Owner.RetrievePickaxe(false);
+            }
 
             // 곡괭이 오브젝트 파괴
             Object.Destroy(stateMachine.ThrownPickaxeController.gameObject);

@@ -5,12 +5,15 @@ using UnityEngine;
 public class SoundSource : MonoBehaviour
 {
     private AudioSource _audioSource;
+    private void Awake()
+    {
+        _audioSource = GetComponent<AudioSource>();
+    }
     public void Play(AudioClip clip, float soundEffectVolume, float soundEffectPitchVariance = 0)
     {
-        if (_audioSource == null)
-            _audioSource = GetComponent<AudioSource>();
-
+        gameObject.SetActive(true);
         CancelInvoke();
+        _audioSource.Stop();
         _audioSource.clip = clip; ;
         _audioSource.volume = soundEffectVolume;
         _audioSource.Play();

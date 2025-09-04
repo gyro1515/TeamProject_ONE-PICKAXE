@@ -10,6 +10,8 @@ public class UIPause : BaseUI
     [SerializeField] Button btnContinue;
     [SerializeField] Button btnOption;
     [SerializeField] Button btnReturnToMain;
+    [SerializeField] AudioClip clickSoundClip;
+
     UIGameOption uiGameOption;
     PlayerInput.UIActions uiActions;
     private void Awake()
@@ -21,7 +23,7 @@ public class UIPause : BaseUI
         var input = new PlayerInput();   // 새 인스턴스
         uiActions = input.UI;            // UI 전용 액션맵
         uiActions.BackMenu.started += OnBackMenu;
-        CloseUI();
+        base.CloseUI(); // 사운드 출력 안되도록 부모 CloseUI사용
     }
     private void Start()
     {
@@ -38,8 +40,14 @@ public class UIPause : BaseUI
         uiActions.Disable();
         GameManager.Instance.Player?.Controller?.SetPlayerInput(true);
     }
+    public override void CloseUI()
+    {
+        base.CloseUI();
+        if (clickSoundClip) SoundManager.PlayClip(clickSoundClip);
+    }
     void OpenOption()
     {
+        if (clickSoundClip) SoundManager.PlayClip(clickSoundClip);
         StartCoroutine(StartOpenUIGameOption());
         //uiGameOption?.OpenUI();
     }

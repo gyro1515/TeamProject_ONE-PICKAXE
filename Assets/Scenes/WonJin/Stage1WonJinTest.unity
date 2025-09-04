@@ -1332,11 +1332,11 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 5887569363618083705, guid: 683e646a930eef64fa564a9fac4704c9, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 8.22
+      value: 11.59
       objectReference: {fileID: 0}
     - target: {fileID: 5887569363618083705, guid: 683e646a930eef64fa564a9fac4704c9, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -3.16
+      value: -3.1
       objectReference: {fileID: 0}
     - target: {fileID: 5887569363618083705, guid: 683e646a930eef64fa564a9fac4704c9, type: 3}
       propertyPath: m_LocalPosition.z
@@ -2203,9 +2203,13 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5235601173103510052, guid: d3ddc64c0961baa45aac75da828650f2, type: 3}
+      propertyPath: bgSoundClip
+      value: 
+      objectReference: {fileID: 8300000, guid: b5ba22e0d2d8bb041a3af3517776a19b, type: 3}
+    - target: {fileID: 5235601173103510052, guid: d3ddc64c0961baa45aac75da828650f2, type: 3}
       propertyPath: playerPrefab
       value: 
-      objectReference: {fileID: 2908222359608067732, guid: d718fab65a4dedd488e4e0cb2e61249f, type: 3}
+      objectReference: {fileID: 2908222359608067732, guid: 89a311cfd660f134681a1ae12f8264e8, type: 3}
     - target: {fileID: 5406970011660682274, guid: d3ddc64c0961baa45aac75da828650f2, type: 3}
       propertyPath: m_Name
       value: SceneLoaderStage
@@ -14217,11 +14221,11 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 492278350339980680, guid: bc9f971c1790b3c43aa64f519360ba68, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 11.88
+      value: 19.22
       objectReference: {fileID: 0}
     - target: {fileID: 492278350339980680, guid: bc9f971c1790b3c43aa64f519360ba68, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -3.14
+      value: -1.03
       objectReference: {fileID: 0}
     - target: {fileID: 492278350339980680, guid: bc9f971c1790b3c43aa64f519360ba68, type: 3}
       propertyPath: m_LocalPosition.z
@@ -14255,21 +14259,9 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 2035750407093771430, guid: bc9f971c1790b3c43aa64f519360ba68, type: 3}
-      propertyPath: canAttack
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2035750407093771430, guid: bc9f971c1790b3c43aa64f519360ba68, type: 3}
-      propertyPath: attackCoolTime
-      value: 3
-      objectReference: {fileID: 0}
     - target: {fileID: 6596296365403402196, guid: bc9f971c1790b3c43aa64f519360ba68, type: 3}
       propertyPath: m_Name
       value: EnemyRanged
-      objectReference: {fileID: 0}
-    - target: {fileID: 6596296365403402196, guid: bc9f971c1790b3c43aa64f519360ba68, type: 3}
-      propertyPath: m_IsActive
-      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

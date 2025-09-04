@@ -18,7 +18,6 @@ public class MeleeController : EnemyController
     protected override void Awake()
     {
         base.Awake();
-        animator = GetComponentInChildren<Animator>(); // 추후 베이스 컨트롤러에서 
         melee = GetComponent<EnemyMelee>();
         behaviorTreeRoot = SetBehaviorTree();
         /*patrolPos.x = gameObject.transform.position.x - melee.PatrolData / 2; // PatrolData는 지름
@@ -82,6 +81,7 @@ public class MeleeController : EnemyController
     {
         // 우선 이동 멈추고 체크하기
         horizontalInput = 0f;
+        
         if (CanAttack())
         {
             // 공격 시작
@@ -93,7 +93,7 @@ public class MeleeController : EnemyController
             return INode.ENodeState.Success;
         }
         
-        // 범위 밖이라면 일단 Idle세팅
+        // 공격 불가라면 일단 Idle세팅
         animator.SetBool(melee.AnimationData.AttackParameterHash, false);
         animator.SetBool(melee.AnimationData.WalkParameterHash, false);
         animator.SetBool(melee.AnimationData.IdleParameterHash, true);
@@ -102,7 +102,7 @@ public class MeleeController : EnemyController
     INode.ENodeState Attack()
     {
         float normalizedTime = GetNormalizedTime("Attack"); // 0~1만 반환하도록 설정
-        // 여전히 공격 범위 안이라면 계속 공격하기
+        // 여전히 공격 가능이라면 계속 공격하기
         if (CanAttack())
         {
             if (normalizedTime > 0.95f) 
@@ -110,7 +110,7 @@ public class MeleeController : EnemyController
             return INode.ENodeState.Running;
         }
 
-        // 범위 밖이라면 재생 체크
+        // 공격 불가라면 재생 체크
         if (normalizedTime < 0.95f ) return INode.ENodeState.Running;
 
         // 재생이 끝나고 Idle로
@@ -126,7 +126,8 @@ public class MeleeController : EnemyController
             FlipSpriteByTarget();
             return INode.ENodeState.Success;
         }
-
+        // Target이 없어지더라도 현재 위치에서 패트롤이 시작 되도록
+        patrolTimer = patrolTime / 2; // 중간에서 시작
         // 범위 밖이라면 쫓기
         animator.SetBool(melee.AnimationData.AttackParameterHash, false);
         animator.SetBool(melee.AnimationData.WalkParameterHash, true);

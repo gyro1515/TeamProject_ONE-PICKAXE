@@ -1,13 +1,14 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class ThrownPickaxeController : MonoBehaviour
 {
     [Header("Stuck Settings")]
     public float Damage = 50f;
     public float StickingOffset = 0.2f; // 땅에 박히는 정도
-    public bool isPlayerFacingRight { get; private set; } // 플레이어의 방향을 저장할 변수 -> 곡괭이가 박히는 방향 결정
+    public bool IsPlayerFacingRight { get; private set; } // 플레이어의 방향을 저장할 변수 -> 곡괭이가 박히는 방향 결정
 
     [Header("Retrieve Settings")]
     public float RetrieveHoldDuration = 1.5f; // 원거리 회수 키 홀딩 시간
@@ -17,19 +18,33 @@ public class ThrownPickaxeController : MonoBehaviour
     public float BounceMoveDuration = 1f; // 튕겨나가는 이동 총 시간
     public AnimationCurve BounceCurve; // 튕겨나가는 궤도를 정의할 AnimationCurve
     public float BounceHeight = 5f; // 곡선이 도달할 최대 높이
+    public GameObject ArrivalMark; // 착지 지점 표시 오브젝트(익스펙터에서 할당)
+
+    [Header("Catch Settings")]
+    public float CatchTime = 1f; // 캐치 가능 시간
+    public bool WasBounced { get; set; } = false; // 튕김 상태에서 왔는지 확인하는 플래그
+    public bool IsReadyToStick { get; set; } = false; // 착지 준비 플래그
 
     public Rigidbody2D Rb2D { get; private set; }
     public Transform PlayerTransform { get; private set; }
     public RaycastHit2D LastHitInfo { get; private set; } // Raycast를 통해 얻은 충돌 정보를 저장할 변수
     private Animator Animator;
     private LayerMask groundLayerMask;
+    private PlayerInput.PlayerActions playerActions;
+
+    // 현재 회수 키(R)가 눌리고 있는지 여부
+    public bool IsRetrieveHeld { get; private set; }
 
     // Animation Hash
     private static readonly int ThrowHash = Animator.StringToHash("Throw");
     private static readonly int RetrieveHash = Animator.StringToHash("Retrieve");
 
     // 던져진 곡괭이의 상태 머신
-    private ThrownPickaxeStateMachine stateMachine;
+    public ThrownPickaxeStateMachine StateMachine { get; private set; }
+    public PickaxeBaseState<ThrownPickaxeStateMachine> CurrentState => StateMachine.CurrentState;
+
+    public EquippedPickaxeController Owner { get; private set; } // 자신을 생성한 EquippedPickaxeController의 참조를 저장할 변수
+    public static ThrownPickaxeController ThrownPickaxeInstance; // PlayerController에서 접근할 수 있도록 static으로 선언
 
     void Awake()
     {
@@ -37,36 +52,46 @@ public class ThrownPickaxeController : MonoBehaviour
         Animator = GetComponentInChildren<Animator>();
         groundLayerMask = LayerMask.GetMask("Cave");
 
-        stateMachine = new ThrownPickaxeStateMachine(this);
+        StateMachine = new ThrownPickaxeStateMachine(this);
+        ThrownPickaxeInstance = this; // static 변수에 현재 인스턴스 할당
     }
 
     private void Start()
     {
-        stateMachine.Initialize(stateMachine.FlyingState);
+        StateMachine.Initialize(StateMachine.FlyingState);
+    }
+
+    private void OnDisable()
+    {
+        // Retrieve 액션 연결 해제
+        playerActions.RetrievePickaxe.started -= OnRetrieve;
+        playerActions.RetrievePickaxe.canceled -= OnRetrieveCanceled;
     }
 
     void Update()
     {
         // 입력은 Update에서 처리
-        stateMachine.HandleInput();
-        stateMachine.UpdateState();
+        StateMachine.HandleInput();
+        StateMachine.UpdateState();
     }
 
     // 트리거 충돌 이벤트
     private void OnTriggerEnter2D(Collider2D other)
     {
-        stateMachine.HandleTrigger(other);
+        StateMachine.HandleTrigger(other);
     }
 
-    // ThrownPickaxe를 생성할 때 플레이어의 방향을 전달받는 메서드 추가
-    public void InitializePlayerFacing(bool playerFacingRight)
+    // Owner를 설정하기 위한 메소드
+    public void Initialize(EquippedPickaxeController owner, Transform playerTransform, bool isPlayerFacingRight, PlayerInput.PlayerActions actions)
     {
-        isPlayerFacingRight = playerFacingRight;
-    }
+        Owner = owner;
+        PlayerTransform = playerTransform;
+        IsPlayerFacingRight = isPlayerFacingRight;
+        playerActions = actions; // 전달받은 actions 저장
 
-    public void SetPlayerTransform(Transform transform)
-    {
-        PlayerTransform = transform;
+        // Retrieve 액션이 시작/취소될 때 함수 연결
+        playerActions.RetrievePickaxe.started += OnRetrieve;
+        playerActions.RetrievePickaxe.canceled += OnRetrieveCanceled;
     }
 
     public void SetLastHitInfo(RaycastHit2D hitInfo)
@@ -100,8 +125,8 @@ public class ThrownPickaxeController : MonoBehaviour
         Vector2 landingPoint = GetPlayerGroundPosition(playerTransform);
 
         // 새 곡괭이의 상태를 BounceState로 전환하고 필요한 정보 전달
-        stateMachine.BounceState.SetBounceData(startPoint, landingPoint);
-        stateMachine.ChangeState(stateMachine.BounceState);
+        StateMachine.BounceState.SetBounceData(startPoint, landingPoint);
+        StateMachine.ChangeState(StateMachine.BounceState);
     }
 
     // 플레이어 발밑의 바닥 지점을 찾는 메서드
@@ -141,5 +166,17 @@ public class ThrownPickaxeController : MonoBehaviour
             // 바닥을 찾지 못하면 플레이어의 바닥 위치를 반환
             return playerBottom;
         }
+    }
+
+    // R키가 눌렸을 때 호출
+    private void OnRetrieve(InputAction.CallbackContext context)
+    {
+        IsRetrieveHeld = true;
+    }
+
+    // R키에서 손을 뗐을 때 호출
+    private void OnRetrieveCanceled(InputAction.CallbackContext context)
+    {
+        IsRetrieveHeld = false;
     }
 }

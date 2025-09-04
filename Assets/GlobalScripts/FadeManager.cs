@@ -36,6 +36,7 @@ public class FadeManager : SingletonMono<FadeManager>
         Canvas canvas = canvasGO.AddComponent<Canvas>();
         canvas.renderMode = RenderMode.ScreenSpaceOverlay;
         canvas.sortingOrder = 999; // UI 맨 위에 표시
+        canvasGO.AddComponent<GraphicRaycaster>(); // 레이캐스트 방지용
 
         // 이미지 생성
         GameObject imgGO = new GameObject("FadeImage");

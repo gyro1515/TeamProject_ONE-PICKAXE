@@ -39,7 +39,8 @@ public class SoundManager : SingletonMono<SoundManager>
         musicAudioSource.Play();
     }
 
-    public static void PlayClip(AudioClip clip)
+    // 굳이 static이어야 하나 생각하지만 SoundManager.Instance보단 SoundManager.이 짧으니...
+    public static void PlayClip(AudioClip clip) 
     {
         for(int i = 0; i < Instance.soundSources.Count; i++)
         {
@@ -50,7 +51,7 @@ public class SoundManager : SingletonMono<SoundManager>
         }
 
         // 재생할 게 없다면 생성하기
-        SoundSource obj = Instantiate(Instance.soundSourcePrefab);
+        SoundSource obj = Instantiate(Instance.soundSourcePrefab, Instance.gameObject.transform);
         obj.Play(clip, Instance.SoundEffectVolume);
         Instance.soundSources.Add(obj);
     }

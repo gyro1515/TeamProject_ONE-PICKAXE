@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.InputSystem.XR;
 
 public class PickaxeThrowState : PickaxeBaseState<EquippedPickaxeStateMachine>
 {
@@ -34,16 +35,18 @@ public class PickaxeThrowState : PickaxeBaseState<EquippedPickaxeStateMachine>
             Quaternion.identity
         );
 
-        // 투척 곡괭이 컨트롤러 저장
+        // 투척 곡괭이 컨트롤러 초기화
         ThrownPickaxeController thrownPickaxeController = thrownPickaxeObject.GetComponent<ThrownPickaxeController>();
         if (thrownPickaxeController != null)
         {
-            // thrownPickaxeController에 플레이어의 Transform 전달
-            thrownPickaxeController.SetPlayerTransform(stateMachine.EquippedPickaxeController.transform.parent);
-
-            // thrownPickaxeController에 플레이어의 방향 저장
+            Transform playerTransform = stateMachine.EquippedPickaxeController.transform.parent;
             bool playerIsFacingRight = stateMachine.EquippedPickaxeController.transform.parent.localScale.x > 0;
-            thrownPickaxeController.InitializePlayerFacing(playerIsFacingRight);
+            var playerActions = GameManager.Instance.Player.Controller.PlayerActions;
+
+            // ThrwonPickaxeController가 Owner로 EquippedPickaxeController를 참조할 수 있도록 설정(회수 시 필요)
+            // 플레이어의 Transform 전달(튕길때 돌아가야하는 지점 계산에 필요)
+            // 플레이어가 바라보는 방향 저장(곡괭이가 박히는 방향 계산에 필요)
+            thrownPickaxeController.Initialize(stateMachine.EquippedPickaxeController, playerTransform, playerIsFacingRight, playerActions);
         }
 
         // 곡괭이에 힘을 가해 투척
