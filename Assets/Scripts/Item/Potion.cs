@@ -11,11 +11,11 @@ public class Potion : Item
         {
             player.CurrentHP += healthToRestore;
             player.CurrentHP = Mathf.Min(player.CurrentHP, player.MaxHP);
-            Debug.Log("플레이어 체력 회복! 현재 체력: " + player.CurrentHP);
+            //Debug.Log("플레이어 체력 회복! 현재 체력: " + player.CurrentHP);
         }
         else
         {
-            Debug.Log("플레이어 체력이 가득 차 있어 포션을 사용할 수 없습니다.");
+            //Debug.Log("플레이어 체력이 가득 차 있어 포션을 사용할 수 없습니다.");
         }
     }
 }
