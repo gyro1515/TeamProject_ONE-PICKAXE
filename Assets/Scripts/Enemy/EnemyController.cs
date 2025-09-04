@@ -9,6 +9,7 @@ public class EnemyController : BaseController
     [Header("아이템 드랍 설정")]
     [SerializeField] private List<GameObject> droppableItems;
 
+    [SerializeField][Range(0f, 100f)] private float itemDropChance = 100f;
     [SerializeField] private float popUpForce = 5f;
     protected Enemy enemy;
     protected Rigidbody2D rb2D;
@@ -73,34 +74,63 @@ public class EnemyController : BaseController
             spriteRenderer.flipX = false;
     }
 
-     protected override void Dead()
+    protected override void Dead()
 
-    {
+    {
 
-        base.Dead();
+        Debug.Log(">>> 'Dead()' 메서드 호출됨"); // 이 로그가 뜨는지 확인!
 
-        if (droppableItems != null && droppableItems.Count > 0)
-        {
-            int randomIndex = Random.Range(0, droppableItems.Count);
-            GameObject itemToDrop = droppableItems[randomIndex];
+        //base.Dead();
 
-            // 아이템을 몬스터가 죽은 위치에 생성
-            GameObject itemInstance = Instantiate(itemToDrop, transform.position, Quaternion.identity);
 
-            // 생성된 아이템의 Rigidbody2D를 가져옴
-            Rigidbody2D itemRb = itemInstance.GetComponent<Rigidbody2D>();
 
-            // Rigidbody2D가 있다면 위로 힘을 가함
+        // 0.0부터 100.0 사이의 임의의 숫자를 생성하여 드롭 확률을 결정
 
-            if (itemRb != null)
-            {
-                // ForceMode2D.Impulse는 순간적인 힘을 가함
-                itemRb.AddForce(Vector2.up * popUpForce, ForceMode2D.Impulse);
-            }
+        if (Random.Range(0f, 100f) <= itemDropChance)
 
-            Debug.Log(">>> 아이템 " + itemToDrop.name + "을(를) 드랍했습니다.");
-        }
+        {
+            // 드롭 확률이 성공했을 때만 아이템을 드롭
+
+            if (droppableItems != null && droppableItems.Count > 0)
+            {
+                int randomIndex = Random.Range(0, droppableItems.Count);
+                GameObject itemToDrop = droppableItems[randomIndex];
+
+                // 아이템을 몬스터가 죽은 위치에 생성
+
+                GameObject itemInstance = Instantiate(itemToDrop, transform.position, Quaternion.identity);
+
+                // 생성된 아이템에 위로 튀어 오르는 힘을 가함
+
+                Rigidbody2D itemRb = itemInstance.GetComponent<Rigidbody2D>();
+
+                if (itemRb != null)
+
+                {
+                    itemRb.AddForce(Vector2.up * popUpForce, ForceMode2D.Impulse);
+                }
+
+                Debug.Log(">>> 아이템 " + itemToDrop.name + "을(를) 드랍했습니다.");
+            }
+        }
+
+        else
+
+        {
+
+            // 드롭에 실패했을 경우
+            Debug.Log(">>> 아이템이 나오지 않았습니다.");
+
+        }
+
+
+
+        // 몬스터 오브젝트를 파괴
+
         Destroy(gameObject);
-    }
+    }
 }
+
+
+
 

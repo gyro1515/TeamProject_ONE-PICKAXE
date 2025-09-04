@@ -9,9 +9,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6605174329133914968}
-  - component: {fileID: 6779204474655121630}
   - component: {fileID: 1319131243943796705}
-  m_Layer: 0
+  - component: {fileID: 6779204474655121630}
+  m_Layer: 11
   m_Name: Potion
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -31,10 +31,23 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 2905309468302898355}
   - {fileID: 6241011595265471835}
+  - {fileID: 2905309468302898355}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1319131243943796705
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3877409432516570095}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4ad034b5746c7974eb583d49c2f80dd5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  healthToRestore: 1
 --- !u!50 &6779204474655121630
 Rigidbody2D:
   serializedVersion: 4
@@ -62,19 +75,6 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
---- !u!114 &1319131243943796705
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3877409432516570095}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4ad034b5746c7974eb583d49c2f80dd5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  healthToRestore: 1
 --- !u!1 &4093968720939463782
 GameObject:
   m_ObjectHideFlags: 0
@@ -87,7 +87,7 @@ GameObject:
   - component: {fileID: 4161027699832350960}
   - component: {fileID: 6739424824718236291}
   - component: {fileID: 7254791911834888454}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Potion
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -242,7 +242,7 @@ TilemapCollider2D:
   m_Material: {fileID: 0}
   m_IncludeLayers:
     serializedVersion: 2
-    m_Bits: 64
+    m_Bits: 192
   m_ExcludeLayers:
     serializedVersion: 2
     m_Bits: 0
@@ -276,7 +276,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6241011595265471835}
   - component: {fileID: 1467882263978661293}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Trigger
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -310,7 +310,7 @@ BoxCollider2D:
   m_Material: {fileID: 0}
   m_IncludeLayers:
     serializedVersion: 2
-    m_Bits: 512
+    m_Bits: 0
   m_ExcludeLayers:
     serializedVersion: 2
     m_Bits: 0
