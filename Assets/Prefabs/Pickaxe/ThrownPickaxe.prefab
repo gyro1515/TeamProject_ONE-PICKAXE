@@ -257,7 +257,6 @@ MonoBehaviour:
   BounceHeight: 5
   ArrivalMark: {fileID: 1527654548830027627}
   CatchTime: 3
-  CatchAnimationDuration: 1
 --- !u!1001 &1967650398249490223
 PrefabInstance:
   m_ObjectHideFlags: 0

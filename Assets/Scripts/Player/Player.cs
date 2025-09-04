@@ -39,17 +39,18 @@ public class Player : BaseCharacter
         Init(); // 초기화 할 것들, 현재는 UI만
         UIPause = UIManager.Instance.GetUI<UIPause>();
     }
+
     void Init()
     {
-        // 테스트로 다르게 세팅
-        CurrentHP = 3; // 체력 UI, 테스트 3으로 세팅
-        MineralCnt = 5;  
+        CurrentHP = MaxHP;
+        MineralCnt = 5;
         // UI 세팅
         //CurrentHP = curHP; // 체력 UI
         //MineralCnt = mineralCnt; // 보유 광물 수 UI 세팅
         HUD.SetPickaxeOwn(true); // 곡괭이 보유여부에 따라 세팅하기
         HUD.SetStageText(1);
     }
+
     protected override void Update()
     {
         base.Update();
@@ -78,7 +79,5 @@ public class Player : BaseCharacter
         {
             MineralCnt--;
         }
-
     }
-
 }

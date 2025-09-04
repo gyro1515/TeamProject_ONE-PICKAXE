@@ -97,12 +97,11 @@ public class PickaxeSmashState : PickaxeBaseState<EquippedPickaxeStateMachine>
                 {
                     Debug.Log($"{target.name}을 공격했습니다!");
 
-                    // TODO: IDamageable 인터페이스를 이용한 데미지 처리 로직
-                    // IDamageable damageable = target.GetComponent<IDamageable>();
-                    // if (damageable != null)
-                    // {
-                    //     damageable.TakeDamage(stateMachine.EquippedPickaxeController.SmashDamage);
-                    // }
+                    IDamageable damageable = target.GetComponent<IDamageable>();
+                    if (damageable != null)
+                    {
+                        damageable.TakeDamage(5);
+                    }
                 }
             }
         }

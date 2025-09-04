@@ -2,12 +2,14 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.SceneManagement;
 
 public enum PlayerState
 {
     Normal,
     Dashing,
-    Hanging
+    Hanging,
+    Dead
 }
 
 public class PlayerController : BaseController
@@ -31,10 +33,18 @@ public class PlayerController : BaseController
     [Header("Hanging Settings")]
     [SerializeField] private GameObject hangJumpVFXPrefab; // 매달리기 점프 VFX 프리팹
 
+    [Header("Invincibility Settings")]
+    [SerializeField] private float invincibilityDuration = 2f; // 무적 지속 시간
+    [SerializeField] private Color damageColor = new Color(1f, 0.6f, 0.6f, 1f);
+    private bool isInvincible = false; // 현재 무적 상태인지 확인
+
+    private EquippedPickaxeController equippedPickaxe; // 장착된 곡괭이 참조
     private ThrownPickaxeController stuckPickaxe; // 현재 박혀있는 곡괭이 참조
     private bool isDashAvailable = false; // 대쉬가 가능한 상태인지
     private float originalGravityScale; // 원래 중력 값을 저장할 변수
 
+    private SpriteRenderer playerSpriteRenderer;
+    private SpriteRenderer equippedPickaxeSpriteRenderer;
     private Rigidbody2D rb;
     private bool isGrounded;
     private bool isFacingRight = true;
@@ -57,8 +67,10 @@ public class PlayerController : BaseController
         PlayerActions.OpenPauseMenu.started += OnOpenPauseMenu;
         PlayerActions.Dash.started += OnDash;
         rb = GetComponent<Rigidbody2D>();
-
+        playerSpriteRenderer = GetComponentInChildren<SpriteRenderer>();
         playerAnimationData = GetComponent<PlayerAnimationData>();
+        equippedPickaxe = GetComponentInChildren<EquippedPickaxeController>();
+        equippedPickaxeSpriteRenderer = equippedPickaxe.GetComponentInChildren<SpriteRenderer>();
 
         originalGravityScale = rb.gravityScale; // 기존 중력 값 저장
         dashLineRenderer.enabled = false; // 시작 시 라인 끄기
@@ -190,6 +202,102 @@ public class PlayerController : BaseController
     {
         if (active) Input.Enable();
         else Input.Disable();
+    }
+
+    public override void TakeDamage(int damage)
+    {
+        // 무적 상태이거나 이미 죽었다면 데미지를 받지 않음
+        if (isInvincible || player.IsDead)
+        {
+            return;
+        }
+
+        player.CurrentHP -= damage;
+
+        if (player.CurrentHP <= 0)
+        {
+            Dead();
+        }
+        else
+        {
+            // 아직 살아있다면 무적 코루틴 시작
+            StartCoroutine(InvincibilityCoroutine());
+        }
+    }
+
+    private IEnumerator InvincibilityCoroutine()
+    {
+        isInvincible = true;
+
+        float elapsedTime = 0f;
+        Color originalColor = playerSpriteRenderer.color;
+
+        // 무적 시간 동안 깜빡임
+        while (elapsedTime < invincibilityDuration)
+        {
+            // 알파 값을 0.5 (반투명)와 1 (불투명) 사이에서 반복
+            playerSpriteRenderer.color = new Color(damageColor.r, damageColor.g, damageColor.b, 0.5f);
+            equippedPickaxeSpriteRenderer.color = new Color(damageColor.r, damageColor.g, damageColor.b, 0.5f);
+            yield return new WaitForSeconds(0.1f);
+
+            playerSpriteRenderer.color = new Color(damageColor.r, damageColor.g, damageColor.b, 1f);
+            equippedPickaxeSpriteRenderer.color = new Color(damageColor.r, damageColor.g, damageColor.b, 1f);
+            yield return new WaitForSeconds(0.1f);
+
+            elapsedTime += 0.2f;
+        }
+
+        // 무적이 끝나면 원래 색상으로 복구하고 무적 상태 해제
+        playerSpriteRenderer.color = originalColor;
+        isInvincible = false;
+    }
+
+    protected override void Dead()
+    {
+        // currentState를 Dead로 변경하여 다른 행동(이동, 점프 등)을 못하게 막음
+        if (currentState == PlayerState.Dead)
+        {
+            return; // 중복 실행 방지
+        }
+
+        currentState = PlayerState.Dead;
+        base.Dead();
+
+        // 플레이어 입력 비활성화?
+        SetPlayerInput(false);
+
+        // 장착 곡괭이 비활성화
+        equippedPickaxe.gameObject.SetActive(false);
+
+        // 사망 애니메이션 재생
+        animator.SetBool(playerAnimationData.DieParameterHash, true);
+
+        // 사망 처리 코루틴 시작
+        StartCoroutine(DeadCoroutine());
+    }
+
+    private IEnumerator DeadCoroutine()
+    {
+        // 애니메이터가 상태 전환할 시간을 주기 위해 한 프레임 대기
+        yield return null;
+
+        // 현재 애니메이터의 상태 정보 가져옴(0은 Base Layer)
+        AnimatorStateInfo stateInfo = animator.GetCurrentAnimatorStateInfo(0);
+
+        // 현재 재생 중인 애니메이션의 길이 가져옴
+        float animationLength = stateInfo.length;
+
+        // 가져온 애니메이션 길이만큼 기다림
+        yield return new WaitForSeconds(animationLength);
+
+        animator.SetBool(playerAnimationData.DieParameterHash, false);
+
+        // 현재 스테이지 로드
+        // Test
+        SceneLoader.Instance.StartLoadScene(SceneState.Test_CJW);
+
+        // 실제 적용할 코드
+        //SceneLoader.Instance.StartLoadScene(SceneLoader.Instance.CurrentSceneState);
     }
 
     // 박힌 곡괭이 찾는 메소드
