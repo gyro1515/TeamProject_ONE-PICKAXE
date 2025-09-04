@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3727333800072084475}
   - component: {fileID: 4927683629999915043}
-  m_Layer: 15
+  m_Layer: 31
   m_Name: ArrowSprite
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -96,7 +96,7 @@ GameObject:
   - component: {fileID: 661933560360330148}
   - component: {fileID: 2329626718878785812}
   - component: {fileID: 4218137665018349771}
-  m_Layer: 15
+  m_Layer: 31
   m_Name: EnemyRangedArrow
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -177,7 +177,7 @@ BoxCollider2D:
     m_Bits: 64
   m_ExcludeLayers:
     serializedVersion: 2
-    m_Bits: 951
+    m_Bits: 2147485623
   m_LayerOverridePriority: 0
   m_ForceSendLayers:
     serializedVersion: 2

@@ -60,7 +60,7 @@ BoxCollider2D:
     m_Bits: 64
   m_ExcludeLayers:
     serializedVersion: 2
-    m_Bits: 951
+    m_Bits: 2147485623
   m_LayerOverridePriority: 0
   m_ForceSendLayers:
     serializedVersion: 2
@@ -221,7 +221,7 @@ GameObject:
   - component: {fileID: 3337599150070650985}
   - component: {fileID: 4108875622529768664}
   - component: {fileID: 3867962347240762070}
-  m_Layer: 15
+  m_Layer: 31
   m_Name: AtackCol
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -270,7 +270,7 @@ BoxCollider2D:
     m_Bits: 64
   m_ExcludeLayers:
     serializedVersion: 2
-    m_Bits: 951
+    m_Bits: 2147485623
   m_LayerOverridePriority: 0
   m_ForceSendLayers:
     serializedVersion: 2
@@ -395,7 +395,7 @@ GameObject:
   - component: {fileID: 598615649815534421}
   - component: {fileID: 4718948587089885380}
   - component: {fileID: 1967977862352039295}
-  m_Layer: 15
+  m_Layer: 31
   m_Name: DetectionArea
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -444,7 +444,7 @@ CircleCollider2D:
     m_Bits: 64
   m_ExcludeLayers:
     serializedVersion: 2
-    m_Bits: 951
+    m_Bits: 2147485623
   m_LayerOverridePriority: 0
   m_ForceSendLayers:
     serializedVersion: 2
@@ -480,7 +480,7 @@ GameObject:
   - component: {fileID: 6196393512156075180}
   m_Layer: 7
   m_Name: EnemyMelee
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -521,12 +521,14 @@ MonoBehaviour:
   <DefensePower>k__BackingField: 1
   <MoveSpeed>k__BackingField: 3
   <MaxHP>k__BackingField: 30
+  <DeadTime>k__BackingField: 5
   attackRange: 1.5
   detectionRange: 5
   attackCoolTime: 3
   attackSoundClip: {fileID: 8300000, guid: 4906546f36efe2341be660c480b4fc96, type: 3}
   deathSoundClip: {fileID: 8300000, guid: 0528a94219dfef442b55f1449709d323, type: 3}
   canAttack: 1
+  <Target>k__BackingField: {fileID: 0}
   patrolData: 5
 --- !u!114 &363504111731811674
 MonoBehaviour:
@@ -563,6 +565,7 @@ MonoBehaviour:
   - {fileID: 6046918878359847017, guid: 822bb4aa4279cf44bb8d7d88825a64a1, type: 3}
   itemDropChance: 100
   popUpForce: 5
+  state: 0
 --- !u!50 &1634246358920893330
 Rigidbody2D:
   serializedVersion: 4
@@ -605,7 +608,7 @@ BoxCollider2D:
     m_Bits: 512
   m_ExcludeLayers:
     serializedVersion: 2
-    m_Bits: 503
+    m_Bits: 1527
   m_LayerOverridePriority: 0
   m_ForceSendLayers:
     serializedVersion: 2

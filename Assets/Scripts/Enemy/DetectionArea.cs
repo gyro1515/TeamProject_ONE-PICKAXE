@@ -18,6 +18,7 @@ public class DetectionArea : MonoBehaviour
     }
     private void OnTriggerExit2D(Collider2D collision)
     {
+        Debug.Log("타겟 해제");
         enemy.Target = null;
     }
 }
