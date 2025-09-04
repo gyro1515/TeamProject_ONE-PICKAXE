@@ -221,7 +221,7 @@ GameObject:
   - component: {fileID: 3337599150070650985}
   - component: {fileID: 4108875622529768664}
   - component: {fileID: 3867962347240762070}
-  m_Layer: 7
+  m_Layer: 15
   m_Name: AtackCol
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -395,7 +395,7 @@ GameObject:
   - component: {fileID: 598615649815534421}
   - component: {fileID: 4718948587089885380}
   - component: {fileID: 1967977862352039295}
-  m_Layer: 7
+  m_Layer: 15
   m_Name: DetectionArea
   m_TagString: Untagged
   m_Icon: {fileID: 0}

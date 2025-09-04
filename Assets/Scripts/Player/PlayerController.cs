@@ -230,7 +230,8 @@ public class PlayerController : BaseController
         isInvincible = true;
 
         float elapsedTime = 0f;
-        Color originalColor = playerSpriteRenderer.color;
+        Color playerOriginalColor = playerSpriteRenderer.color;
+        Color pickaxeOriginalColor = equippedPickaxeSpriteRenderer.color;
 
         // 무적 시간 동안 깜빡임
         while (elapsedTime < invincibilityDuration)
@@ -248,7 +249,9 @@ public class PlayerController : BaseController
         }
 
         // 무적이 끝나면 원래 색상으로 복구하고 무적 상태 해제
-        playerSpriteRenderer.color = originalColor;
+        playerSpriteRenderer.color = playerOriginalColor;
+        equippedPickaxeSpriteRenderer.color = pickaxeOriginalColor;
+
         isInvincible = false;
     }
 
