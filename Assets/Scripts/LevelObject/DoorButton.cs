@@ -2,6 +2,8 @@ using UnityEngine;
 
 public class DoorButton : InteractableObject
 {
+    [SerializeField] protected AudioClip interactionSound;
+
     // 버튼과 연결된 문 오브젝트
     public Door targetDoor;
 
@@ -12,6 +14,7 @@ public class DoorButton : InteractableObject
     {
         if (IsInLayerMask(other.layer, validInteractionLayers))
         {
+            if(interactionSound) SoundManager.PlayClip(interactionSound);
             Debug.Log("DoorButton: 유효한 레이어의 오브젝트가 닿았습니다. 문을 엽니다.");
             targetDoor.Toggle();
 
