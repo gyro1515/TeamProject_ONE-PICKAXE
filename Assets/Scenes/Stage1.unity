@@ -3809,6 +3809,17 @@ Transform:
   - {fileID: 1514662228}
   m_Father: {fileID: 915533065}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1326513321 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 4422173715707348231, guid: 6c3ff7e3848c17f48914795459915282, type: 3}
+  m_PrefabInstance: {fileID: 1171346028}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7f2634c78be25ef4e9321cffa00d70ff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &1332424357
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -5614,6 +5625,14 @@ PrefabInstance:
     - target: {fileID: 7196517791910698445, guid: ddddf8cbc191d0b40b4d9e3ec996c50c, type: 3}
       propertyPath: m_Name
       value: DoorButton
+      objectReference: {fileID: 0}
+    - target: {fileID: 7847603711887284541, guid: ddddf8cbc191d0b40b4d9e3ec996c50c, type: 3}
+      propertyPath: targetDoor
+      value: 
+      objectReference: {fileID: 1326513321}
+    - target: {fileID: 7847603711887284541, guid: ddddf8cbc191d0b40b4d9e3ec996c50c, type: 3}
+      propertyPath: validInteractionLayers.m_Bits
+      value: 1024
       objectReference: {fileID: 0}
     - target: {fileID: 7925500305946870677, guid: ddddf8cbc191d0b40b4d9e3ec996c50c, type: 3}
       propertyPath: m_LocalPosition.x

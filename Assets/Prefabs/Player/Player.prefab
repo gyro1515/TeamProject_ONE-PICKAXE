@@ -551,7 +551,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3390257403872536020, guid: 96639172a5642ab4092190a73dea461a, type: 3}
       propertyPath: m_Layer
-      value: 8
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 6577152867458361430, guid: 96639172a5642ab4092190a73dea461a, type: 3}
       propertyPath: catchTextUI
@@ -559,11 +559,11 @@ PrefabInstance:
       objectReference: {fileID: 197631369424803312}
     - target: {fileID: 6581736294672703265, guid: 96639172a5642ab4092190a73dea461a, type: 3}
       propertyPath: m_Layer
-      value: 8
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 6894607266948517372, guid: 96639172a5642ab4092190a73dea461a, type: 3}
       propertyPath: m_Layer
-      value: 8
+      value: 10
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
