@@ -30,12 +30,13 @@ public class EquippedPickaxeController : MonoBehaviour
 
     // 플레이어 입력 액션
     private PlayerInput.PlayerActions playerActions;
+    private Player player;
 
     void Awake()
     {
-        //Rb2D = GetComponent<Rigidbody2D>();
         SmashHitBox = SmashArea.GetComponent<Collider2D>();
         Animator = GetComponentInChildren<Animator>();
+        player = GetComponentInParent<Player>();
 
         stateMachine = new EquippedPickaxeStateMachine(this);
     }
@@ -108,6 +109,9 @@ public class EquippedPickaxeController : MonoBehaviour
     // 곡괭이 회수하고 상태 초기화
     public void RetrievePickaxe(bool isCatch)
     {
+        // 플레이어의 곡괭이 소유 상태를 false로 변경
+        player.HasPickaxe = true;
+
         // 장착된 곡괭이 오브젝트 다시 활성화
         SetEquippedPickaxeActive(true);
 
@@ -140,6 +144,9 @@ public class EquippedPickaxeController : MonoBehaviour
         // 현재 상태가 EquipState일 때만 반응
         if (stateMachine.CurrentState == stateMachine.EquipState)
         {
+            // 플레이어의 곡괭이 소유 상태를 false로 변경
+            player.HasPickaxe = false;
+
             // 던지기 상태로 전환
             stateMachine.ChangeState(stateMachine.ThrowState);
         }

@@ -19,6 +19,23 @@ public class Player : BaseCharacter
     }
     public event Action<int> OnMineralCntChage;
 
+    private bool hasPickaxe;
+    public bool HasPickaxe
+    {
+        get { return hasPickaxe; }
+        set
+        {
+            // 상태가 실제로 변경될 때만 이벤트를 호출하도록 처리
+            if (hasPickaxe != value)
+            {
+                hasPickaxe = value;
+                // 상태 변경을 구독자(HUD)에게 알림
+                OnPickaxeStateChange?.Invoke(hasPickaxe);
+            }
+        }
+    }
+    public event Action<bool> OnPickaxeStateChange;
+
     // 테스트로 AnimationData를 모노비헤이비어로 바꾸고 플레이어 게임 오브젝트에 스크립트로 추가해봤습니다.
     /*[field: Header("애니메이션 데이터")]
     [field: SerializeField] public PlayerAnimationData AnimationData { get; private set; } = new PlayerAnimationData();*/
@@ -36,18 +53,23 @@ public class Player : BaseCharacter
         HUD = UIManager.Instance.GetUI<UIHUD>();
         OnCurHpChange += HUD.SetHp; // 이벤트 바인드해주기, 현재 체력 변화할 때마다 자동 호출
         OnMineralCntChage += HUD.SetMineralCount;
+        OnPickaxeStateChange += HUD.SetPickaxeOwn;
+
         Init(); // 초기화 할 것들, 현재는 UI만
         UIPause = UIManager.Instance.GetUI<UIPause>();
     }
 
     void Init()
     {
+        // UI 세팅
         CurrentHP = MaxHP;
         MineralCnt = 5;
-        // UI 세팅
+        
         //CurrentHP = curHP; // 체력 UI
         //MineralCnt = mineralCnt; // 보유 광물 수 UI 세팅
-        HUD.SetPickaxeOwn(true); // 곡괭이 보유여부에 따라 세팅하기
+        
+        HasPickaxe = true;
+
         HUD.SetStageText(1);
     }
 
