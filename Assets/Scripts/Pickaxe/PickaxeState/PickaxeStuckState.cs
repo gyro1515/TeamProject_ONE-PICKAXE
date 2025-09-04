@@ -6,6 +6,8 @@ public class PickaxeStuckState : PickaxeBaseState<ThrownPickaxeStateMachine>
     private float retrieveHoldTime = 0f; // 원거리 회수 충전 시간
     private float catchTimer = 0f; // 캐치 타이머
 
+    // **********테스트로 UI가져오겠습니다.***********
+    UIRecallPickaxe uIRecallPickaxe;
     public override void EnterState(ThrownPickaxeStateMachine stateMachine)
     {
         Debug.Log("곡괭이 상태: 박힌 상태");
@@ -34,6 +36,11 @@ public class PickaxeStuckState : PickaxeBaseState<ThrownPickaxeStateMachine>
         AdjustPositionAndRotation(stateMachine);
 
         // TODO: 회수 게이지바 UI 초기화?
+        // ************여기서 호출하는 게 맞을 지 체크 부탁드립니다************
+        // 곡괭이가 박혔다는 뜻은 이미 플레이어가 생성이 됐다는 뜻 -> GameManager.Instance.Player가 null일 수 없음
+        uIRecallPickaxe = GameManager.Instance.Player.UIRecallPickaxe;
+        uIRecallPickaxe?.OpenUI();
+        uIRecallPickaxe?.SetGaugeBarValue(retrieveHoldTime, stateMachine.ThrownPickaxeController.RetrieveHoldDuration);
     }
 
     private void AdjustPositionAndRotation(ThrownPickaxeStateMachine stateMachine)
@@ -104,16 +111,20 @@ public class PickaxeStuckState : PickaxeBaseState<ThrownPickaxeStateMachine>
 
             // 곡괭이 오브젝트 파괴
             Object.Destroy(stateMachine.ThrownPickaxeController.gameObject);
+
+            // 회수 UI 끄기? -> 확인 부탁드립니다.
+            uIRecallPickaxe?.CloseUI();
         }
     }
 
     public override void HandleInput(ThrownPickaxeStateMachine stateMachine)
     {
+        
         // 원거리 회수 입력 처리
         if (stateMachine.ThrownPickaxeController.IsRetrieveHeld)
         {
             retrieveHoldTime += Time.deltaTime;
-
+            uIRecallPickaxe?.SetGaugeBarValue(retrieveHoldTime, stateMachine.ThrownPickaxeController.RetrieveHoldDuration);
             // TODO: UI 게이지바 업데이트
             Debug.Log($"원거리 회수 충전 중: {retrieveHoldTime:F2}초 / {stateMachine.ThrownPickaxeController.RetrieveHoldDuration}초");
 
@@ -122,6 +133,8 @@ public class PickaxeStuckState : PickaxeBaseState<ThrownPickaxeStateMachine>
                 Debug.Log("원거리 회수 충전 완료!");
 
                 stateMachine.ChangeState(stateMachine.RetrieveState);
+                // 회수 UI 끄기? -> 확인 부탁드립니다.
+                uIRecallPickaxe?.CloseUI();
             }
         }
         else
@@ -132,6 +145,7 @@ public class PickaxeStuckState : PickaxeBaseState<ThrownPickaxeStateMachine>
                 retrieveHoldTime = 0f;
                 Debug.Log("원거리 회수 충전 취소!");
                 // TODO: UI 게이지 초기화
+                uIRecallPickaxe?.SetGaugeBarValue(retrieveHoldTime, stateMachine.ThrownPickaxeController.RetrieveHoldDuration);
             }
         }
     }
