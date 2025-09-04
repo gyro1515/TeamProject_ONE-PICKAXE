@@ -25,6 +25,13 @@ public class PickaxeFlyingState : PickaxeBaseState<ThrownPickaxeStateMachine>
         // 박히는 지형이 아니면 모두 튕기는 오브젝트로 간주(적, 함정 제외)
         else
         {
+            // 데미지 처리
+            var damageable = other.GetComponent<IDamageable>();
+            if (damageable != null)
+            {
+                damageable.TakeDamage(stateMachine.ThrownPickaxeController.Damage);
+            }
+
             // 충돌 지점을 추정하여 BounceState로 전달
             Vector2 hitPoint = stateMachine.ThrownPickaxeController.transform.position;
             stateMachine.ThrownPickaxeController.Bounce(hitPoint, stateMachine.ThrownPickaxeController.PlayerTransform);

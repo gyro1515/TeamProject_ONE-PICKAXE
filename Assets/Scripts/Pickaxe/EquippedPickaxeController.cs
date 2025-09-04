@@ -9,6 +9,7 @@ public class EquippedPickaxeController : MonoBehaviour
     public float LastSmashTime = 0f;
     public GameObject SmashArea;
     public Collider2D SmashHitBox { get; private set; } // 휘두르기 판정 영역의 콜라이더
+    public int SmashDamage { get; private set; }
 
     [Header("Throw Settings")]
     public GameObject EquippedPickaxeObject; // 플레이어가 들고 있는 곡괭이 오브젝트
@@ -39,6 +40,11 @@ public class EquippedPickaxeController : MonoBehaviour
         player = GetComponentInParent<Player>();
 
         stateMachine = new EquippedPickaxeStateMachine(this);
+
+        // 스탯 설정
+        SmashDamage = player.AttackPower;
+        // Test
+        SmashDamage = 10;
     }
 
     void Start()

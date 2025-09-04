@@ -100,7 +100,7 @@ public class PickaxeSmashState : PickaxeBaseState<EquippedPickaxeStateMachine>
                     IDamageable damageable = target.GetComponent<IDamageable>();
                     if (damageable != null)
                     {
-                        damageable.TakeDamage(5);
+                        damageable.TakeDamage(stateMachine.EquippedPickaxeController.SmashDamage);
                     }
                 }
             }
