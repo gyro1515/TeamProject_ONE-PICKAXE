@@ -1,3 +1,5 @@
+using System.Collections;
+using TMPro;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
@@ -9,6 +11,7 @@ public class EquippedPickaxeController : MonoBehaviour
     public float LastSmashTime = 0f;
     public GameObject SmashArea;
     public Collider2D SmashHitBox { get; private set; } // 휘두르기 판정 영역의 콜라이더
+    public int SmashDamage { get; private set; }
 
     [Header("Throw Settings")]
     public GameObject EquippedPickaxeObject; // 플레이어가 들고 있는 곡괭이 오브젝트
@@ -17,8 +20,7 @@ public class EquippedPickaxeController : MonoBehaviour
     public float ThrowRadius = 1.0f; // 플레이어로부터 생성될 위치의 반지름
 
     // 컴포넌트 및 오브젝트 참조
-    //private Transform PlayerTransform;
-    //private Rigidbody2D Rb2D;
+    public GameObject catchTextUI;
     private Animator Animator;
 
     // Animation Hash
@@ -39,6 +41,11 @@ public class EquippedPickaxeController : MonoBehaviour
         player = GetComponentInParent<Player>();
 
         stateMachine = new EquippedPickaxeStateMachine(this);
+
+        // 스탯 설정
+        SmashDamage = player.AttackPower;
+        // Test
+        SmashDamage = 10;
     }
 
     void Start()
@@ -49,11 +56,6 @@ public class EquippedPickaxeController : MonoBehaviour
         playerActions.ThrowPickaxe.started += OnThrow;
 
         stateMachine.Initialize(stateMachine.EquipState);
-    }
-
-    private void OnEnable()
-    {
-        
     }
 
     private void OnDisable()
@@ -109,6 +111,10 @@ public class EquippedPickaxeController : MonoBehaviour
     // 곡괭이 회수하고 상태 초기화
     public void RetrievePickaxe(bool isCatch)
     {
+        // 회수 UI 닫기
+        UIRecallPickaxe uIRecallPickaxe = GameManager.Instance.Player.UIRecallPickaxe;
+        uIRecallPickaxe?.CloseUI();
+
         // 플레이어의 곡괭이 소유 상태를 false로 변경
         player.HasPickaxe = true;
 
@@ -122,7 +128,19 @@ public class EquippedPickaxeController : MonoBehaviour
         if (isCatch)
         {
             PlayCatchAnimation();
+
+            // CatchTextUI
+            StartCoroutine(ShowCatchTextCoroutine());
         }
+    }
+
+    private IEnumerator ShowCatchTextCoroutine()
+    {
+        catchTextUI.gameObject.SetActive(true);
+
+        yield return new WaitForSeconds(1f);
+
+        catchTextUI.gameObject.SetActive(false);
     }
 
     private void OnSmash(InputAction.CallbackContext context)

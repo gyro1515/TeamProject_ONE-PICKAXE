@@ -77,8 +77,23 @@ public class PickaxeBounceState : PickaxeBaseState<ThrownPickaxeStateMachine>
 
     public override void HandleTrigger(ThrownPickaxeStateMachine stateMachine, Collider2D other)
     {
+        // 튕긴 상태에서 바로 플레이어와 충돌했는지 확인
+        if (other.CompareTag("Player"))
+        {
+            // Owner(EquippedPickaxeController)에게 회수 신호 보내기
+            if (stateMachine.ThrownPickaxeController.Owner != null)
+            {
+                stateMachine.ThrownPickaxeController.Owner.RetrievePickaxe(true);
+            }
+
+            // 곡괭이 오브젝트 파괴
+            Object.Destroy(stateMachine.ThrownPickaxeController.gameObject);
+
+            // 착지 마커 파괴
+            Object.Destroy(arrivalMarkInstance);
+        }
         // 박히는 타일과 충돌했는지 확인
-        if (other.CompareTag("CanStuck"))
+        else if (other.CompareTag("CanStuck"))
         {
             // 상태를 직접 바꾸지 않고, 플래그만 true로 설정
             stateMachine.ThrownPickaxeController.IsReadyToStick = true;

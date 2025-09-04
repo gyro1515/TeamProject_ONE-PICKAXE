@@ -5,7 +5,7 @@ using UnityEngine.InputSystem;
 
 public class ThrownPickaxeController : MonoBehaviour
 {
-    public float Damage = 50f;
+    public int Damage = 20;
 
     [Header("Stuck Settings")]
     public float StickingOffset = 0.2f; // 땅에 박히는 정도
