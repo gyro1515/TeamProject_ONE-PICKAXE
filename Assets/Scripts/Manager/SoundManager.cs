@@ -8,9 +8,14 @@ public class SoundManager : SingletonMono<SoundManager>
 {
     // 인스펙터 창에 드러난 것들은 다 확인용입니다.
     // ***자동으로 생성돼서, 인스펙터 창에서 설정 못합니다***
-    [field: Header("사운드 설정")]
-    [field: SerializeField][field: Range(0f, 1f)] public float SoundEffectVolume { get; set; } = 1f;
-    [field: SerializeField][field: Range(0f, 1f)] public float MusicVolume { get; set; } = 1f;
+    [Header("사운드 설정")]
+    [SerializeField][Range(0f, 1f)] float soundEffectVolume = 1f;
+    [SerializeField][Range(0f, 1f)] float musicVolume = 1f;
+
+    public float SoundEffectVolume { get { return soundEffectVolume; }
+        set { soundEffectVolume = value; } }
+    public float MusicVolume { get { return musicVolume; } 
+        set { musicVolume = value; musicAudioSource.volume = musicVolume; } }
     private AudioSource musicAudioSource;
     [Header("배경 음악")]
     [SerializeField] AudioClip musicClip;
@@ -22,7 +27,7 @@ public class SoundManager : SingletonMono<SoundManager>
     {
         base.Awake();
         musicAudioSource = gameObject.AddComponent<AudioSource>();
-        musicAudioSource.volume = MusicVolume;
+        musicAudioSource.volume = musicVolume;
         musicAudioSource.loop = true;
         soundSourcePrefab = Resources.Load<GameObject>("Prefabs/Sound/SoundSource").GetComponent<SoundSource>();
     }

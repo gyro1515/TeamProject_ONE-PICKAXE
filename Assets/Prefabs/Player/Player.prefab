@@ -98,10 +98,6 @@ MonoBehaviour:
   dashLineColor: {r: 1, g: 1, b: 1, a: 0.5882353}
   dashLineRenderer: {fileID: 3932722867574505379}
   dashVFXPrefab: {fileID: 5990268644337892719}
-  groundCheckDistance: 0.5
-  groundLayerMask:
-    serializedVersion: 2
-    m_Bits: 512
   hangJumpVFXPrefab: {fileID: 0}
 --- !u!50 &3646996251529082740
 Rigidbody2D:
