@@ -319,6 +319,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   spriteRenderer: {fileID: 384020787629420158}
+  droppableItems:
+  - {fileID: 3556604760413938753, guid: f660b97a62132f84f9c6a0e91995c18c, type: 3}
+  - {fileID: 6046918878359847017, guid: 822bb4aa4279cf44bb8d7d88825a64a1, type: 3}
+  itemDropChance: 100
+  popUpForce: 5
   fireMuzzle: {fileID: 1668318978010802194}
 --- !u!114 &974894810978181751
 MonoBehaviour:

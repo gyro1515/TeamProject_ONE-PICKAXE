@@ -3,6 +3,7 @@ using UnityEngine;
 
 public abstract class Item : MonoBehaviour, IItem
 {
+    [SerializeField] protected GameObject parentGO;
     // 이 변수를 클래스 레벨에서 선언해야 상태가 유지됩니다.
     private bool hasBeenPickedUp = false;
 
@@ -29,12 +30,13 @@ public abstract class Item : MonoBehaviour, IItem
             {
                 hasBeenPickedUp = true;
                 OnPlayerCollide(player);
-                Destroy(gameObject);
+                //Destroy(gameObject);
+                if(parentGO) Destroy(parentGO);
             }
         }
     }
 
-    protected virtual void OnCollisionEnter2D(Collision2D other)
+    /*protected virtual void OnCollisionEnter2D(Collision2D other)
     {
         // 충돌한 오브젝트의 태그가 "Enemy"인지 확인
         if (other.gameObject.layer == LayerMask.NameToLayer("Enemy"))
@@ -42,5 +44,5 @@ public abstract class Item : MonoBehaviour, IItem
             // 이 아이템의 콜라이더와 적의 콜라이더 간의 물리적 충돌을 영구적으로 무시
             Physics2D.IgnoreCollision(gameObject.GetComponent<Collider2D>(), other.collider);
         }
-    }
+    }*/
 }

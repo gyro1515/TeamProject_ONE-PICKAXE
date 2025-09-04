@@ -558,6 +558,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   spriteRenderer: {fileID: 5422851811239859753}
+  droppableItems:
+  - {fileID: 3556604760413938753, guid: f660b97a62132f84f9c6a0e91995c18c, type: 3}
+  - {fileID: 6046918878359847017, guid: 822bb4aa4279cf44bb8d7d88825a64a1, type: 3}
+  itemDropChance: 100
+  popUpForce: 5
 --- !u!50 &1634246358920893330
 Rigidbody2D:
   serializedVersion: 4

@@ -11,7 +11,7 @@ public class EnemyController : BaseController
     [Header("아이템 드랍 설정")]
     [SerializeField] private List<GameObject> droppableItems;
 
-    [SerializeField][Range(0f, 100f)] private float itemDropChance = 100f;
+    [SerializeField][Range(0, 100)] private int itemDropChance = 100;
     [SerializeField] private float popUpForce = 5f;
 
     protected override void Awake()
@@ -23,13 +23,7 @@ public class EnemyController : BaseController
     public override void TakeDamage(int damage)
     {
         base.TakeDamage(damage);
-        if (enemy.CurrentHP <= 0) 
-        {
-            // 데스는 테스트용
-            animator.SetTrigger(enemy.AnimationData.DeathParameterHash);
-            if (enemy.DeathSoundClip) SoundManager.PlayClip(enemy.DeathSoundClip);
-            return; 
-        } 
+        if (enemy.CurrentHP <= 0) return;
         
         // 아직 죽지 않았다면
         animator.SetTrigger(enemy.AnimationData.HurtParameterHash);
@@ -80,19 +74,16 @@ public class EnemyController : BaseController
             spriteRenderer.flipX = false;
     }
     protected override void Dead()
-
     {
+        base.Dead();
+        animator.SetTrigger(enemy.AnimationData.DeathParameterHash);
+        if (enemy.DeathSoundClip) SoundManager.PlayClip(enemy.DeathSoundClip);
 
         Debug.Log(">>> 'Dead()' 메서드 호출됨"); // 이 로그가 뜨는지 확인!
 
-        //base.Dead();
+        // 0부터 100 사이의 임의의 숫자를 생성하여 드롭 확률을 결정
 
-
-
-        // 0.0부터 100.0 사이의 임의의 숫자를 생성하여 드롭 확률을 결정
-
-        if (Random.Range(0f, 100f) <= itemDropChance)
-
+        if (Random.Range(0, 101) <= itemDropChance)
         {
             // 드롭 확률이 성공했을 때만 아이템을 드롭
 
@@ -118,20 +109,14 @@ public class EnemyController : BaseController
                 Debug.Log(">>> 아이템 " + itemToDrop.name + "을(를) 드랍했습니다.");
             }
         }
-
         else
-
         {
-
             // 드롭에 실패했을 경우
             Debug.Log(">>> 아이템이 나오지 않았습니다.");
-
         }
-
-
-
         // 몬스터 오브젝트를 파괴
-
-        Destroy(gameObject);
+        //Destroy(gameObject);
+        // 파괴하면 오류 발생 가능성 있어서 active만 끄겠습니다
+        gameObject.SetActive(false);
     }
 }
