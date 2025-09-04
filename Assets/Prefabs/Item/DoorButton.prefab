@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 7925500305946870677}
   - component: {fileID: 1847980515927575920}
   - component: {fileID: 9081556820024440240}
+  - component: {fileID: 7847603711887284541}
   m_Layer: 0
   m_Name: DoorButton
   m_TagString: Enemy
@@ -107,6 +108,22 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
+--- !u!114 &7847603711887284541
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7196517791910698445}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6a1a1bacc15fdc44da129d8ef060b112, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  targetDoor: {fileID: 0}
+  validInteractionLayers:
+    serializedVersion: 2
+    m_Bits: 0
 --- !u!1 &8235177272971824591
 GameObject:
   m_ObjectHideFlags: 0
