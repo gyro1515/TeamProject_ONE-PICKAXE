@@ -57,21 +57,15 @@ public class EnemyController : BaseController
     }
     protected bool CanAttack()
     {
-        // 공격 범위 안에 있고, 공격 가능 시간이 되었는가
-        if(IsInAttackRange() && enemy.canAttack)
-        {
-            enemy.canAttack = false;
-            return true;
-        }
-        return false;
+        return enemy.CheckCanAttack();
     }
     protected bool IsInAttackRange()
     {
-        return (enemy.Target.gameObject.transform.position - enemy.gameObject.transform.position).sqrMagnitude
-            <= enemy.AttackRange * enemy.AttackRange;
+        return enemy.IsInAttackRange();
     }
     protected void FlipSpriteByTarget()
     {
+        if(!enemy || !enemy.Target) { Debug.LogError("로직 오류"); return; }
         float dirX = enemy.Target.gameObject.transform.position.x - enemy.gameObject.transform.position.x;
         if (dirX < 0)
             spriteRenderer.flipX = true;

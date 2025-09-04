@@ -12,7 +12,6 @@ public class Enemy : BaseCharacter
     [SerializeField] float detectionRange = 5f;
     [SerializeField] protected float attackCoolTime = 0f;
     protected float attackCoolTimer = 0f;
-    public bool canAttack = true;
     public EnemyAnimationData AnimationData { get; private set; }
     public Player Target { get; set; } // 타겟 설정하기
 
@@ -26,6 +25,7 @@ public class Enemy : BaseCharacter
         Controller = GetComponent<EnemyController>();
         AnimationData = GetComponent<EnemyAnimationData>();
         AnimationData?.Initialize();
+        canAttack = true; // 공격 가능 상태로 시작
     }
     protected override void Update()
     {
@@ -45,5 +45,21 @@ public class Enemy : BaseCharacter
         if (attackCoolTimer < attackCoolTime) return;
         attackCoolTimer -= attackCoolTime;
         canAttack = true;
+    }
+    public bool CheckCanAttack()
+    {
+        // 공격 범위 안에 있고, 공격 가능 시간이 되었는가
+        if (IsInAttackRange() && canAttack)
+        {
+            canAttack = false;
+            return true;
+        }
+        return false;
+    }
+    public bool IsInAttackRange()
+    {
+        if(Target == null) return false;
+        return (Target.gameObject.transform.position - gameObject.transform.position).sqrMagnitude
+            <= AttackRange * AttackRange;
     }
 }

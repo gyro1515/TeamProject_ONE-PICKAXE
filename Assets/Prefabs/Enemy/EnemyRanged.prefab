@@ -90,7 +90,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 04ddbe90b643c3f4ea529430d1259ccf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  fireMuzzle: {fileID: 1668318978010802194}
 --- !u!212 &384020787629420158
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -303,6 +302,10 @@ MonoBehaviour:
   <MaxHP>k__BackingField: 15
   attackRange: 5
   detectionRange: 10
+  attackCoolTime: 3
+  attackSoundClip: {fileID: 8300000, guid: 1723972d2d9b65f499ced7f2433d97db, type: 3}
+  deathSoundClip: {fileID: 8300000, guid: 0528a94219dfef442b55f1449709d323, type: 3}
+  canAttack: 1
 --- !u!114 &660347823104135668
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -316,6 +319,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   spriteRenderer: {fileID: 384020787629420158}
+  fireMuzzle: {fileID: 1668318978010802194}
 --- !u!114 &974894810978181751
 MonoBehaviour:
   m_ObjectHideFlags: 0
