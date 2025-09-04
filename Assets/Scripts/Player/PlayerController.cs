@@ -293,8 +293,6 @@ public class PlayerController : BaseController
         // 가져온 애니메이션 길이만큼 기다림
         yield return new WaitForSeconds(animationLength);
 
-        animator.SetBool(playerAnimationData.DieParameterHash, false);
-
         // 현재 스테이지 로드
         // Test
         SceneLoader.Instance.StartLoadScene(SceneState.Test_CJW);
