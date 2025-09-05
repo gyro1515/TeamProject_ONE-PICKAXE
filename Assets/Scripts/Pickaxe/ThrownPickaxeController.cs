@@ -8,7 +8,7 @@ public class ThrownPickaxeController : MonoBehaviour
     public int Damage = 20;
 
     [Header("Stuck Settings")]
-    public float StickingOffset = 0.2f; // 땅에 박히는 정도
+    public float StickingOffset = 0f; // 땅에 박히는 정도
     public bool IsPlayerFacingRight { get; private set; } // 플레이어의 방향을 저장할 변수 -> 곡괭이가 박히는 방향 결정
 
     [Header("Retrieve Settings")]
@@ -29,8 +29,8 @@ public class ThrownPickaxeController : MonoBehaviour
     public Rigidbody2D Rb2D { get; private set; }
     public Transform PlayerTransform { get; private set; }
     public RaycastHit2D LastHitInfo { get; private set; } // Raycast를 통해 얻은 충돌 정보를 저장할 변수
+    public LayerMask GroundLayerMask { get; private set; } // 지형 레이어 마스크
     private Animator Animator;
-    private LayerMask groundLayerMask;
     private PlayerInput.PlayerActions playerActions;
 
     // 현재 회수 키(R)가 눌리고 있는지 여부
@@ -51,7 +51,7 @@ public class ThrownPickaxeController : MonoBehaviour
     {
         Rb2D = GetComponent<Rigidbody2D>();
         Animator = GetComponentInChildren<Animator>();
-        groundLayerMask = LayerMask.GetMask("Cave");
+        GroundLayerMask = LayerMask.GetMask("Cave");
 
         StateMachine = new ThrownPickaxeStateMachine(this);
         ThrownPickaxeInstance = this; // static 변수에 현재 인스턴스 할당
@@ -74,6 +74,11 @@ public class ThrownPickaxeController : MonoBehaviour
         // 입력은 Update에서 처리
         StateMachine.HandleInput();
         StateMachine.UpdateState();
+    }
+
+    private void FixedUpdate()
+    {
+        StateMachine.FixedUpdateState();
     }
 
     // 트리거 충돌 이벤트
@@ -152,7 +157,7 @@ public class ThrownPickaxeController : MonoBehaviour
         Vector2 playerBottom = new Vector2(playerCollider.bounds.center.x, playerCollider.bounds.min.y);
 
         // 플레이어의 바닥에서 아래로 레이캐스트 쏜다(지형 레이어에만 충돌)
-        RaycastHit2D hit = Physics2D.Raycast(playerBottom, Vector2.down, Mathf.Infinity, groundLayerMask);
+        RaycastHit2D hit = Physics2D.Raycast(playerBottom, Vector2.down, Mathf.Infinity, GroundLayerMask);
 
         // 레이캐스트 디버그용 시각화
         Debug.DrawRay(playerBottom, Vector2.down * 10f, Color.red, 1f);

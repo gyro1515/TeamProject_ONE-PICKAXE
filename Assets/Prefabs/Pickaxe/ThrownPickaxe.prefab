@@ -217,7 +217,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Damage: 50
-  StickingOffset: 0.1
+  StickingOffset: 0
   RetrieveHoldDuration: 1.5
   RetrieveSpeed: 10
   BounceMoveDuration: 1
