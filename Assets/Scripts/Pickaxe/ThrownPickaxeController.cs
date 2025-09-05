@@ -26,6 +26,11 @@ public class ThrownPickaxeController : MonoBehaviour
     public bool WasBounced { get; set; } = false; // 튕김 상태에서 왔는지 확인하는 플래그
     public bool IsReadyToStick { get; set; } = false; // 착지 준비 플래그
 
+    [Header("SFX")]
+    public AudioClip StuckSFX;
+    public AudioClip FlyingSFX;
+    public AudioClip BouncingSFX;
+
     public Rigidbody2D Rb2D { get; private set; }
     public Transform PlayerTransform { get; private set; }
     public RaycastHit2D LastHitInfo { get; private set; } // Raycast를 통해 얻은 충돌 정보를 저장할 변수

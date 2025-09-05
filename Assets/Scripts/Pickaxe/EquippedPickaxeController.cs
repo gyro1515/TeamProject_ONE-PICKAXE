@@ -21,6 +21,11 @@ public class EquippedPickaxeController : MonoBehaviour
 
     public LayerMask StuckableLayer; // Raycast가 감지할 박힐 수 있는 지형의 레이어
 
+    [Header("SFX")]
+    public AudioClip SmashSFX;
+    public AudioClip ThrowingSFX;
+    public AudioClip CatchSFX;
+
     // 컴포넌트 및 오브젝트 참조
     private Animator Animator;
 
@@ -137,6 +142,11 @@ public class EquippedPickaxeController : MonoBehaviour
         // 캐치로 회수되었다면 Catch 애니메이션 재생
         if (isCatch)
         {
+            if (CatchSFX)
+            {
+                SoundManager.PlayClip(CatchSFX);
+            }
+
             PlayCatchAnimation();
 
             // CatchTextUI
@@ -165,6 +175,11 @@ public class EquippedPickaxeController : MonoBehaviour
             // 쿨타임 확인
             if (Time.time >= LastSmashTime + SmashCooldown)
             {
+                if (SmashSFX)
+                {
+                    SoundManager.PlayClip(SmashSFX);
+                }
+
                 // 휘두르기 상태로 전환
                 stateMachine.ChangeState(stateMachine.SmashState);
             }
@@ -195,6 +210,11 @@ public class EquippedPickaxeController : MonoBehaviour
 
             // 플레이어의 곡괭이 소유 상태를 false로 변경
             player.HasPickaxe = false;
+
+            if (ThrowingSFX)
+            {
+                SoundManager.PlayClip(ThrowingSFX);
+            }
 
             // 던지기 상태로 전환
             stateMachine.ChangeState(stateMachine.ThrowState);

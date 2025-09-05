@@ -38,11 +38,6 @@ public class PlayerController : BaseController
     [SerializeField] private Color damageColor = new Color(1f, 0.6f, 0.6f, 1f);
     private bool isInvincible = false; // 현재 무적 상태인지 확인
 
-    [Header("Sound Settings")]
-    [SerializeField] private float footstepInterval = 0.4f; // 발소리 재생 간격
-    private float footstepTimer; // 발소리 타이머
-    private bool wasGrounded; // 이전 프레임의 지면 접지 상태를 저장
-
     private EquippedPickaxeController equippedPickaxe; // 장착된 곡괭이 참조
     private ThrownPickaxeController stuckPickaxe; // 현재 박혀있는 곡괭이 참조
     private bool isDashAvailable = false; // 대쉬가 가능한 상태인지

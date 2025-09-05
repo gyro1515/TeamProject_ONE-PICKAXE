@@ -21,6 +21,11 @@ public class PickaxeBounceState : PickaxeBaseState<ThrownPickaxeStateMachine>
     {
         Debug.Log("곡괭이 상태: 튕김");
 
+        if (stateMachine.ThrownPickaxeController.BouncingSFX)
+        {
+            SoundManager.PlayClip(stateMachine.ThrownPickaxeController.BouncingSFX);
+        }
+
         // 물리 비활성화 (AnimationCurve로 제어)
         rb = stateMachine.ThrownPickaxeController.Rb2D;
         rb.isKinematic = true;

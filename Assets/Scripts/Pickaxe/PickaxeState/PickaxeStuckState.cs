@@ -13,6 +13,11 @@ public class PickaxeStuckState : PickaxeBaseState<ThrownPickaxeStateMachine>
     {
         Debug.Log("곡괭이 상태: 박힌 상태");
 
+        if (stateMachine.ThrownPickaxeController.StuckSFX)
+        {
+            SoundManager.PlayClip(stateMachine.ThrownPickaxeController.StuckSFX);
+        }
+
         stateMachine.ThrownPickaxeController.StopThrowAnimation();
 
         // 물리 비활성화 (곡괭이를 정지시킴)

@@ -11,6 +11,11 @@ public class PickaxeFlyingState : PickaxeBaseState<ThrownPickaxeStateMachine>
     {
         Debug.Log("곡괭이 상태: 날아가는 중");
 
+        if (stateMachine.ThrownPickaxeController.FlyingSFX)
+        {
+            SoundManager.PlayClip(stateMachine.ThrownPickaxeController.FlyingSFX);
+        }
+
         // 필요한 컴포넌트와 설정 정보를 가져와서 초기화
         rb = stateMachine.ThrownPickaxeController.Rb2D;
         thrownPickaxeController = stateMachine.ThrownPickaxeController;
