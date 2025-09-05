@@ -55392,7 +55392,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 213458ba92bfcd449a7180e8bd040d3b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  pos: {x: 0, y: 0, z: 0}
+  pos: {x: 0, y: -2, z: 0}
   cameraSpeed: 5
   player: {fileID: 0}
 --- !u!114 &1928991073
