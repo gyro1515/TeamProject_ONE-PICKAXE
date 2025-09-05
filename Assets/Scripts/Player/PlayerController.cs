@@ -47,6 +47,7 @@ public class PlayerController : BaseController
     private SpriteRenderer equippedPickaxeSpriteRenderer;
     private Rigidbody2D rb;
     private bool isGrounded;
+    public bool IsGrounded {  get { return isGrounded; } }
     private bool isFacingRight = true;
     float horizontalInput = 0f;
     private int jumpCount = 0; // Jump 관련
@@ -136,8 +137,8 @@ public class PlayerController : BaseController
     {
         //Debug.Log($"OnJump, JumpCnt: {jumpCount}");
         if (currentState == PlayerState.Dashing) return;
+        if (!isGrounded && currentState != PlayerState.Hanging ) return;
         if (jumpCount == 0 || isPressedJumpButton) return;
-        if (!CheckGround()) return; // 공중에서는 점프 불가
         isPressedJumpButton = true;
         
         Jump();
@@ -151,9 +152,9 @@ public class PlayerController : BaseController
     void OnJumpCanceled(InputAction.CallbackContext context)
     {
         //Debug.Log($"OnJumpCanceled, JumpCnt: {jumpCount}");
+        if (currentState == PlayerState.Dashing) return; // 대시 중이라면 리턴
         if (!isPressedJumpButton) return;
         isPressedJumpButton = false;
-        if (currentState == PlayerState.Dashing) return; // 대시 중이라면 리턴
         // 올라갈 때만 중력 없애기
         if (rb.velocity.y < 0f) return;
         rb.totalForce = Vector2.zero;
@@ -267,13 +268,13 @@ public class PlayerController : BaseController
         // 레이캐스트가 어떤 물체와 충돌했는지 확인
         if (hit.collider != null)
         {
-            if(!isGrounded && rb.velocity.y < -0.001f)
+            if(!isGrounded && rb.velocity.y < 0.001f)
             {
                 Debug.Log("착지했습니다.");
                 if (player.LandingSFX) SoundManager.PlayClip(player.LandingSFX);
+                isGrounded = true;
+                jumpCount = 1;
             }
-            isGrounded = true;
-            jumpCount = 1;
         }
         else
         {
@@ -546,6 +547,7 @@ public class PlayerController : BaseController
                 currentState = PlayerState.Hanging;
                 transform.SetParent(stuckPickaxe.transform); // 플레이어를 곡괭이의 자식으로 만들어 위치 고정
                 jumpCount = 1;
+
                 Debug.Log("매달리기 성공! 점프 카운트 = 1");
             }
         }
