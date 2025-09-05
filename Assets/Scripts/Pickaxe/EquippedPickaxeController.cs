@@ -20,7 +20,6 @@ public class EquippedPickaxeController : MonoBehaviour
     public float ThrowRadius = 1.0f; // 플레이어로부터 생성될 위치의 반지름
 
     // 컴포넌트 및 오브젝트 참조
-    public GameObject catchTextUI;
     private Animator Animator;
 
     // Animation Hash
@@ -115,14 +114,11 @@ public class EquippedPickaxeController : MonoBehaviour
         UIRecallPickaxe uIRecallPickaxe = GameManager.Instance.Player.UIRecallPickaxe;
         uIRecallPickaxe?.CloseUI();
 
-        // 플레이어의 곡괭이 소유 상태를 false로 변경
+        // 플레이어의 곡괭이 소유 상태를 true로 변경
         player.HasPickaxe = true;
 
         // 장착된 곡괭이 오브젝트 다시 활성화
         SetEquippedPickaxeActive(true);
-
-        // 상태를 기본 장착 상태(EquipState)로 강제 전환
-        stateMachine.ChangeState(stateMachine.EquipState);
 
         // 캐치로 회수되었다면 Catch 애니메이션 재생
         if (isCatch)
@@ -132,15 +128,19 @@ public class EquippedPickaxeController : MonoBehaviour
             // CatchTextUI
             StartCoroutine(ShowCatchTextCoroutine());
         }
+
+        // 상태를 기본 장착 상태(EquipState)로 강제 전환
+        stateMachine.ChangeState(stateMachine.EquipState);
     }
 
     private IEnumerator ShowCatchTextCoroutine()
     {
-        catchTextUI.gameObject.SetActive(true);
+        UICatchPickaxe uiCatchPickaxe = GameManager.Instance.Player.UICatchPickaxe;
+        uiCatchPickaxe?.OpenUI();
 
-        yield return new WaitForSeconds(1f);
+        yield return new WaitForSeconds(0.7f);
 
-        catchTextUI.gameObject.SetActive(false);
+        uiCatchPickaxe?.CloseUI();
     }
 
     private void OnSmash(InputAction.CallbackContext context)
@@ -159,6 +159,8 @@ public class EquippedPickaxeController : MonoBehaviour
 
     private void OnThrow(InputAction.CallbackContext context)
     {
+        player.Controller.FlipTowardsMouse();
+
         // 현재 상태가 EquipState일 때만 반응
         if (stateMachine.CurrentState == stateMachine.EquipState)
         {

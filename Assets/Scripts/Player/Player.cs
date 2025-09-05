@@ -45,6 +45,7 @@ public class Player : BaseCharacter
     public UIHUD HUD { get; private set; }
     public UIPause UIPause { get; private set; }
     public UIRecallPickaxe UIRecallPickaxe { get; private set; }
+    public UICatchPickaxe UICatchPickaxe { get; private set; }
 
     protected override void Awake()
     {
@@ -60,7 +61,9 @@ public class Player : BaseCharacter
         Init(); // 초기화 할 것들, 현재는 UI만
         UIPause = UIManager.Instance.GetUI<UIPause>();
         UIRecallPickaxe = UIManager.Instance.GetUI<UIRecallPickaxe>();
+        UICatchPickaxe = UIManager.Instance.GetUI<UICatchPickaxe>();
         UIRecallPickaxe.Player = this;
+        UICatchPickaxe.Player = this;
     }
 
     void Init()

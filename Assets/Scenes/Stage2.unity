@@ -241,6 +241,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: DoorButton (2)
       objectReference: {fileID: 0}
+    - target: {fileID: 7847603711887284541, guid: ddddf8cbc191d0b40b4d9e3ec996c50c, type: 3}
+      propertyPath: targetDoor
+      value: 
+      objectReference: {fileID: 1537650482}
+    - target: {fileID: 7847603711887284541, guid: ddddf8cbc191d0b40b4d9e3ec996c50c, type: 3}
+      propertyPath: validInteractionLayers.m_Bits
+      value: 1024
+      objectReference: {fileID: 0}
     - target: {fileID: 7925500305946870677, guid: ddddf8cbc191d0b40b4d9e3ec996c50c, type: 3}
       propertyPath: m_LocalPosition.x
       value: 99.58
@@ -306,6 +314,14 @@ PrefabInstance:
     - target: {fileID: 7196517791910698445, guid: ddddf8cbc191d0b40b4d9e3ec996c50c, type: 3}
       propertyPath: m_Name
       value: DoorButton (3)
+      objectReference: {fileID: 0}
+    - target: {fileID: 7847603711887284541, guid: ddddf8cbc191d0b40b4d9e3ec996c50c, type: 3}
+      propertyPath: targetDoor
+      value: 
+      objectReference: {fileID: 531503501}
+    - target: {fileID: 7847603711887284541, guid: ddddf8cbc191d0b40b4d9e3ec996c50c, type: 3}
+      propertyPath: validInteractionLayers.m_Bits
+      value: 1024
       objectReference: {fileID: 0}
     - target: {fileID: 7925500305946870677, guid: ddddf8cbc191d0b40b4d9e3ec996c50c, type: 3}
       propertyPath: m_LocalPosition.x
@@ -15854,9 +15870,21 @@ PrefabInstance:
       propertyPath: targetDoor
       value: 
       objectReference: {fileID: 1318198523}
+    - target: {fileID: 281422946174847652, guid: ddddf8cbc191d0b40b4d9e3ec996c50c, type: 3}
+      propertyPath: validInteractionLayers.m_Bits
+      value: 1024
+      objectReference: {fileID: 0}
     - target: {fileID: 7196517791910698445, guid: ddddf8cbc191d0b40b4d9e3ec996c50c, type: 3}
       propertyPath: m_Name
       value: DoorButton (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 7847603711887284541, guid: ddddf8cbc191d0b40b4d9e3ec996c50c, type: 3}
+      propertyPath: targetDoor
+      value: 
+      objectReference: {fileID: 1318198523}
+    - target: {fileID: 7847603711887284541, guid: ddddf8cbc191d0b40b4d9e3ec996c50c, type: 3}
+      propertyPath: validInteractionLayers.m_Bits
+      value: 1024
       objectReference: {fileID: 0}
     - target: {fileID: 7925500305946870677, guid: ddddf8cbc191d0b40b4d9e3ec996c50c, type: 3}
       propertyPath: m_LocalPosition.x
@@ -15920,9 +15948,21 @@ PrefabInstance:
       propertyPath: targetDoor
       value: 
       objectReference: {fileID: 79039218}
+    - target: {fileID: 281422946174847652, guid: ddddf8cbc191d0b40b4d9e3ec996c50c, type: 3}
+      propertyPath: validInteractionLayers.m_Bits
+      value: 1024
+      objectReference: {fileID: 0}
     - target: {fileID: 7196517791910698445, guid: ddddf8cbc191d0b40b4d9e3ec996c50c, type: 3}
       propertyPath: m_Name
       value: DoorButton
+      objectReference: {fileID: 0}
+    - target: {fileID: 7847603711887284541, guid: ddddf8cbc191d0b40b4d9e3ec996c50c, type: 3}
+      propertyPath: targetDoor
+      value: 
+      objectReference: {fileID: 79039218}
+    - target: {fileID: 7847603711887284541, guid: ddddf8cbc191d0b40b4d9e3ec996c50c, type: 3}
+      propertyPath: validInteractionLayers.m_Bits
+      value: 1024
       objectReference: {fileID: 0}
     - target: {fileID: 7925500305946870677, guid: ddddf8cbc191d0b40b4d9e3ec996c50c, type: 3}
       propertyPath: m_LocalPosition.x
@@ -41453,6 +41493,14 @@ PrefabInstance:
     - target: {fileID: 7196517791910698445, guid: ddddf8cbc191d0b40b4d9e3ec996c50c, type: 3}
       propertyPath: m_Name
       value: DoorButton (4)
+      objectReference: {fileID: 0}
+    - target: {fileID: 7847603711887284541, guid: ddddf8cbc191d0b40b4d9e3ec996c50c, type: 3}
+      propertyPath: targetDoor
+      value: 
+      objectReference: {fileID: 1399005612}
+    - target: {fileID: 7847603711887284541, guid: ddddf8cbc191d0b40b4d9e3ec996c50c, type: 3}
+      propertyPath: validInteractionLayers.m_Bits
+      value: 1024
       objectReference: {fileID: 0}
     - target: {fileID: 7925500305946870677, guid: ddddf8cbc191d0b40b4d9e3ec996c50c, type: 3}
       propertyPath: m_LocalPosition.x
