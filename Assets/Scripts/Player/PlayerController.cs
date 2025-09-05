@@ -134,7 +134,7 @@ public class PlayerController : BaseController
 
     void OnJump(InputAction.CallbackContext context)
     {
-        Debug.Log($"OnJump, JumpCnt: {jumpCount}");
+        //Debug.Log($"OnJump, JumpCnt: {jumpCount}");
         if (currentState == PlayerState.Dashing) return;
         if (jumpCount == 0 || isPressedJumpButton) return;
         isPressedJumpButton = true;
@@ -149,7 +149,7 @@ public class PlayerController : BaseController
 
     void OnJumpCanceled(InputAction.CallbackContext context)
     {
-        Debug.Log($"OnJumpCanceled, JumpCnt: {jumpCount}");
+        //Debug.Log($"OnJumpCanceled, JumpCnt: {jumpCount}");
         if (!isPressedJumpButton) return;
         isPressedJumpButton = false;
         if (currentState == PlayerState.Dashing) return; // 대시 중이라면 리턴
@@ -257,9 +257,12 @@ public class PlayerController : BaseController
     }
     void DetectGround()
     {
-        if (isGrounded == true || rb.velocity.y > 0) return; // 낙하 중일때만 레이캐스트 
-        RaycastHit2D hit = Physics2D.Raycast(transform.position, Vector2.down, RayDistance, GroundLayer);
+        // 낙하 중일때만 레이캐스트 
+        if (isGrounded == true || rb.velocity.y > 0.001f) // 부동소수점 이슈로 0.001f미만을 낙하 중이라 판단
+        { /*Debug.Log($"땅 감지X {rb.velocity.y.ToString("F2")}");*/ return; } 
 
+        RaycastHit2D hit = Physics2D.Raycast(transform.position, Vector2.down, RayDistance, GroundLayer);
+        Debug.Log("땅 감지");
         // 레이캐스트가 어떤 물체와 충돌했는지 확인
         if (hit.collider != null)
         {
