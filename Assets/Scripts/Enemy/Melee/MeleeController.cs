@@ -41,6 +41,7 @@ public class MeleeController : EnemyController
         base.Update();
         if (GetNormalizedTime("Hurt") != -1f) { horizontalInput = 0f; state = ETestState.Hit; return; }
         state = ETestState.None;
+        Debug.Log("behaviorTreeRoot");
         behaviorTreeRoot.Evaluate();
     }
     public override void TakeDamage(int damage)
@@ -98,6 +99,7 @@ public class MeleeController : EnemyController
     }
     INode.ENodeState CheckCanAttack()
     {
+        Debug.Log("CheckCanAttack");
         // 우선 이동 멈추고 체크하기
         horizontalInput = 0f;
         
@@ -121,27 +123,35 @@ public class MeleeController : EnemyController
     INode.ENodeState Attack()
     {
         float normalizedTime = GetNormalizedTime("Attack"); // 0~1만 반환하도록 설정
-        // 여전히 공격 가능이라면 계속 공격하기
-        if (CanAttack())
-        {
-            state = ETestState.Attack;
+        Debug.Log($"AttackNode {normalizedTime}");
 
-            if (normalizedTime > 0.95f) 
-                FlipSpriteByTarget(); // 재생이 끝나고 타겟 위치에 따라 회전
+        // 여전히 공격 가능이라면 계속 공격하기
+        // 특정 상황에 의해 공격이 해제되었다면
+        if (!animator.GetBool(melee.AnimationData.AttackParameterHash)) return INode.ENodeState.Failure;
+
+        state = ETestState.Attack;
+        // 공격이 재생중이라면
+        if (normalizedTime <= 0.95f) { Debug.Log("Attacking"); return INode.ENodeState.Running; }
+
+        // 공격 재생이 끝나고
+        if (CanAttack()) // 여전히 공격히 가능하다면
+        {
+            FlipSpriteByTarget(); // 재공격이 가능하면 타겟 위치에 따라 회전
             return INode.ENodeState.Running;
         }
-
-        // 공격 불가라면 재생 체크
-        if (normalizedTime < 0.95f ) return INode.ENodeState.Running;
-
-        // 재생이 끝나고 Idle로
-        animator.SetBool(melee.AnimationData.AttackParameterHash, false);
-        animator.SetBool(melee.AnimationData.WalkParameterHash, false);
-        animator.SetBool(melee.AnimationData.IdleParameterHash, true);
-        return INode.ENodeState.Failure;
+        else // 공격할 수 없다면
+        {
+            Debug.Log($"AttackFnish, {normalizedTime}");
+            // 재생이 끝나고 Idle로
+            animator.SetBool(melee.AnimationData.AttackParameterHash, false);
+            animator.SetBool(melee.AnimationData.WalkParameterHash, false);
+            animator.SetBool(melee.AnimationData.IdleParameterHash, true);
+            return INode.ENodeState.Failure;
+        }
     }
     INode.ENodeState CheckAttackRange()
     {
+        Debug.Log("CheckAttackRange");
         if (IsInAttackRange())
         {
             state = ETestState.WaitToAttack;
@@ -196,7 +206,12 @@ public class MeleeController : EnemyController
     INode.ENodeState Patrol()
     {
         state = ETestState.Ptrol;
-
+        if (!animator.GetBool(melee.AnimationData.WalkParameterHash))
+        {
+            animator.SetBool(melee.AnimationData.AttackParameterHash, false);
+            animator.SetBool(melee.AnimationData.WalkParameterHash, true);
+            animator.SetBool(melee.AnimationData.IdleParameterHash, false);
+        }
         // 움직이기
         float preT = Mathf.PingPong(patrolTimer / patrolTime, 1.0f);
         patrolTimer += Time.deltaTime;

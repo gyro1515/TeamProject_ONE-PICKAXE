@@ -14,9 +14,21 @@ public class Enemy : BaseCharacter
     [SerializeField] protected AudioClip attackSoundClip;
     [SerializeField] protected AudioClip deathSoundClip;
     [SerializeField] bool canAttack = true; // 확인용
+    [SerializeField] Player target; // 확인용
     protected float attackCoolTimer = 0f;
     public EnemyAnimationData AnimationData { get; private set; }
-    [field: SerializeField] public Player Target { get; set; } // 타겟 설정하기
+     public Player Target { get { return target; }
+        set
+        {
+            target = value;
+            if(target == null)
+            {
+                Debug.Log("target == null");
+                Controller.Animator.SetBool(AnimationData.AttackParameterHash, false);
+                Controller.Animator.SetBool(AnimationData.WalkParameterHash, false);
+                Controller.Animator.SetBool(AnimationData.IdleParameterHash, true);
+            }
+        } } // 타겟 설정하기
 
     public EnemyController Controller { get; private set; }
 

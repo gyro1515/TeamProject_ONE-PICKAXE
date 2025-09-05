@@ -6,6 +6,7 @@ public abstract class BaseController : MonoBehaviour, IDamageable
 {
     BaseCharacter baseCharacter;
     protected Animator animator;
+    public Animator Animator { get { return animator; } }
 
     protected virtual void Awake()
     {
