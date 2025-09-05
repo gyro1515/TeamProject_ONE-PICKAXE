@@ -23,6 +23,7 @@ public class EquippedPickaxeController : MonoBehaviour
 
     [Header("SFX")]
     public AudioClip SmashSFX;
+    public AudioClip SmashHitSFX;
     public AudioClip ThrowingSFX;
     public AudioClip CatchSFX;
     public AudioClip RetrieveSFX;

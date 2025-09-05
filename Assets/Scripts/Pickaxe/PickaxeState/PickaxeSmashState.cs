@@ -100,6 +100,11 @@ public class PickaxeSmashState : PickaxeBaseState<EquippedPickaxeStateMachine>
                     IDamageable damageable = target.GetComponent<IDamageable>();
                     if (damageable != null)
                     {
+                        if (stateMachine.EquippedPickaxeController.SmashHitSFX)
+                        {
+                            SoundManager.PlayClip(stateMachine.EquippedPickaxeController.SmashHitSFX);
+                        }
+
                         damageable.TakeDamage(stateMachine.EquippedPickaxeController.SmashDamage);
                     }
                 }

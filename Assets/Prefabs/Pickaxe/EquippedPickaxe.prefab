@@ -58,6 +58,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 512
   SmashSFX: {fileID: 8300000, guid: d8497a04a12b22948917fa9b3f0da5c4, type: 3}
+  SmashHitSFX: {fileID: 8300000, guid: c43861e8312c3b349a9f3bb8f16d6d7c, type: 3}
   ThrowingSFX: {fileID: 8300000, guid: f1981946600cea840bd2516a7f0b5951, type: 3}
   CatchSFX: {fileID: 8300000, guid: a26f6241346e9e244a4c161fb31af028, type: 3}
   RetrieveSFX: {fileID: 8300000, guid: 259939357edb417409ba73933b47d1ba, type: 3}
