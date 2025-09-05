@@ -5,6 +5,12 @@ public class DestructibleWall : InteractableObject, IDamageable
     public int currentHealth = 30;
     public LayerMask weaponLayer;
 
+    private void Start()
+    {
+        DoorData wallData = DataTableManager.Instance.GetSingleData<DoorData>();
+        currentHealth = wallData.door_hp;
+    }
+
     public override void Interaction(GameObject other)
     {
 

@@ -67,16 +67,26 @@ public class Player : BaseCharacter
 
     void Init()
     {
-        // UI 세팅
-        //CurrentHP = MaxHP;
-        //MineralCnt = 5;
-        
-        CurrentHP = curHP; // 체력 UI
-        MineralCnt = mineralCnt; // 보유 광물 수 UI 세팅
-        
         HasPickaxe = true;
 
         HUD.SetStageText(1);
+    }
+
+    protected override void Start()
+    {
+        base.Start();
+
+        // 데이터 테이블에서 로드한 플레이어 데이터
+        PlayerData playerData = DataTableManager.Instance.GetSingleData<PlayerData>();
+
+        // UI 세팅
+        CurrentHP = playerData.player_hp; // 체력 UI
+        MineralCnt = mineralCnt; // 보유 광물 수 UI 세팅
+
+        // 스탯 세팅
+        AttackPower = playerData.player_dam;
+        MoveSpeed = playerData.player_mov;
+        //JumpForce = playerData.player_jump;
     }
 
     protected override void Update()

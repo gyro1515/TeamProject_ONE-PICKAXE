@@ -5,6 +5,13 @@ public class Ore : Item
 {
     public int oreValue = 1;
 
+    private void Start()
+    {
+        DropitemData oreData = DataTableManager.Instance.GetSingleData<DropitemData>();
+
+        oreValue = oreData.dropitem_count;
+    }
+
     public override void OnPlayerCollide(Player player)
     {
         // 플레이어의 광물 점수 추가

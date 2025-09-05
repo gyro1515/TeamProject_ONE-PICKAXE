@@ -8,8 +8,8 @@ public class Enemy : BaseCharacter
     // 적 상태 추가 필요
 
     [Header("적 세팅")]
-    [SerializeField] float attackRange = 3f;
-    [SerializeField] float detectionRange = 5f;
+    [SerializeField] protected float attackRange = 3f;
+    [SerializeField] protected float detectionRange = 5f;
     [SerializeField] protected float attackCoolTime = 0f;
     [SerializeField] protected AudioClip attackSoundClip;
     [SerializeField] protected AudioClip deathSoundClip;

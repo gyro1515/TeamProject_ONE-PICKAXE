@@ -5,6 +5,13 @@ public class SpikeTrap : InteractableObject, IAttack
     // 함정이 주는 데미지 값
     public int attackDamage = 10;
 
+    private void Start()
+    {
+        ObsaicleData trapData = DataTableManager.Instance.GetSingleData<ObsaicleData>();
+
+        attackDamage = trapData.obsaicle_damage;
+    }
+
     // Interaction() 메서드 오버라이드. 충돌한 GameObject를 받습니다.
     public override void Interaction(GameObject other)
     {

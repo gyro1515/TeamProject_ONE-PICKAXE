@@ -10,8 +10,8 @@
             "enemy_cooldown": 4.0,
             "enemy_patrol": true,
             "enemy_patroldata": 30,
-            "enemy_detectrange": 30.0,
-            "enemy_attackrange": 5.0
+            "enemy_detectrange": 5.0,
+            "enemy_attackrange": 1.5
         },
         {
             "key": 101,
@@ -23,8 +23,8 @@
             "enemy_cooldown": 4.0,
             "enemy_patrol": false,
             "enemy_patroldata": 0,
-            "enemy_detectrange": 0.0,
-            "enemy_attackrange": 35.0
+            "enemy_detectrange": 10.0,
+            "enemy_attackrange": 5.0
         }
     ]
 }
