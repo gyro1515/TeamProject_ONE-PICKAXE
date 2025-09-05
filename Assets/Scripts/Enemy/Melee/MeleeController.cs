@@ -11,6 +11,7 @@ public class MeleeController : EnemyController
     enum ETestState
     { None, Death, Attack, WaitToAttack, Chase, Ptrol, Hit }
     [SerializeField] ETestState state = ETestState.None; // 디버그용..., 상태 체크
+    [SerializeField] EnemyMeleeSprite meleeSpriteScript;
     //[Header("근접 유닛 컨트롤러 설정")]
     EnemyMelee melee;
     INode behaviorTreeRoot;
@@ -41,7 +42,7 @@ public class MeleeController : EnemyController
         base.Update();
         if (GetNormalizedTime("Hurt") != -1f) { horizontalInput = 0f; state = ETestState.Hit; return; }
         state = ETestState.None;
-        Debug.Log("behaviorTreeRoot");
+        //Debug.Log("behaviorTreeRoot");
         behaviorTreeRoot.Evaluate();
     }
     public override void TakeDamage(int damage)
@@ -99,7 +100,7 @@ public class MeleeController : EnemyController
     }
     INode.ENodeState CheckCanAttack()
     {
-        Debug.Log("CheckCanAttack");
+        //Debug.Log("CheckCanAttack");
         // 우선 이동 멈추고 체크하기
         horizontalInput = 0f;
         
@@ -123,15 +124,20 @@ public class MeleeController : EnemyController
     INode.ENodeState Attack()
     {
         float normalizedTime = GetNormalizedTime("Attack"); // 0~1만 반환하도록 설정
-        Debug.Log($"AttackNode {normalizedTime}");
+        //Debug.Log($"AttackNode {normalizedTime}");
 
         // 여전히 공격 가능이라면 계속 공격하기
         // 특정 상황에 의해 공격이 해제되었다면
-        if (!animator.GetBool(melee.AnimationData.AttackParameterHash)) return INode.ENodeState.Failure;
+        if (!animator.GetBool(melee.AnimationData.AttackParameterHash))
+        {
+            meleeSpriteScript?.DeactiveCol();
+            return INode.ENodeState.Failure; 
+        }
 
+        if(melee.CanAttack) melee.CanAttack = false;
         state = ETestState.Attack;
         // 공격이 재생중이라면
-        if (normalizedTime <= 0.95f) { Debug.Log("Attacking"); return INode.ENodeState.Running; }
+        if (normalizedTime <= 0.95f) { /*Debug.Log("Attacking");*/ return INode.ENodeState.Running; }
 
         // 공격 재생이 끝나고
         if (CanAttack()) // 여전히 공격히 가능하다면
@@ -141,7 +147,7 @@ public class MeleeController : EnemyController
         }
         else // 공격할 수 없다면
         {
-            Debug.Log($"AttackFnish, {normalizedTime}");
+            //Debug.Log($"AttackFnish, {normalizedTime}");
             // 재생이 끝나고 Idle로
             animator.SetBool(melee.AnimationData.AttackParameterHash, false);
             animator.SetBool(melee.AnimationData.WalkParameterHash, false);
@@ -151,7 +157,7 @@ public class MeleeController : EnemyController
     }
     INode.ENodeState CheckAttackRange()
     {
-        Debug.Log("CheckAttackRange");
+        //Debug.Log("CheckAttackRange");
         if (IsInAttackRange())
         {
             state = ETestState.WaitToAttack;
@@ -208,9 +214,15 @@ public class MeleeController : EnemyController
         state = ETestState.Ptrol;
         if (!animator.GetBool(melee.AnimationData.WalkParameterHash))
         {
+            
             animator.SetBool(melee.AnimationData.AttackParameterHash, false);
             animator.SetBool(melee.AnimationData.WalkParameterHash, true);
             animator.SetBool(melee.AnimationData.IdleParameterHash, false);
+        }
+        if(meleeSpriteScript.gameObject.activeSelf)
+        {
+            // 공격 중 갑자기 타겟이 없어져서 공격 콜라이더 계속 활성화 되는 경우 있음
+            meleeSpriteScript?.DeactiveCol();
         }
         // 움직이기
         float preT = Mathf.PingPong(patrolTimer / patrolTime, 1.0f);

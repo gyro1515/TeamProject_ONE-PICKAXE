@@ -16,9 +16,11 @@ public class RangedController : EnemyController
     {
         base.Update();
         float normalizedTime = GetNormalizedTime("Attack"); // 0~1만 반환하도록 설정
-                                                            // 여전히 공격 범위 안이라면 계속 공격하기
-        if (ranged.Target && CanAttack())
+        // 여전히 공격 가능하면 공격하기
+        // 타겟이 있고, 공격이 가능하며, 타겟과 원거리 유닛 발사지점 사이에 벽이 없다면 공격
+        if (ranged.Target && CanAttack() && CanFire())
         {
+            if(ranged.CanAttack) ranged.CanAttack = false;
             if (normalizedTime >= 0f && normalizedTime <= 0.05f)
             { FlipSpriteByTarget();} // 공격 초반 회전
             
@@ -44,11 +46,46 @@ public class RangedController : EnemyController
     }
     public void FireArrow(bool isFlipX)
     {
+        if (ranged.Target == null) return; // 발사할때 타겟이 사라졌다면 발사 취소
         fireMuzzle?.SetFlipX(isFlipX);
+        /*if(!CanFire())
+        {
+            if (animator.GetBool(ranged.AnimationData.AttackParameterHash)) return;
+            animator.SetBool(ranged.AnimationData.AttackParameterHash, false);
+            animator.SetBool(ranged.AnimationData.IdleParameterHash, true);
+            return;
+        }*/
         if (enemy.AttackSoundClip) SoundManager.PlayClip(enemy.AttackSoundClip);
         EnemyRangedArrow arrow = ProjectileManager.Instance.GetObject(EProjectileType.EnemyRangedArrow).GetComponent<EnemyRangedArrow>();
         //arrow?.Init(isFlipX, fireMuzzle.gameObject.transform.position, enemy.AttackPower);
         Vector3 dir = ranged.Target.transform.position - fireMuzzle.gameObject.transform.position;
         arrow?.Init(dir.normalized, fireMuzzle.gameObject.transform.position, enemy.AttackPower);
+    }
+    bool CanFire()
+    {
+        fireMuzzle?.SetFlipX(spriteRenderer.flipX);
+        // 적 발사 지점과 타겟 사이에 벽이 있는가
+        Vector3 startPos = fireMuzzle.gameObject.transform.position;
+        Vector3 dir = ranged.Target.transform.position - fireMuzzle.gameObject.transform.position;
+        float distance = dir.magnitude;
+        dir = dir.normalized;
+        RaycastHit2D hit = Physics2D.BoxCast(startPos, 
+            new Vector2(0.82f, 0.49f), 
+            Mathf.Atan2(dir.y, dir.x), dir, distance, LayerMask.GetMask("Cave"));
+        //RaycastHit2D hit = Physics2D.Raycast(startPos, dir, distance, LayerMask.GetMask("Cave"));
+        /*float tmpDur = 1f;
+        if(hit)
+        {
+            Debug.DrawLine(fireMuzzle.gameObject.transform.position, hit.point, Color.red, tmpDur);
+            Debug.DrawLine(hit.point, ranged.Target.transform.position, Color.blue, tmpDur);
+        }
+        else
+        {
+            Debug.DrawLine(fireMuzzle.gameObject.transform.position, 
+            ranged.Target.transform.position, Color.green, tmpDur);
+        }*/
+        if (hit) return false;
+
+        return true;
     }
 }

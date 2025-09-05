@@ -22,7 +22,12 @@ public class SoundSource : MonoBehaviour
 
         Invoke("Disable", clip.length + 2);
     }
-
+    public void Stop()
+    {
+        CancelInvoke();
+        _audioSource.Stop();
+        gameObject.SetActive(false);
+    }
     public void Disable()
     {
         _audioSource.Stop();
