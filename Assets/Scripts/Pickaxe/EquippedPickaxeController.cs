@@ -25,6 +25,9 @@ public class EquippedPickaxeController : MonoBehaviour
     public AudioClip SmashSFX;
     public AudioClip ThrowingSFX;
     public AudioClip CatchSFX;
+    public AudioClip RetrieveSFX;
+
+    public SoundSource RetrieveSoundSource;
 
     // 컴포넌트 및 오브젝트 참조
     private Animator Animator;
@@ -129,6 +132,8 @@ public class EquippedPickaxeController : MonoBehaviour
     // 곡괭이 회수하고 상태 초기화
     public void RetrievePickaxe(bool isCatch)
     {
+        RetrieveSoundSource.Stop();
+
         // 회수 UI 닫기
         UIRecallPickaxe uIRecallPickaxe = GameManager.Instance.Player.UIRecallPickaxe;
         uIRecallPickaxe?.CloseUI();

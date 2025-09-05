@@ -260,6 +260,7 @@ MonoBehaviour:
   StuckSFX: {fileID: 8300000, guid: cd0c65d10d6f93c4697c1f4cee20d415, type: 3}
   FlyingSFX: {fileID: 8300000, guid: 76657817c9ef6d04c9835e8f67005144, type: 3}
   BouncingSFX: {fileID: 8300000, guid: 2ce834cbcbbd6de469231a18d9d93c1b, type: 3}
+  RetrieveSFX: {fileID: 8300000, guid: 259939357edb417409ba73933b47d1ba, type: 3}
 --- !u!1001 &1967650398249490223
 PrefabInstance:
   m_ObjectHideFlags: 0

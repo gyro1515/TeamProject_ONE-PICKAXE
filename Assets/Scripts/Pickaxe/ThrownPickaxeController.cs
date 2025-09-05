@@ -182,6 +182,11 @@ public class ThrownPickaxeController : MonoBehaviour
     // R키가 눌렸을 때 호출
     private void OnRetrieve(InputAction.CallbackContext context)
     {
+        if(Owner.RetrieveSFX)
+        {
+            Owner.RetrieveSoundSource = SoundManager.PlayClipWithGetSoundSource(Owner.RetrieveSFX);
+        }
+
         IsRetrieveHeld = true;
     }
 
