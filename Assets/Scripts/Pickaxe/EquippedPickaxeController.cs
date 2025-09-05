@@ -19,8 +19,14 @@ public class EquippedPickaxeController : MonoBehaviour
     public float ThrowForce = 15f; // 던지는 힘
     public float ThrowRadius = 1.0f; // 플레이어로부터 생성될 위치의 반지름
 
+    public LayerMask StuckableLayer; // Raycast가 감지할 박힐 수 있는 지형의 레이어
+
     // 컴포넌트 및 오브젝트 참조
     private Animator Animator;
+
+    private Collider2D playerCollider;
+    private ContactFilter2D castContactFilter;
+    private RaycastHit2D[] castResults = new RaycastHit2D[1];
 
     // Animation Hash
     private static readonly int SmashHash = Animator.StringToHash("Smash");
@@ -41,10 +47,15 @@ public class EquippedPickaxeController : MonoBehaviour
 
         stateMachine = new EquippedPickaxeStateMachine(this);
 
-        // 스탯 설정
-        SmashDamage = player.AttackPower;
-        // Test
-        SmashDamage = 10;
+        playerCollider = player.GetComponent<Collider2D>();
+        if (playerCollider == null)
+        {
+            Debug.LogError("Player's Collider2D not found!");
+        }
+
+        castContactFilter = new ContactFilter2D();
+        castContactFilter.SetLayerMask(StuckableLayer);
+        castContactFilter.useTriggers = false;
     }
 
     void Start()
@@ -55,6 +66,9 @@ public class EquippedPickaxeController : MonoBehaviour
         playerActions.ThrowPickaxe.started += OnThrow;
 
         stateMachine.Initialize(stateMachine.EquipState);
+
+        // 스탯 설정
+        SmashDamage = player.AttackPower;
     }
 
     private void OnDisable()
@@ -164,6 +178,21 @@ public class EquippedPickaxeController : MonoBehaviour
         // 현재 상태가 EquipState일 때만 반응
         if (stateMachine.CurrentState == stateMachine.EquipState)
         {
+            // 마우스 위치를 기반으로 던지는 방향 계산
+            Vector2 mousePos = Camera.main.ScreenToWorldPoint(Mouse.current.position.ReadValue());
+            Vector2 playerPos = player.transform.position;
+            Vector2 throwDirection = (mousePos - playerPos).normalized;
+
+            // 플레이어 콜라이더를 이용해 전방 0.1f 거리에 장애물이 있는지 확인(Cast)
+            int hitCount = playerCollider.Cast(throwDirection, castContactFilter, castResults, 0.1f);
+
+            // 충돌이 감지되었고 그 대상이 박을 수 있는 태그라면 던지기 자체 취소
+            if (hitCount > 0 && castResults[0].collider.CompareTag("CanStuck"))
+            {
+                Debug.Log("벽에 막혀 던질 수 없습니다.");
+                return;
+            }
+
             // 플레이어의 곡괭이 소유 상태를 false로 변경
             player.HasPickaxe = false;
 

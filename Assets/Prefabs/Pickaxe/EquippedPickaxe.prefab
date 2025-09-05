@@ -54,6 +54,9 @@ MonoBehaviour:
   ThrowablePickaxePrefab: {fileID: 6199611822929745818, guid: 4cc038216ef5adc4ea9b13e433395bce, type: 3}
   ThrowForce: 15
   ThrowRadius: 1
+  StuckableLayer:
+    serializedVersion: 2
+    m_Bits: 512
 --- !u!50 &7398739672574982272
 Rigidbody2D:
   serializedVersion: 4
