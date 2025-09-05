@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 8146888626144304930}
   m_Layer: 9
   m_Name: DestroyWall
-  m_TagString: Enemy
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -286,7 +286,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2972604718461668477}
   - component: {fileID: 3325741399203137886}
-  - component: {fileID: 3872712023779867903}
+  - component: {fileID: 3098875998112605705}
   m_Layer: 9
   m_Name: Interaction
   m_TagString: Enemy
@@ -354,7 +354,7 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1, y: 2}
   m_EdgeRadius: 0
---- !u!114 &3872712023779867903
+--- !u!114 &3098875998112605705
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
