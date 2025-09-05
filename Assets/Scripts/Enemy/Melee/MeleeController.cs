@@ -98,7 +98,7 @@ public class MeleeController : EnemyController
             horizontalInput = 0f;
             rb2D.velocity = Vector2.zero;
             enabled = false; // 죽으면 업데이트 중지
-            animator.SetTrigger(melee.AnimationData.DeathParameterHash); // 애니메이션 죽음으로
+            //animator.SetTrigger(melee.AnimationData.DeathParameterHash); // 애니메이션 죽음으로
             state = ETestState.Death;
             return INode.ENodeState.Success;
         }
