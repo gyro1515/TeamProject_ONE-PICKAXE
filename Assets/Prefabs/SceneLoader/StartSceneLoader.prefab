@@ -44,3 +44,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 388068de9a671e549be57ca54de192d5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  bgSoundClip: {fileID: 8300000, guid: 659505f87f4e3b04782171db2e31d53f, type: 3}

@@ -4080,7 +4080,7 @@ PrefabInstance:
     - target: {fileID: 5235601173103510052, guid: d3ddc64c0961baa45aac75da828650f2, type: 3}
       propertyPath: bgSoundClip
       value: 
-      objectReference: {fileID: 8300000, guid: b5ba22e0d2d8bb041a3af3517776a19b, type: 3}
+      objectReference: {fileID: 8300000, guid: bd1328e292f57c14a87616bdcc451428, type: 3}
     - target: {fileID: 5235601173103510052, guid: d3ddc64c0961baa45aac75da828650f2, type: 3}
       propertyPath: playerSpawnPos.x
       value: -4.76

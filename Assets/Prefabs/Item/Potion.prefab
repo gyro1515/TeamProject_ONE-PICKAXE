@@ -282,5 +282,5 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   parentGO: {fileID: 6046918878359847017}
-  getSound: {fileID: 0}
+  getSound: {fileID: 8300000, guid: 4d30f3f18a6dff84fb8097d878f97fa6, type: 3}
   healthToRestore: 1

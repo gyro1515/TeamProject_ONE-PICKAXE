@@ -175,7 +175,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   parentGO: {fileID: 3556604760413938753}
-  getSound: {fileID: 0}
+  getSound: {fileID: 8300000, guid: 156f314a6f2522849b015622fd4a9541, type: 3}
   oreValue: 2
 --- !u!1 &3556604760413938753
 GameObject:

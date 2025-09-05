@@ -120,7 +120,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6a1a1bacc15fdc44da129d8ef060b112, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  interactionSound: {fileID: 0}
+  interactionSound: {fileID: 8300000, guid: 17fa27d25232f774088a1526084e50f9, type: 3}
   targetDoor: {fileID: 0}
   validInteractionLayers:
     serializedVersion: 2
@@ -216,7 +216,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6a1a1bacc15fdc44da129d8ef060b112, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  interactionSound: {fileID: 0}
+  interactionSound: {fileID: 8300000, guid: 17fa27d25232f774088a1526084e50f9, type: 3}
   targetDoor: {fileID: 0}
   validInteractionLayers:
     serializedVersion: 2
