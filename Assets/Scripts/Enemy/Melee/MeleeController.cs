@@ -20,6 +20,7 @@ public class MeleeController : EnemyController
     float patrolTime;
     float patrolTimer;
     float preTime;
+
     protected override void Awake()
     {
         base.Awake();
@@ -30,6 +31,7 @@ public class MeleeController : EnemyController
         patrolTime = melee.PatrolData / melee.MoveSpeed; // 순찰 거리에 따른 이동 시간
         patrolTimer = patrolTime / 2; // 중간에서 시작
     }
+
     protected override void Start()
     {
         base.Start();
@@ -37,6 +39,7 @@ public class MeleeController : EnemyController
         animator.SetBool(melee.AnimationData.WalkParameterHash, true);
         animator.SetBool(melee.AnimationData.IdleParameterHash, false);
     }
+
     protected override void Update()
     {
         base.Update();
@@ -45,11 +48,13 @@ public class MeleeController : EnemyController
         //Debug.Log("behaviorTreeRoot");
         behaviorTreeRoot.Evaluate();
     }
+
     public override void TakeDamage(int damage)
     {
         base.TakeDamage(damage);
         horizontalInput = 0f;
     }
+
     protected override void Move()
     {
         rb2D.velocity = new Vector2(horizontalInput * melee.MoveSpeed, rb2D.velocity.y);
@@ -91,6 +96,7 @@ public class MeleeController : EnemyController
         if (melee.IsDead)
         {
             horizontalInput = 0f;
+            rb2D.velocity = Vector2.zero;
             enabled = false; // 죽으면 업데이트 중지
             animator.SetTrigger(melee.AnimationData.DeathParameterHash); // 애니메이션 죽음으로
             state = ETestState.Death;
