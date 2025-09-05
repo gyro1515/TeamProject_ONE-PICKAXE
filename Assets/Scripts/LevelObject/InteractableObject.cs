@@ -7,6 +7,7 @@ public abstract class InteractableObject : MonoBehaviour
     public abstract void Interaction(GameObject other);
 
     // OnTriggerEnter 대신 OnCollisionEnter를 사용
+    // ********** OnCollisionEnter는 호출이 안될겁니다?************
     private void OnCollisionEnter(Collision collision)
     {
         Debug.Log("OnCollisionEnter");
