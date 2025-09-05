@@ -157,7 +157,14 @@ public class PlayerController : BaseController
     
     void Jump()
     {
-        if (jumpCount == 0) return;
+        if (jumpCount == 0)
+            return;
+
+        if (player.JumpSFX)
+        {
+            SoundManager.PlayClip(player.JumpSFX);
+        }
+
         rb.velocity = new Vector2(rb.velocity.x, 0f);
 
         // 바로 최대 높이로 점프 -> 단, 점프키 캔슬시 바로 떨어지도록 세팅
@@ -182,6 +189,11 @@ public class PlayerController : BaseController
     protected override void Move()
     {
         base.Move();
+
+        if (player.FootStepSFX)
+        {
+            SoundManager.PlayClip(player.FootStepSFX);
+        }
 
         horizontalInput = PlayerActions.Move.ReadValue<float>();
 

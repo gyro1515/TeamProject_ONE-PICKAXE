@@ -9,6 +9,14 @@ public class Player : BaseCharacter
     [field: Header("플레이어 세팅")]
     [field: SerializeField] public float MaxJumpForce { get; private set; } = 12.5f;
     [field: SerializeField] public float MinJumpForce { get; private set; } = 6f;
+
+    [field: Header("플레이어 사운드")]
+    [field: SerializeField] public AudioClip FootStepSFX { get; private set; }
+    [field: SerializeField] public AudioClip JumpSFX { get; private set; }
+    [field: SerializeField] public AudioClip LandingSFX { get; private set; }
+    [field: SerializeField] public AudioClip HitSFX { get; private set; }
+    [field: SerializeField] public AudioClip DeathSFX { get; private set; }
+
     int mineralCnt = 0;
     public int MineralCnt { get { return mineralCnt; }
         set 

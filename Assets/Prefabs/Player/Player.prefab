@@ -59,6 +59,11 @@ MonoBehaviour:
   <DeadTime>k__BackingField: 5
   <MaxJumpForce>k__BackingField: 12.5
   <MinJumpForce>k__BackingField: 6
+  <FootStepSFX>k__BackingField: {fileID: 8300000, guid: ab2008a39fd37314bac447822b914d00, type: 3}
+  <JumpSFX>k__BackingField: {fileID: 8300000, guid: 57d7b5a2f897c6045927f86072c563f8, type: 3}
+  <LandingSFX>k__BackingField: {fileID: 8300000, guid: c1e9300f66992304ea2423e9015fb536, type: 3}
+  <HitSFX>k__BackingField: {fileID: 8300000, guid: dde7901f8eab8b140b0f0bc5416e6de6, type: 3}
+  <DeathSFX>k__BackingField: {fileID: 8300000, guid: c1e883067f0590d42bd0c50677fda4ea, type: 3}
 --- !u!114 &5372724588938240411
 MonoBehaviour:
   m_ObjectHideFlags: 0
