@@ -353,10 +353,6 @@ public class PlayerController : BaseController
         yield return new WaitForSeconds(animationLength);
 
         // 현재 스테이지 로드
-        // Test
-        //SceneLoader.Instance.StartLoadScene(SceneState.Test_CJW);
-
-        // 실제 적용할 코드
         SceneLoader.Instance.StartLoadScene(SceneLoader.Instance.CurrentSceneState);
     }
 

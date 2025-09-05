@@ -155,7 +155,7 @@ BoxCollider2D:
   m_GameObject: {fileID: 6046918878359847017}
   m_Enabled: 1
   m_Density: 1
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 6200000, guid: a3256fcd95805074c982027164cc056d, type: 2}
   m_IncludeLayers:
     serializedVersion: 2
     m_Bits: 512
@@ -282,4 +282,5 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   parentGO: {fileID: 6046918878359847017}
+  getSound: {fileID: 0}
   healthToRestore: 1
