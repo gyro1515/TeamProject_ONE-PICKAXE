@@ -60,4 +60,22 @@ public class SoundManager : SingletonMono<SoundManager>
         obj.Play(clip, Instance.SoundEffectVolume);
         Instance.soundSources.Add(obj);
     }
+    public static SoundSource PlayClipWithGetSoundSource(AudioClip clip)
+    {
+        for (int i = 0; i < Instance.soundSources.Count; i++)
+        {
+            if (Instance.soundSources[i].gameObject.activeSelf) continue;
+            // 비활성화 찾아서 재생시키기
+            SoundSource obj1 = Instance.soundSources[i];
+            obj1.Play(clip, Instance.SoundEffectVolume);
+            return obj1;
+        }
+
+        // 재생할 게 없다면 생성하기
+        SoundSource obj2 = Instantiate(Instance.soundSourcePrefab, Instance.gameObject.transform);
+        obj2.Play(clip, Instance.SoundEffectVolume);
+        Instance.soundSources.Add(obj2);
+        return obj2;
+    }
+    
 }
