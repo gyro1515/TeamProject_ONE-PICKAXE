@@ -300,7 +300,7 @@ MonoBehaviour:
   <DefensePower>k__BackingField: 1
   <MoveSpeed>k__BackingField: 5
   <MaxHP>k__BackingField: 15
-  <DeadTime>k__BackingField: 5
+  <DeadTime>k__BackingField: 1
   attackRange: 5
   detectionRange: 10
   attackCoolTime: 3
