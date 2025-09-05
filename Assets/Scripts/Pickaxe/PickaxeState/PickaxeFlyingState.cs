@@ -6,10 +6,16 @@ public class PickaxeFlyingState : PickaxeBaseState<ThrownPickaxeStateMachine>
     private ThrownPickaxeController thrownPickaxeController;
     private ContactFilter2D contactFilter;
     private RaycastHit2D[] hits = new RaycastHit2D[1]; // 충돌 결과를 담을 배열(하나만 감지하면 되므로 크기는 1)
+    private SoundSource soundSource;
 
     public override void EnterState(ThrownPickaxeStateMachine stateMachine)
     {
         Debug.Log("곡괭이 상태: 날아가는 중");
+
+        if (stateMachine.ThrownPickaxeController.FlyingSFX)
+        {
+            soundSource = SoundManager.PlayClipWithGetSoundSource(stateMachine.ThrownPickaxeController.FlyingSFX);
+        }
 
         // 필요한 컴포넌트와 설정 정보를 가져와서 초기화
         rb = stateMachine.ThrownPickaxeController.Rb2D;
@@ -83,8 +89,15 @@ public class PickaxeFlyingState : PickaxeBaseState<ThrownPickaxeStateMachine>
         }
     }
 
+    public override void ExitState(ThrownPickaxeStateMachine stateMachine)
+    {
+        if (stateMachine.ThrownPickaxeController.FlyingSFX)
+        {
+            soundSource.Stop();
+        }
+    }
+
     public override void HandleCollision(ThrownPickaxeStateMachine stateMachine, Collision2D collision) { }
-    public override void ExitState(ThrownPickaxeStateMachine stateMachine) { }
     public override void HandleInput(ThrownPickaxeStateMachine stateMachine) { }
     public override void UpdateState(ThrownPickaxeStateMachine stateMachine) { }
 }

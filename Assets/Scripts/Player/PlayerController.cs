@@ -109,7 +109,7 @@ public class PlayerController : BaseController
 
     protected override void FixedUpdate()
     {
-        if(currentState == PlayerState.Normal)
+        if (currentState == PlayerState.Normal)
         {
             base.FixedUpdate();
 
@@ -136,8 +136,15 @@ public class PlayerController : BaseController
         if (currentState == PlayerState.Dashing) return;
         if (jumpCount == 0 || isPressedJumpButton) return;
         isPressedJumpButton = true;
+        
         Jump();
+
+        if (player.JumpSFX)
+        {
+            SoundManager.PlayClip(player.JumpSFX);
+        }
     }
+
     void OnJumpCanceled(InputAction.CallbackContext context)
     {
         Debug.Log($"OnJumpCanceled, JumpCnt: {jumpCount}");
@@ -157,7 +164,9 @@ public class PlayerController : BaseController
     
     void Jump()
     {
-        if (jumpCount == 0) return;
+        if (jumpCount == 0)
+            return;
+
         rb.velocity = new Vector2(rb.velocity.x, 0f);
 
         // 바로 최대 높이로 점프 -> 단, 점프키 캔슬시 바로 떨어지도록 세팅
@@ -271,6 +280,11 @@ public class PlayerController : BaseController
             return;
         }
 
+        if (player.HitSFX)
+        {
+            SoundManager.PlayClip(player.HitSFX);
+        }
+
         player.CurrentHP -= damage;
 
         if (player.CurrentHP <= 0)
@@ -324,6 +338,11 @@ public class PlayerController : BaseController
 
         currentState = PlayerState.Dead;
         base.Dead();
+
+        if (player.DeathSFX)
+        {
+            SoundManager.PlayClip(player.DeathSFX);
+        }
 
         // 플레이어 입력 비활성화?
         SetPlayerInput(false);
@@ -426,6 +445,11 @@ public class PlayerController : BaseController
     {
         if (isDashAvailable && currentState == PlayerState.Normal)
         {
+            if(player.DashSFX)
+            {
+                SoundManager.PlayClip(player.DashSFX);
+            }
+
             StartCoroutine(DashCoroutine(stuckPickaxe.transform.position));
         }
     }
