@@ -94,7 +94,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currentState: 0
-  RayDistance: 1
+  RayDistance: 0.6
   GroundLayer:
     serializedVersion: 2
     m_Bits: 512

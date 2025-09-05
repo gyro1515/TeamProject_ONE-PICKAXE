@@ -113,7 +113,9 @@ public class PlayerController : BaseController
         {
             base.FixedUpdate();
 
-            isGrounded = CheckGround();
+            //isGrounded = CheckGround();
+            //CheckGround();
+            DetectGround();
         }
     }
 
@@ -238,7 +240,6 @@ public class PlayerController : BaseController
 
     private bool CheckGround()
     {
-        if (isGrounded == true || rb.velocity.y > 0) return isGrounded = false; // 낙하 중일때만 레이캐스트 
         RaycastHit2D hit = Physics2D.Raycast(transform.position, Vector2.down, RayDistance, GroundLayer);
 
         // 레이캐스트가 어떤 물체와 충돌했는지 확인
@@ -253,6 +254,24 @@ public class PlayerController : BaseController
         }
 
         return isGrounded;
+    }
+    void DetectGround()
+    {
+        if (isGrounded == true || rb.velocity.y > 0) return; // 낙하 중일때만 레이캐스트 
+        RaycastHit2D hit = Physics2D.Raycast(transform.position, Vector2.down, RayDistance, GroundLayer);
+
+        // 레이캐스트가 어떤 물체와 충돌했는지 확인
+        if (hit.collider != null)
+        {
+            isGrounded = true;
+            jumpCount = 1;
+            Debug.Log("착지했습니다.");
+            if (player.LandingSFX) SoundManager.PlayClip(player.LandingSFX);
+        }
+        else
+        {
+            isGrounded = false;
+        }
     }
 
     // 레이캐스트 디버깅
@@ -449,7 +468,7 @@ public class PlayerController : BaseController
             {
                 SoundManager.PlayClip(player.DashSFX);
             }
-
+            isGrounded = false;
             StartCoroutine(DashCoroutine(stuckPickaxe.transform.position));
         }
     }
