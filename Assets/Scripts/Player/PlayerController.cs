@@ -50,8 +50,6 @@ public class PlayerController : BaseController
     private bool isFacingRight = true;
     float horizontalInput = 0f;
     private int jumpCount = 0; // Jump 관련
-    float maxPressDuration = 0.6f;
-    float pressDurationTimer = 0f;
     bool isPressedJumpButton = false;
 
     private PlayerAnimationData playerAnimationData;
@@ -96,12 +94,12 @@ public class PlayerController : BaseController
                 FindStuckPickaxe();
                 CheckDashAvailability();
                 UpdateDashVisuals();
-                CheckJumpPressedDuration();
+                //CheckJumpPressedDuration();
                 break;
             case PlayerState.Hanging:
                 // 매달리기 상태일 때의 입력 처리
                 HandleHangingInput();
-                CheckJumpPressedDuration();
+                //CheckJumpPressedDuration();
                 break;
             case PlayerState.Dashing:
                 // 대쉬 중에는 입력을 받지 않음
@@ -135,65 +133,50 @@ public class PlayerController : BaseController
     void OnJump(InputAction.CallbackContext context)
     {
         Debug.Log($"OnJump, JumpCnt: {jumpCount}");
+        if (currentState == PlayerState.Dashing) return;
         if (jumpCount == 0 || isPressedJumpButton) return;
         isPressedJumpButton = true;
-        pressDurationTimer = 0.0f;
-        // 눌림 상태체크는 Update()에서
-        // 땅에 있다면 키 누름 시간 누적
-        /*if(context.ReadValue<float>() > 0) pressDurationTimer += Time.deltaTime;
-        Debug.Log(pressDurationTimer);
-        if (pressDurationTimer < maxPressDuration) return;
-        // 만약 키누름 시간이 최대 누름 시간을 넘었다면 바로 최대 점프
-        rb.velocity = new Vector2(rb.velocity.x, 0f);
-        rb.AddForce(Vector2.up * player.JumpForce, ForceMode2D.Impulse);*/
+        Jump();
     }
     void OnJumpCanceled(InputAction.CallbackContext context)
     {
         Debug.Log($"OnJumpCanceled, JumpCnt: {jumpCount}");
         if (!isPressedJumpButton) return;
-        Jump();
+        isPressedJumpButton = false;
+        if (currentState == PlayerState.Dashing) return; // 대시 중이라면 리턴
+        // 떨어질 때만 중력 없애기
+        if (rb.velocity.y < 0f) return;
+        rb.totalForce = Vector2.zero;
+        rb.velocity = new Vector2(rb.velocity.x, 0f);
     }
 
     void OnOpenPauseMenu(InputAction.CallbackContext context)
     {
         player.UIPause.OpenUI();
     }
-    void CheckJumpPressedDuration()
-    {
-        if(!isPressedJumpButton) return;
-        pressDurationTimer += Time.deltaTime;
-        if (pressDurationTimer < maxPressDuration) return;
-        pressDurationTimer = maxPressDuration;
-        Jump();
-    }
+    
     void Jump()
     {
         if (jumpCount == 0) return;
         rb.velocity = new Vector2(rb.velocity.x, 0f);
-        // 방법 1: 최소 최대 파워 차의 비율에 따라
-        /*float tmpForce = (player.MaxJumpForce - player.MinJumpForce) * (pressDurationTimer / maxPressDuration);
-        tmpForce += player.MinJumpForce;*/
-        // 방법 2: 최대 파워 비율에 따라
-        float tmpForce = player.MaxJumpForce * (pressDurationTimer / maxPressDuration);
-        //tmpForce = Mathf.Clamp(tmpForce, 6f, 12.5f); // 최소 0.5칸 최대 2.5칸 점프되게끔
-        tmpForce = Mathf.Clamp(tmpForce, player.MinJumpForce, player.MaxJumpForce); // 최소 0.5칸 최대 2.5칸 점프되게끔
-        rb.AddForce(Vector2.up * tmpForce, ForceMode2D.Impulse);
+
+        // 바로 최대 높이로 점프 -> 단, 점프키 캔슬시 바로 떨어지도록 세팅
+        rb.AddForce(Vector2.up * player.MaxJumpForce, ForceMode2D.Impulse);
+
         switch (currentState)
         {
             case PlayerState.Normal:
-                Debug.Log($"NormalJump, PressTime: {pressDurationTimer}, Force: {tmpForce}");
+                //Debug.Log($"NormalJump, PressTime: {pressDurationTimer}, Force: {tmpForce}");
                 // 이펙트
                 break;
             case PlayerState.Hanging:
                 ExitHangingState();
-                Debug.Log($"HangingJump, PressTime: {pressDurationTimer}, Force: {tmpForce}");
+                //Debug.Log($"HangingJump, PressTime: {pressDurationTimer}, Force: {tmpForce}");
                 if (hangJumpVFXPrefab != null)
                     Instantiate(hangJumpVFXPrefab, transform.position, Quaternion.identity);
                 break;
         }
         jumpCount = 0;
-        pressDurationTimer = 0f;
-        isPressedJumpButton = false;
         isGrounded = false;
     }
     protected override void Move()

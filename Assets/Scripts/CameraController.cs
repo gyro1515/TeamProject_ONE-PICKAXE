@@ -2,6 +2,7 @@ using UnityEngine;
 
 public class CameraController : MonoBehaviour
 {
+    [SerializeField] Vector3 pos = Vector2.zero;
     public float cameraSpeed = 5.0f;
 
     public GameObject player;
@@ -20,7 +21,7 @@ public class CameraController : MonoBehaviour
         // player 변수가 할당되었는지 확인하는 null 체크
         if (player != null)
         {
-            Vector3 dir = player.transform.position - this.transform.position;
+            Vector3 dir = player.transform.position - (this.transform.position + pos);
             //dir.y = 0;
             Vector3 moveVector = new Vector3(dir.x * cameraSpeed * Time.deltaTime, dir.y * cameraSpeed * Time.deltaTime, 0.0f);
             this.transform.Translate(moveVector);
