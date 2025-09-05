@@ -525,8 +525,8 @@ MonoBehaviour:
   attackRange: 1.5
   detectionRange: 5
   attackCoolTime: 3
-  attackSoundClip: {fileID: 8300000, guid: 4906546f36efe2341be660c480b4fc96, type: 3}
-  deathSoundClip: {fileID: 8300000, guid: 0528a94219dfef442b55f1449709d323, type: 3}
+  attackSoundClip: {fileID: 8300000, guid: 868212398a17c284e8c5c1806b8c71c6, type: 3}
+  deathSoundClip: {fileID: 8300000, guid: 21657ae2184310745ad7ad3ff456de88, type: 3}
   canAttack: 1
   target: {fileID: 0}
   patrolData: 5
