@@ -51,7 +51,7 @@ public class MeleeController : EnemyController
     protected override void Move()
     {
         rb2D.velocity = new Vector2(horizontalInput * melee.MoveSpeed, rb2D.velocity.y);
-        if(rb2D.velocity.x < 0f)
+        if (rb2D.velocity.x < 0f)
         {
             spriteRenderer.flipX = true;
         }
@@ -161,17 +161,35 @@ public class MeleeController : EnemyController
     {
         state = ETestState.Chase;
 
-        if (melee.Target.gameObject.transform.position.x - melee.gameObject.transform.position.x < 0f)
+        if (melee.Target.gameObject.transform.position.x - melee.gameObject.transform.position.x < -0.05f)
         {
             horizontalInput = -1.0f;
+            if (!animator.GetBool(melee.AnimationData.WalkParameterHash))
+            {
+                animator.SetBool(melee.AnimationData.AttackParameterHash, false);
+                animator.SetBool(melee.AnimationData.WalkParameterHash, true);
+                animator.SetBool(melee.AnimationData.IdleParameterHash, false);
+            }
         }
-        else if (melee.Target.gameObject.transform.position.x - melee.gameObject.transform.position.x > 0f)
+        else if (melee.Target.gameObject.transform.position.x - melee.gameObject.transform.position.x > 0.05f)
         {
             horizontalInput = 1.0f;
+            if (!animator.GetBool(melee.AnimationData.WalkParameterHash))
+            {
+                animator.SetBool(melee.AnimationData.AttackParameterHash, false);
+                animator.SetBool(melee.AnimationData.WalkParameterHash, true);
+                animator.SetBool(melee.AnimationData.IdleParameterHash, false);
+            }
         }
         else
         {
             horizontalInput = 0f;
+            if(!animator.GetBool(melee.AnimationData.IdleParameterHash))
+            {
+                animator.SetBool(melee.AnimationData.AttackParameterHash, false);
+                animator.SetBool(melee.AnimationData.WalkParameterHash, false);
+                animator.SetBool(melee.AnimationData.IdleParameterHash, true);
+            }
         }
         return INode.ENodeState.Success;
     }
