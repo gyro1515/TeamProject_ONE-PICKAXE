@@ -358,7 +358,7 @@ MonoBehaviour:
   btnContinue: {fileID: 3126759347595019684}
   btnOption: {fileID: 7073958663043801935}
   btnReturnToMain: {fileID: 159648424437585567}
-  clickSoundClip: {fileID: 8300000, guid: 0528a94219dfef442b55f1449709d323, type: 3}
+  clickSoundClip: {fileID: 8300000, guid: 44dacbb1687c1a34dac17ad1baec082c, type: 3}
 --- !u!223 &4661053270564298700
 Canvas:
   m_ObjectHideFlags: 0
