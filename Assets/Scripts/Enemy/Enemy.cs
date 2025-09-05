@@ -21,13 +21,13 @@ public class Enemy : BaseCharacter
         set
         {
             target = value;
-            if(target == null)
+            /*if(target == null)
             {
                 Debug.Log("target == null");
                 Controller.Animator.SetBool(AnimationData.AttackParameterHash, false);
                 Controller.Animator.SetBool(AnimationData.WalkParameterHash, false);
                 Controller.Animator.SetBool(AnimationData.IdleParameterHash, true);
-            }
+            }*/
         } } // 타겟 설정하기
 
     public EnemyController Controller { get; private set; }
@@ -36,6 +36,7 @@ public class Enemy : BaseCharacter
     public float DetectionRange { get { return detectionRange; } }
     public AudioClip AttackSoundClip { get { return attackSoundClip; } }
     public AudioClip DeathSoundClip { get { return deathSoundClip; } }
+    public bool CanAttack { get { return canAttack; } set { canAttack = value; } }
     protected override void Awake()
     {
         base.Awake();
@@ -68,7 +69,6 @@ public class Enemy : BaseCharacter
         // 공격 범위 안에 있고, 공격 가능 시간이 되었는가
         if (IsInAttackRange() && canAttack)
         {
-            canAttack = false;
             return true;
         }
         return false;
