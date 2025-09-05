@@ -120,10 +120,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6a1a1bacc15fdc44da129d8ef060b112, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  interactionSound: {fileID: 0}
   targetDoor: {fileID: 0}
   validInteractionLayers:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 1024
+  activatedSprite: {fileID: 204141030, guid: 010fa9cfb48442645b12ca52091a5f4a, type: 3}
 --- !u!1 &8235177272971824591
 GameObject:
   m_ObjectHideFlags: 0
@@ -214,10 +216,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6a1a1bacc15fdc44da129d8ef060b112, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  interactionSound: {fileID: 0}
   targetDoor: {fileID: 0}
   validInteractionLayers:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 1024
+  activatedSprite: {fileID: 204141030, guid: 010fa9cfb48442645b12ca52091a5f4a, type: 3}
 --- !u!1 &8845336119995428659
 GameObject:
   m_ObjectHideFlags: 0
@@ -245,7 +249,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0.5, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 6, y: 6, z: 6}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 7925500305946870677}
@@ -291,7 +295,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 120
-  m_Sprite: {fileID: 21300026, guid: 020a14f5296ce884aa7d029304ceff5f, type: 3}
+  m_Sprite: {fileID: -1639760622, guid: 010fa9cfb48442645b12ca52091a5f4a, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0

@@ -1,0 +1,7 @@
+﻿{
+    "player_hp": 5,
+    "player_dam": 10,
+    "player_mov": 10.0,
+    "player_jump": 4.0,
+    "smash_cooldown": 0.30000001192092898
+}

@@ -6,7 +6,6 @@ public class DestructibleWall : InteractableObject, IDamageable
 {
     public int currentHealth = 30;
     public LayerMask weaponLayer;
-
     private List<SpriteRenderer> spriteRenderers = new List<SpriteRenderer>();
     private Color originalColor;
     private bool isFlashing = false;
@@ -42,6 +41,12 @@ public class DestructibleWall : InteractableObject, IDamageable
         {
             Debug.LogError("SpriteRenderer를 찾을 수 없습니다. 스크립트가 올바른 오브젝트에 부착되었는지 확인하세요.");
         }
+    }
+
+    private void Start()
+    {
+        DoorData wallData = DataTableManager.Instance.GetSingleData<DoorData>();
+        currentHealth = wallData.door_hp;
     }
 
     public override void Interaction(GameObject other)

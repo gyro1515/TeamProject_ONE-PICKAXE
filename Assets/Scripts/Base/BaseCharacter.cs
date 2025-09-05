@@ -6,9 +6,9 @@ using UnityEngine;
 public abstract class BaseCharacter : MonoBehaviour
 {
     [field: Header("캐릭터 능력치 설정")]
-    [field: SerializeField] public int AttackPower { get; private set; }
-    [field: SerializeField] public int DefensePower { get; private set; }
-    [field: SerializeField] public float MoveSpeed { get; private set; } = 5f;
+    [field: SerializeField] public int AttackPower { get; set; }
+    [field: SerializeField] public int DefensePower { get; set; }
+    [field: SerializeField] public float MoveSpeed { get; set; } = 5f;
     [field: SerializeField] public int MaxHP { get; private set; }
     protected int curHP;
     // 어느정도 후에 사라질 것인가
@@ -24,7 +24,7 @@ public abstract class BaseCharacter : MonoBehaviour
         } 
     }
     public event Action<int, int> OnCurHpChange; // UI에 바인드할 이벤트 델리게이트
-    
+
     protected virtual void Awake()
     {
         CurrentHP = MaxHP;

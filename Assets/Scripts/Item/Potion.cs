@@ -5,6 +5,12 @@ public class Potion : Item
 {
     public int healthToRestore = 1;
 
+    private void Start()
+    {
+        ItemData potionData = DataTableManager.Instance.GetCollectionData<ItemData>(201);
+        healthToRestore = potionData.item_hprecovery;
+    }
+
     public override void OnPlayerCollide(Player player)
     {
         if (player.CurrentHP < player.MaxHP)

@@ -1,0 +1,30 @@
+﻿{
+    "enemydata": [
+        {
+            "key": 100,
+            "enemy_name": "해골 전사",
+            "enemy_type": 1,
+            "enemy_hp": 30,
+            "enemy_move": 6,
+            "enemy_damage": 1,
+            "enemy_cooldown": 4.0,
+            "enemy_patrol": true,
+            "enemy_patroldata": 30,
+            "enemy_detectrange": 5.0,
+            "enemy_attackrange": 1.5
+        },
+        {
+            "key": 101,
+            "enemy_name": "해골 궁수",
+            "enemy_type": 2,
+            "enemy_hp": 15,
+            "enemy_move": 0,
+            "enemy_damage": 1,
+            "enemy_cooldown": 4.0,
+            "enemy_patrol": false,
+            "enemy_patroldata": 0,
+            "enemy_detectrange": 10.0,
+            "enemy_attackrange": 5.0
+        }
+    ]
+}
