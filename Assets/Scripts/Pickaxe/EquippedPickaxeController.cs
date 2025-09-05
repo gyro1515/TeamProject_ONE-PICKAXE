@@ -132,7 +132,10 @@ public class EquippedPickaxeController : MonoBehaviour
     // 곡괭이 회수하고 상태 초기화
     public void RetrievePickaxe(bool isCatch)
     {
-        RetrieveSoundSource.Stop();
+        if(RetrieveSoundSource)
+        {
+            RetrieveSoundSource.Stop();
+        }
 
         // 회수 UI 닫기
         UIRecallPickaxe uIRecallPickaxe = GameManager.Instance.Player.UIRecallPickaxe;
