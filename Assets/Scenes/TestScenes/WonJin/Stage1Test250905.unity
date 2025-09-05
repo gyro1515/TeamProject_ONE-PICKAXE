@@ -1417,11 +1417,11 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 492278350339980680, guid: bc9f971c1790b3c43aa64f519360ba68, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 58.43
+      value: 17.81
       objectReference: {fileID: 0}
     - target: {fileID: 492278350339980680, guid: bc9f971c1790b3c43aa64f519360ba68, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -13.2
+      value: -0.83
       objectReference: {fileID: 0}
     - target: {fileID: 492278350339980680, guid: bc9f971c1790b3c43aa64f519360ba68, type: 3}
       propertyPath: m_LocalPosition.z
@@ -3401,11 +3401,11 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 5887569363618083705, guid: 683e646a930eef64fa564a9fac4704c9, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 21.77
+      value: 2.31
       objectReference: {fileID: 0}
     - target: {fileID: 5887569363618083705, guid: 683e646a930eef64fa564a9fac4704c9, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -1.2
+      value: -3.74
       objectReference: {fileID: 0}
     - target: {fileID: 5887569363618083705, guid: 683e646a930eef64fa564a9fac4704c9, type: 3}
       propertyPath: m_LocalPosition.z
@@ -3442,6 +3442,10 @@ PrefabInstance:
     - target: {fileID: 7174576242837198173, guid: 683e646a930eef64fa564a9fac4704c9, type: 3}
       propertyPath: m_Name
       value: EnemyMelee
+      objectReference: {fileID: 0}
+    - target: {fileID: 7174576242837198173, guid: 683e646a930eef64fa564a9fac4704c9, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
