@@ -159,6 +159,8 @@ public class EquippedPickaxeController : MonoBehaviour
 
     private void OnThrow(InputAction.CallbackContext context)
     {
+        player.Controller.FlipTowardsMouse();
+
         // 현재 상태가 EquipState일 때만 반응
         if (stateMachine.CurrentState == stateMachine.EquipState)
         {

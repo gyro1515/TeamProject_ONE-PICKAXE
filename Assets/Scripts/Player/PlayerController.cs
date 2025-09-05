@@ -54,15 +54,15 @@ public class PlayerController : BaseController
     private PlayerAnimationData playerAnimationData;
 
     Player player;
-    public PlayerInput Input { get; private set; }
+    public PlayerInput PlayerInput { get; private set; }
     public PlayerInput.PlayerActions PlayerActions { get; private set; }
 
     protected override void Awake()
     {
         base.Awake();
         player = GetComponent<Player>();
-        Input = new PlayerInput();
-        PlayerActions = Input.Player;
+        PlayerInput = new PlayerInput();
+        PlayerActions = PlayerInput.Player;
         PlayerActions.Jump.started += OnJump;
         PlayerActions.OpenPauseMenu.started += OnOpenPauseMenu;
         PlayerActions.Dash.started += OnDash;
@@ -115,7 +115,7 @@ public class PlayerController : BaseController
 
     private void OnEnable()
     {
-        Input.Enable();
+        PlayerInput.Enable();
     }
 
     private void OnDisable()
@@ -149,11 +149,28 @@ public class PlayerController : BaseController
         animator.SetBool(playerAnimationData.RunParameterHash, Mathf.Abs(horizontalInput) > 0);
 
         rb.velocity = new Vector2(horizontalInput * player.MoveSpeed, rb.velocity.y);
+
         if (horizontalInput > 0 && !isFacingRight)
         {
             Flip();
         }
         else if (horizontalInput < 0 && isFacingRight)
+        {
+            Flip();
+        }
+    }
+
+    public void FlipTowardsMouse()
+    {
+        Vector2 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+
+        // 마우스가 플레이어의 오른쪽에 있다면
+        if (mousePos.x > transform.position.x && !isFacingRight)
+        {
+            Flip();
+        }
+        // 마우스가 플레이어의 왼쪽에 있다면
+        else if (mousePos.x < transform.position.x && isFacingRight)
         {
             Flip();
         }
@@ -200,8 +217,8 @@ public class PlayerController : BaseController
 
     public void SetPlayerInput(bool active)
     {
-        if (active) Input.Enable();
-        else Input.Disable();
+        if (active) PlayerInput.Enable();
+        else PlayerInput.Disable();
     }
 
     public override void TakeDamage(int damage)
