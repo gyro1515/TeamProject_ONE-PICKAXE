@@ -6,6 +6,7 @@ public class EnemyController : BaseController
 {
     [Header("적 유닛 컨트롤러 설정")]
     [SerializeField] protected SpriteRenderer spriteRenderer;
+    [SerializeField] BoxCollider2D mainCol;
     [SerializeField] GameObject bodyAttackGO;
 
     protected Enemy enemy;
@@ -34,7 +35,7 @@ public class EnemyController : BaseController
         base.Dead();
         animator.SetTrigger(enemy.AnimationData.DeathParameterHash);
         if (enemy.DeathSoundClip) SoundManager.PlayClip(enemy.DeathSoundClip);
-
+        mainCol.excludeLayers += LayerMask.GetMask("Weapon");
         bodyAttackGO.SetActive(false);
 
         //Debug.Log(">>> 'Dead()' 메서드 호출됨"); // 이 로그가 뜨는지 확인!

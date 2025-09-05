@@ -321,6 +321,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   spriteRenderer: {fileID: 384020787629420158}
+  mainCol: {fileID: 8371836040356336373}
   bodyAttackGO: {fileID: 7134975628699761596}
   droppableItems:
   - {fileID: 3556604760413938753, guid: f660b97a62132f84f9c6a0e91995c18c, type: 3}
