@@ -1,22 +1,21 @@
 using UnityEngine;
 using System.Collections;
-using System.Collections.Generic; // List 사용을 위해 추가
+using System.Collections.Generic;
 
 public class DestructibleWall : InteractableObject, IDamageable
 {
     public int currentHealth = 30;
     public LayerMask weaponLayer;
 
-    // SpriteRenderer 컴포넌트들을 담을 리스트
     private List<SpriteRenderer> spriteRenderers = new List<SpriteRenderer>();
-    // 원래 색상 저장
     private Color originalColor;
-    // 깜빡임 효과가 진행 중인지 확인하는 플래그
     private bool isFlashing = false;
+
+    // 벽이 서서히 사라지는 데 걸리는 시간 (2초)
+    [SerializeField] private float fadeDuration = 2.0f;
 
     private void Awake()
     {
-        // 1. 이 스크립트가 부착된 오브젝트의 부모에서 모든 SpriteRenderer를 찾습니다.
         if (transform.parent != null)
         {
             SpriteRenderer[] foundRenderers = transform.parent.GetComponentsInChildren<SpriteRenderer>();
@@ -27,7 +26,6 @@ public class DestructibleWall : InteractableObject, IDamageable
         }
         else
         {
-            // 부모가 없다면, 현재 오브젝트에서 SpriteRenderer를 찾습니다.
             SpriteRenderer foundRenderer = GetComponent<SpriteRenderer>();
             if (foundRenderer != null)
             {
@@ -35,7 +33,6 @@ public class DestructibleWall : InteractableObject, IDamageable
             }
         }
 
-        // 2. 찾은 SpriteRenderer가 있는지 확인하고, 첫 번째 것의 원래 색상을 저장합니다.
         if (spriteRenderers.Count > 0)
         {
             originalColor = spriteRenderers[0].color;
@@ -49,18 +46,15 @@ public class DestructibleWall : InteractableObject, IDamageable
 
     public override void Interaction(GameObject other)
     {
-
     }
 
     public void TakeDamage(int damage)
     {
-        // 데미지가 적용될 때 실행되는 로그
-        Debug.Log("TakeDamage 메서드 호출됨.");
+        Debug.Log("TakeDamage 메서드 호출됨.");
 
         currentHealth -= damage;
         Debug.Log("벽이 데미지를 입었습니다. 남은 체력: " + currentHealth);
 
-        // SpriteRenderer가 있고, 현재 깜빡임 중이 아니라면 깜빡임 코루틴 시작
         if (spriteRenderers.Count > 0 && !isFlashing)
         {
             StartCoroutine(FlashRed(0.1f, originalColor));
@@ -68,47 +62,85 @@ public class DestructibleWall : InteractableObject, IDamageable
 
         if (currentHealth <= 0)
         {
-            Debug.Log("벽의 체력이 0이 되어 파괴됩니다.");
-            DestroyWall();
-        }
-    }
+            Debug.Log("벽의 체력이 0이 되어 파괴됩니다. 서서히 사라집니다.");
 
-    private void DestroyWall()
-    {
-        Debug.Log("부모 오브젝트를 포함한 전체 오브젝트를 파괴합니다.");
+            // 벽의 모든 콜라이더를 비활성화하여 적이 더 이상 통과할 수 있게 합니다.
+            Collider2D[] colliders = GetComponentsInChildren<Collider2D>();
+            foreach (Collider2D col in colliders)
+            {
+                col.enabled = false;
+            }
 
-        // 현재 오브젝트의 부모 Transform을 가져옵니다.
-        Transform parentTransform = transform.parent;
-
-        // 부모가 있다면 부모를 파괴합니다.
-        if (parentTransform != null)
-        {
-            Destroy(parentTransform.gameObject);
-        }
-        else // 부모가 없다면 자기 자신을 파괴합니다.
-        {
-            Destroy(gameObject);
+            if (spriteRenderers.Count > 0)
+            {
+                StartCoroutine(FadeAndDestroy());
+            }
+            else
+            {
+                DestroyParentOrSelf();
+            }
         }
     }
 
     private IEnumerator FlashRed(float duration, Color restoreColor)
     {
         isFlashing = true;
-
-        // 찾은 모든 SpriteRenderer의 색상을 변경합니다.
         foreach (SpriteRenderer sr in spriteRenderers)
         {
             sr.color = Color.red;
         }
-
         yield return new WaitForSeconds(duration);
-
-        // 모든 SpriteRenderer의 색상을 원래대로 되돌립니다.
         foreach (SpriteRenderer sr in spriteRenderers)
         {
             sr.color = restoreColor;
         }
-
         isFlashing = false;
     }
+
+    // 벽을 서서히 투명하게 만들고 파괴하는 코루틴
+    private IEnumerator FadeAndDestroy()
+    {
+        List<Color> startColors = new List<Color>();
+        foreach (SpriteRenderer sr in spriteRenderers)
+        {
+            startColors.Add(sr.color);
+        }
+
+        float timer = 0f;
+
+        while (timer < fadeDuration)
+        {
+            timer += Time.deltaTime;
+            float progress = timer / fadeDuration;
+
+            for (int i = 0; i < spriteRenderers.Count; i++)
+            {
+                Color currentColor = startColors[i];
+                currentColor.a = Mathf.Lerp(startColors[i].a, 0, progress);
+                spriteRenderers[i].color = currentColor;
+            }
+
+            yield return null;
+        }
+
+        DestroyParentOrSelf();
+    }
+
+    // 부모 오브젝트 또는 자기 자신을 파괴하는 헬퍼 메서드
+    private void DestroyParentOrSelf()
+    {
+        Debug.Log("부모 오브젝트를 포함한 전체 오브젝트를 파괴합니다.");
+        Transform parentTransform = transform.parent;
+        if (parentTransform != null)
+        {
+            Destroy(parentTransform.gameObject);
+        }
+        else
+        {
+            Destroy(gameObject);
+        }
+    }
+
+    // OnCollisionStay2D 메서드 (이전 버전에서 사용)
+    // 현재는 충돌을 감지하는 코드를 TakeDamage에 바로 넣지 않았으므로 이 부분은 삭제했습니다.
 }
