@@ -50,11 +50,11 @@ public class EnemyController : BaseController
     {
         base.Update();
         // 테스트
-        if(Input.GetKeyDown(KeyCode.Alpha7))
+        /*if(Input.GetKeyDown(KeyCode.Alpha7))
         {
             //Debug.Log("테스트 TakeDamage");
             TakeDamage(5);
-        }
+        }*/
     }
     protected float GetNormalizedTime(string tag = "Attack")
     {
