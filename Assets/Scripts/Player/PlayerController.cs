@@ -154,7 +154,7 @@ public class PlayerController : BaseController
         if (!isPressedJumpButton) return;
         isPressedJumpButton = false;
         if (currentState == PlayerState.Dashing) return; // 대시 중이라면 리턴
-        // 떨어질 때만 중력 없애기
+        // 올라갈 때만 중력 없애기
         if (rb.velocity.y < 0f) return;
         rb.totalForce = Vector2.zero;
         rb.velocity = new Vector2(rb.velocity.x, 0f);
