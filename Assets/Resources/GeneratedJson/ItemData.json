@@ -1,0 +1,16 @@
+﻿{
+    "itemdata": [
+        {
+            "key": 200,
+            "item_name": "광물",
+            "item_desc": "점수용 아이템",
+            "item_hprecovery": 0
+        },
+        {
+            "key": 201,
+            "item_name": "포션",
+            "item_desc": "회복용 아이템",
+            "item_hprecovery": 1
+        }
+    ]
+}
