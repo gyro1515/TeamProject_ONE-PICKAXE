@@ -528,7 +528,7 @@ MonoBehaviour:
   attackSoundClip: {fileID: 8300000, guid: 4906546f36efe2341be660c480b4fc96, type: 3}
   deathSoundClip: {fileID: 8300000, guid: 0528a94219dfef442b55f1449709d323, type: 3}
   canAttack: 1
-  <Target>k__BackingField: {fileID: 0}
+  target: {fileID: 0}
   patrolData: 5
 --- !u!114 &363504111731811674
 MonoBehaviour:
@@ -603,7 +603,7 @@ BoxCollider2D:
   m_GameObject: {fileID: 7174576242837198173}
   m_Enabled: 1
   m_Density: 1
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 6200000, guid: a3256fcd95805074c982027164cc056d, type: 2}
   m_IncludeLayers:
     serializedVersion: 2
     m_Bits: 1536

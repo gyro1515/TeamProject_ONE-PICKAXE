@@ -175,6 +175,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   parentGO: {fileID: 3556604760413938753}
+  getSound: {fileID: 0}
   oreValue: 2
 --- !u!1 &3556604760413938753
 GameObject:
@@ -247,7 +248,7 @@ BoxCollider2D:
   m_GameObject: {fileID: 3556604760413938753}
   m_Enabled: 1
   m_Density: 1
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 6200000, guid: a3256fcd95805074c982027164cc056d, type: 2}
   m_IncludeLayers:
     serializedVersion: 2
     m_Bits: 512
