@@ -2512,6 +2512,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: DestroyWall
       objectReference: {fileID: 0}
+    - target: {fileID: 428950379929730950, guid: eb9d834b3d4749f46a54476b81c36418, type: 3}
+      propertyPath: m_TagString
+      value: Enemy
+      objectReference: {fileID: 0}
     - target: {fileID: 7529740980909069756, guid: eb9d834b3d4749f46a54476b81c36418, type: 3}
       propertyPath: m_LocalPosition.x
       value: 43

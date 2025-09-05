@@ -4,10 +4,17 @@ public class PickaxeRetrieveState : PickaxeBaseState<ThrownPickaxeStateMachine>
 {
     private Rigidbody2D rb;
     private Transform playerTransform;
+    private EquippedPickaxeController owner;
+    private SoundSource soundSource;
 
     public override void EnterState(ThrownPickaxeStateMachine stateMachine)
     {
         Debug.Log("곡괭이 상태: 회수 중");
+
+        if (stateMachine.ThrownPickaxeController.RetrieveSFX)
+        {
+            soundSource = SoundManager.PlayClipWithGetSoundSource(stateMachine.ThrownPickaxeController.RetrieveSFX);
+        }
 
         // 물리 활성화 및 초기화
         rb = stateMachine.ThrownPickaxeController.Rb2D;
@@ -30,6 +37,11 @@ public class PickaxeRetrieveState : PickaxeBaseState<ThrownPickaxeStateMachine>
             // Owner(EquippedPickaxeController)에게 회수되었음을 알림
             if (stateMachine.ThrownPickaxeController.Owner != null)
             {
+                if (stateMachine.ThrownPickaxeController.RetrieveSFX)
+                {
+                    soundSource.Stop();
+                }
+
                 stateMachine.ThrownPickaxeController.Owner.RetrievePickaxe(false);
             }
 
@@ -52,7 +64,11 @@ public class PickaxeRetrieveState : PickaxeBaseState<ThrownPickaxeStateMachine>
         rb.velocity = directionToPlayer * stateMachine.ThrownPickaxeController.RetrieveSpeed;
     }
 
-    public override void ExitState(ThrownPickaxeStateMachine stateMachine) { }
+    public override void ExitState(ThrownPickaxeStateMachine stateMachine)
+    {
+        
+    }
+
     public override void FixedUpdateState(ThrownPickaxeStateMachine stateMachine) { }
     public override void HandleCollision(ThrownPickaxeStateMachine stateMachine, Collision2D collision) { }
     public override void HandleInput(ThrownPickaxeStateMachine stateMachine) { }
