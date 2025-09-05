@@ -301,7 +301,7 @@ MonoBehaviour:
   <MoveSpeed>k__BackingField: 5
   <MaxHP>k__BackingField: 15
   <DeadTime>k__BackingField: 1
-  attackRange: 5
+  attackRange: 10
   detectionRange: 10
   attackCoolTime: 3
   attackSoundClip: {fileID: 8300000, guid: 3684b3536b5e8d048837c33aea55b04b, type: 3}

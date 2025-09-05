@@ -1,7 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.IO;
-using UnityEditor.SceneManagement;
 using UnityEngine;
 
 public class SoundManager : SingletonMono<SoundManager>

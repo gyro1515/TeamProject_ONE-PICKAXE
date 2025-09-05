@@ -11,7 +11,7 @@
             "enemy_patrol": true,
             "enemy_patroldata": 30,
             "enemy_detectrange": 4.0,
-            "enemy_attackrange": 1.5
+            "enemy_attackrange": 1.600000023841858
         },
         {
             "key": 101,
@@ -24,7 +24,7 @@
             "enemy_patrol": false,
             "enemy_patroldata": 0,
             "enemy_detectrange": 10.0,
-            "enemy_attackrange": 5.0
+            "enemy_attackrange": 10.0
         }
     ]
 }

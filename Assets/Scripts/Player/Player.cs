@@ -56,6 +56,7 @@ public class Player : BaseCharacter
     public UIRecallPickaxe UIRecallPickaxe { get; private set; }
     public UICatchPickaxe UICatchPickaxe { get; private set; }
 
+    [SerializeField] CapsuleCollider2D mainCol;
     protected override void Awake()
     {
         base.Awake();
@@ -105,27 +106,15 @@ public class Player : BaseCharacter
         // 체력 UI 테스트
         if (Input.GetKeyDown(KeyCode.Alpha1))
         {
-            CurrentHP -= 1;
-        }
-        else if(Input.GetKeyDown(KeyCode.Alpha2))
-        {
             CurrentHP += 1;
+        }
+        else if (Input.GetKeyDown(KeyCode.Alpha2))
+        {
+            mainCol.isTrigger = true;
         }
         else if (Input.GetKeyDown(KeyCode.Alpha3))
         {
-            HUD.SetPickaxeOwn(true);
-        }
-        else if (Input.GetKeyDown(KeyCode.Alpha4))
-        {
-            HUD.SetPickaxeOwn(false);
-        }
-        else if (Input.GetKeyDown(KeyCode.Alpha5))
-        {
-            MineralCnt++;
-        }
-        else if (Input.GetKeyDown(KeyCode.Alpha6))
-        {
-            MineralCnt--;
+            mainCol.isTrigger = false;
         }
     }
 }

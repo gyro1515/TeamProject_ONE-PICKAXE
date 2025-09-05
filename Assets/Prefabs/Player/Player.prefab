@@ -65,6 +65,7 @@ MonoBehaviour:
   <HitSFX>k__BackingField: {fileID: 8300000, guid: dde7901f8eab8b140b0f0bc5416e6de6, type: 3}
   <DeathSFX>k__BackingField: {fileID: 8300000, guid: c1e883067f0590d42bd0c50677fda4ea, type: 3}
   <DashSFX>k__BackingField: {fileID: 8300000, guid: d33c057c6953a08409e873afd4d19fa0, type: 3}
+  mainCol: {fileID: 6093311273909115676}
 --- !u!114 &5372724588938240411
 MonoBehaviour:
   m_ObjectHideFlags: 0
