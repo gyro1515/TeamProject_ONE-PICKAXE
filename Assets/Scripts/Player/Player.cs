@@ -16,6 +16,7 @@ public class Player : BaseCharacter
     [field: SerializeField] public AudioClip LandingSFX { get; private set; }
     [field: SerializeField] public AudioClip HitSFX { get; private set; }
     [field: SerializeField] public AudioClip DeathSFX { get; private set; }
+    [field: SerializeField] public AudioClip DashSFX { get; private set; }
 
     int mineralCnt = 0;
     public int MineralCnt { get { return mineralCnt; }

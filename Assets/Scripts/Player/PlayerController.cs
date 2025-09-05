@@ -38,6 +38,11 @@ public class PlayerController : BaseController
     [SerializeField] private Color damageColor = new Color(1f, 0.6f, 0.6f, 1f);
     private bool isInvincible = false; // 현재 무적 상태인지 확인
 
+    [Header("Sound Settings")]
+    [SerializeField] private float footstepInterval = 0.4f; // 발소리 재생 간격
+    private float footstepTimer; // 발소리 타이머
+    private bool wasGrounded; // 이전 프레임의 지면 접지 상태를 저장
+
     private EquippedPickaxeController equippedPickaxe; // 장착된 곡괭이 참조
     private ThrownPickaxeController stuckPickaxe; // 현재 박혀있는 곡괭이 참조
     private bool isDashAvailable = false; // 대쉬가 가능한 상태인지
@@ -109,7 +114,7 @@ public class PlayerController : BaseController
 
     protected override void FixedUpdate()
     {
-        if(currentState == PlayerState.Normal)
+        if (currentState == PlayerState.Normal)
         {
             base.FixedUpdate();
 
@@ -136,8 +141,15 @@ public class PlayerController : BaseController
         if (currentState == PlayerState.Dashing) return;
         if (jumpCount == 0 || isPressedJumpButton) return;
         isPressedJumpButton = true;
+        
         Jump();
+
+        if (player.JumpSFX)
+        {
+            SoundManager.PlayClip(player.JumpSFX);
+        }
     }
+
     void OnJumpCanceled(InputAction.CallbackContext context)
     {
         Debug.Log($"OnJumpCanceled, JumpCnt: {jumpCount}");
@@ -159,11 +171,6 @@ public class PlayerController : BaseController
     {
         if (jumpCount == 0)
             return;
-
-        if (player.JumpSFX)
-        {
-            SoundManager.PlayClip(player.JumpSFX);
-        }
 
         rb.velocity = new Vector2(rb.velocity.x, 0f);
 
@@ -189,11 +196,6 @@ public class PlayerController : BaseController
     protected override void Move()
     {
         base.Move();
-
-        if (player.FootStepSFX)
-        {
-            SoundManager.PlayClip(player.FootStepSFX);
-        }
 
         horizontalInput = PlayerActions.Move.ReadValue<float>();
 
@@ -283,6 +285,11 @@ public class PlayerController : BaseController
             return;
         }
 
+        if (player.HitSFX)
+        {
+            SoundManager.PlayClip(player.HitSFX);
+        }
+
         player.CurrentHP -= damage;
 
         if (player.CurrentHP <= 0)
@@ -336,6 +343,11 @@ public class PlayerController : BaseController
 
         currentState = PlayerState.Dead;
         base.Dead();
+
+        if (player.DeathSFX)
+        {
+            SoundManager.PlayClip(player.DeathSFX);
+        }
 
         // 플레이어 입력 비활성화?
         SetPlayerInput(false);
@@ -438,6 +450,11 @@ public class PlayerController : BaseController
     {
         if (isDashAvailable && currentState == PlayerState.Normal)
         {
+            if(player.DashSFX)
+            {
+                SoundManager.PlayClip(player.DashSFX);
+            }
+
             StartCoroutine(DashCoroutine(stuckPickaxe.transform.position));
         }
     }
