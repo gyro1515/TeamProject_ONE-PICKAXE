@@ -7,7 +7,8 @@ using UnityEngine.InputSystem;
 public class Player : BaseCharacter
 {
     [field: Header("플레이어 세팅")]
-    [field: SerializeField] public float JumpForce { get; private set; } = 7f;
+    [field: SerializeField] public float MaxJumpForce { get; private set; } = 12.5f;
+    [field: SerializeField] public float MinJumpForce { get; private set; } = 6f;
     int mineralCnt = 0;
     public int MineralCnt { get { return mineralCnt; }
         set 

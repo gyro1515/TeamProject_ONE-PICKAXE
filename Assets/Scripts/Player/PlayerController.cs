@@ -50,6 +50,9 @@ public class PlayerController : BaseController
     private bool isFacingRight = true;
     float horizontalInput = 0f;
     private int jumpCount = 0; // Jump 관련
+    float maxPressDuration = 0.6f;
+    float pressDurationTimer = 0f;
+    bool isPressedJumpButton = false;
 
     private PlayerAnimationData playerAnimationData;
 
@@ -64,6 +67,7 @@ public class PlayerController : BaseController
         Input = new PlayerInput();
         PlayerActions = Input.Player;
         PlayerActions.Jump.started += OnJump;
+        PlayerActions.Jump.canceled += OnJumpCanceled;
         PlayerActions.OpenPauseMenu.started += OnOpenPauseMenu;
         PlayerActions.Dash.started += OnDash;
         rb = GetComponent<Rigidbody2D>();
@@ -92,10 +96,12 @@ public class PlayerController : BaseController
                 FindStuckPickaxe();
                 CheckDashAvailability();
                 UpdateDashVisuals();
+                CheckJumpPressedDuration();
                 break;
             case PlayerState.Hanging:
                 // 매달리기 상태일 때의 입력 처리
                 HandleHangingInput();
+                CheckJumpPressedDuration();
                 break;
             case PlayerState.Dashing:
                 // 대쉬 중에는 입력을 받지 않음
@@ -121,24 +127,75 @@ public class PlayerController : BaseController
     private void OnDisable()
     {
         PlayerActions.Jump.started -= OnJump;
+        PlayerActions.Jump.canceled -= OnJumpCanceled;
         PlayerActions.OpenPauseMenu.started -= OnOpenPauseMenu;
         PlayerActions.Dash.started -= OnDash;
     }
 
     void OnJump(InputAction.CallbackContext context)
     {
-        if(isGrounded)
-        {
-            rb.velocity = new Vector2(rb.velocity.x, 0f);
-            rb.AddForce(Vector2.up * player.JumpForce, ForceMode2D.Impulse);
-        }
+        Debug.Log($"OnJump, JumpCnt: {jumpCount}");
+        if (jumpCount == 0 || isPressedJumpButton) return;
+        isPressedJumpButton = true;
+        pressDurationTimer = 0.0f;
+        // 눌림 상태체크는 Update()에서
+        // 땅에 있다면 키 누름 시간 누적
+        /*if(context.ReadValue<float>() > 0) pressDurationTimer += Time.deltaTime;
+        Debug.Log(pressDurationTimer);
+        if (pressDurationTimer < maxPressDuration) return;
+        // 만약 키누름 시간이 최대 누름 시간을 넘었다면 바로 최대 점프
+        rb.velocity = new Vector2(rb.velocity.x, 0f);
+        rb.AddForce(Vector2.up * player.JumpForce, ForceMode2D.Impulse);*/
+    }
+    void OnJumpCanceled(InputAction.CallbackContext context)
+    {
+        Debug.Log($"OnJumpCanceled, JumpCnt: {jumpCount}");
+        if (!isPressedJumpButton) return;
+        Jump();
     }
 
     void OnOpenPauseMenu(InputAction.CallbackContext context)
     {
         player.UIPause.OpenUI();
     }
-
+    void CheckJumpPressedDuration()
+    {
+        if(!isPressedJumpButton) return;
+        pressDurationTimer += Time.deltaTime;
+        if (pressDurationTimer < maxPressDuration) return;
+        pressDurationTimer = maxPressDuration;
+        Jump();
+    }
+    void Jump()
+    {
+        if (jumpCount == 0) return;
+        rb.velocity = new Vector2(rb.velocity.x, 0f);
+        // 방법 1: 최소 최대 파워 차의 비율에 따라
+        /*float tmpForce = (player.MaxJumpForce - player.MinJumpForce) * (pressDurationTimer / maxPressDuration);
+        tmpForce += player.MinJumpForce;*/
+        // 방법 2: 최대 파워 비율에 따라
+        float tmpForce = player.MaxJumpForce * (pressDurationTimer / maxPressDuration);
+        //tmpForce = Mathf.Clamp(tmpForce, 6f, 12.5f); // 최소 0.5칸 최대 2.5칸 점프되게끔
+        tmpForce = Mathf.Clamp(tmpForce, player.MinJumpForce, player.MaxJumpForce); // 최소 0.5칸 최대 2.5칸 점프되게끔
+        rb.AddForce(Vector2.up * tmpForce, ForceMode2D.Impulse);
+        switch (currentState)
+        {
+            case PlayerState.Normal:
+                Debug.Log($"NormalJump, PressTime: {pressDurationTimer}, Force: {tmpForce}");
+                // 이펙트
+                break;
+            case PlayerState.Hanging:
+                ExitHangingState();
+                Debug.Log($"HangingJump, PressTime: {pressDurationTimer}, Force: {tmpForce}");
+                if (hangJumpVFXPrefab != null)
+                    Instantiate(hangJumpVFXPrefab, transform.position, Quaternion.identity);
+                break;
+        }
+        jumpCount = 0;
+        pressDurationTimer = 0f;
+        isPressedJumpButton = false;
+        isGrounded = false;
+    }
     protected override void Move()
     {
         base.Move();
@@ -172,12 +229,14 @@ public class PlayerController : BaseController
 
     private bool CheckGround()
     {
+        if (isGrounded == true || rb.velocity.y > 0) return isGrounded = false; // 낙하 중일때만 레이캐스트 
         RaycastHit2D hit = Physics2D.Raycast(transform.position, Vector2.down, RayDistance, GroundLayer);
 
         // 레이캐스트가 어떤 물체와 충돌했는지 확인
         if (hit.collider != null)
         {
             isGrounded = true;
+            jumpCount = 1;
         }
         else
         {
@@ -465,14 +524,14 @@ public class PlayerController : BaseController
             ExitHangingState();
         }
         // 매달리기 점프 (점프 키)
-        else if (PlayerActions.Jump.WasPressedThisFrame())
+        /*else if (PlayerActions.Jump.WasPressedThisFrame())
         {
             // 점프 카운트가 있어야 점프 가능
             if (jumpCount > 0)
             {
                 jumpCount--;
                 ExitHangingState();
-
+                Debug.Log("HandleHangingJump");
                 rb.velocity = new Vector2(rb.velocity.x, player.JumpForce);
 
                 if (hangJumpVFXPrefab != null)
@@ -480,7 +539,7 @@ public class PlayerController : BaseController
                     //Instantiate(hangJumpVFXPrefab, transform.position, Quaternion.identity);
                 }
             }
-        }
+        }*/
     }
 
     private void ExitHangingState()
